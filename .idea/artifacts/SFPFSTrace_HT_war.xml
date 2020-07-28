@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SFPFSTrace_HT:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SFPFSTrace_HT.war">
+      <element id="artifact" artifact-name="SFPFSTrace_HT:war exploded" />
+    </root>
+  </artifact>
+</component>
