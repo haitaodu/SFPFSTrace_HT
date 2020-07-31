@@ -65,4 +65,13 @@
 	<!-- 通过注解的方式操作事务 -->
 	<tx:annotation-driven proxy-target-class="true"/>
 
+	<beans profile="development">
+		<context:property-placeholder location="classpath:app-development.properties"/>
+	</beans>
+
+	<beans profile="production">
+		<context:property-placeholder location="classpath:app-production.properties"/>
+
+	</beans>
+
 </beans>

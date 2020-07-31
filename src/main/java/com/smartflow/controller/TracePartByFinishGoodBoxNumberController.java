@@ -1,36 +1,43 @@
 package com.smartflow.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.smartflow.dto.VMFinishGoodBoxPartInformationRow;
 import com.smartflow.dto.VMPartInformationOfFinishGoodBoxInput;
 import com.smartflow.model.PackingInformation;
 import com.smartflow.service.GetPartMaterialRecordByPartSerialNumberService;
 import com.smartflow.service.PackingInformationService;
-import com.smartflow.service.TracePartMaterialRecordService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author haita
+ */
 @RestController
 @RequestMapping("/api/TracePartByFinishGoodBoxNumber")
 public class TracePartByFinishGoodBoxNumberController extends BaseController{
 	private static final Logger logger = Logger.getLogger(TracePartByFinishGoodBoxNumberController.class);
 
-	@Autowired
+	private final
 	GetPartMaterialRecordByPartSerialNumberService getPartMaterialRecordByPartSerialNumberService;
-	@Autowired
+	private final
 	PackingInformationService packingInformationService;
+
+	@Autowired
+	public TracePartByFinishGoodBoxNumberController(GetPartMaterialRecordByPartSerialNumberService getPartMaterialRecordByPartSerialNumberService, PackingInformationService packingInformationService) {
+		this.getPartMaterialRecordByPartSerialNumberService = getPartMaterialRecordByPartSerialNumberService;
+		this.packingInformationService = packingInformationService;
+	}
+
 	@CrossOrigin(origins="*",maxAge=3600)
-	@RequestMapping(value="/GetPartInformationByCondition",method=RequestMethod.POST)
-	public Map<String, Object> getPartInformationByCondition(@RequestBody VMPartInformationOfFinishGoodBoxInput vmPartInformationOfFinishGoodBoxInput) throws Exception{
+	@PostMapping(value="/GetPartInformationByCondition")
+	public Map<String, Object> getPartInformationByCondition
+            (@RequestBody VMPartInformationOfFinishGoodBoxInput
+                     vmPartInformationOfFinishGoodBoxInput) throws Exception{
 		Map<String, Object> json = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VMFinishGoodBoxPartInformationRow> vmFinishGoodBoxPartInformationRowList = new ArrayList<>();
@@ -42,8 +49,7 @@ public class TracePartByFinishGoodBoxNumberController extends BaseController{
 				for (PackingInformation packingInformation : packingInformationList) {		
 			
 					VMFinishGoodBoxPartInformationRow vmFinishGoodBoxPartInformationRow = new VMFinishGoodBoxPartInformationRow();
-//					vmFinishGoodBoxPartInformationRow.setDeliveryDateTime(packingInformation.getContainer().getCustomerBoxInformations().iterator().next().getProductDeliveryRequestFormItem().getRequiredShippingDateTime());
-//					vmFinishGoodBoxPartInformationRow.setDeliveryNoteFormNumber(packingInformation.getContainer().getCustomerBoxInformations().iterator().next().getProductDeliveryRequestFormItem().getProductDeliveryRequestForm().getWMSForm().getFormNumber());
+
 					vmFinishGoodBoxPartInformationRow.setDeliveryOperatorCode(null);
 					vmFinishGoodBoxPartInformationRow.setDeliveryOperatorName(null);
 					vmFinishGoodBoxPartInformationRow.setFinishGoodBoxNumber(packingInformation.getContainer().getContainerNumber());
@@ -71,7 +77,6 @@ public class TracePartByFinishGoodBoxNumberController extends BaseController{
 		}catch(Exception e){
 			json = this.setJson(200, "查询失败："+e.getMessage(), -1);
 			logger.error(e);
-			e.printStackTrace();
 		}
 		return json;
 	}

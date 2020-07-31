@@ -10,10 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author haita
+ */
 @Service
 public class CL_StationServiceImpl implements CL_StationService {
-    @Autowired
+    final
     CL_StationDao cl_stationDao;
+
+    @Autowired
+    public CL_StationServiceImpl(CL_StationDao cl_stationDao) {
+        this.cl_stationDao = cl_stationDao;
+    }
+
     @Override
     public String getLinkTableNameByStationId(Integer stationId) {
         return cl_stationDao.getLinkTableNameByStationId(stationId);
