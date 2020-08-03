@@ -4,7 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -18,1498 +18,1114 @@ import java.util.Objects;
 @Entity
 @Table(name = "CL_COMOP130", schema = "core", catalog = "MESDB_SXHTDL")
 public class CL_COMOP130 {
-    private String uuid;
-    private Date createDate;
-    private String isSynch;
-    private Integer db11Int10;
-    private Integer db11Int314;
-    private Integer db11Int8;
-    private BigDecimal db11Real0;
-    private BigDecimal db11Real102;
-    private BigDecimal db11Real106;
-    private BigDecimal db11Real110;
-    private BigDecimal db11Real114;
-    private BigDecimal db11Real130;
-    private BigDecimal db11Real134;
-    private BigDecimal db11Real138;
-    private BigDecimal db11Real142;
-    private BigDecimal db11Real146;
-    private BigDecimal db11Real150;
-    private BigDecimal db11Real154;
-    private BigDecimal db11Real158;
-    private BigDecimal db11Real174;
-    private BigDecimal db11Real178;
-    private BigDecimal db11Real18;
-    private BigDecimal db11Real182;
-    private BigDecimal db11Real186;
-    private BigDecimal db11Real190;
-    private BigDecimal db11Real194;
-    private BigDecimal db11Real198;
-    private BigDecimal db11Real202;
-    private BigDecimal db11Real218;
-    private BigDecimal db11Real222;
-    private BigDecimal db11Real226;
-    private BigDecimal db11Real230;
-    private BigDecimal db11Real234;
-    private BigDecimal db11Real238;
-    private BigDecimal db11Real242;
-    private BigDecimal db11Real246;
-    private BigDecimal db11Real264;
-    private BigDecimal db11Real268;
-    private BigDecimal db11Real272;
-    private BigDecimal db11Real276;
-    private BigDecimal db11Real280;
-    private BigDecimal db11Real284;
-    private BigDecimal db11Real288;
-    private BigDecimal db11Real292;
-    private BigDecimal db11Real296;
-    private BigDecimal db11Real30;
-    private BigDecimal db11Real300;
-    private BigDecimal db11Real304;
-    private BigDecimal db11Real308;
-    private BigDecimal db11Real4;
-    private BigDecimal db11Real42;
-    private BigDecimal db11Real54;
-    private BigDecimal db11Real66;
-    private BigDecimal db11Real78;
-    private BigDecimal db11Real86;
-    private BigDecimal db11Real90;
-    private BigDecimal db11Real94;
-    private BigDecimal db11Real98;
-    private String db11X1290;
-    private String db11X1292;
-    private String db11X120;
-    private String db11X121;
-    private String db11X1730;
-    private String db11X1732;
-    private String db11X2170;
-    private String db11X2172;
-    private String db11X2610;
-    private String db11X2612;
-    private String db11X3160;
-    private String db11X3161;
-    private String db11X3162;
-    private String db11X3163;
-    private String db11X3164;
-    private String db11X3165;
-    private String db11X3170;
-    private String db11X3171;
-    private String db11X3172;
-    private String db11X3173;
-    private String db11X3174;
-    private String db11X3175;
-    private String db11X3176;
-    private String db11X3180;
-    private String db11X3181;
-    private String db11X3182;
-    private String db11X3183;
-    private String db11X3184;
-    private String db11X3185;
-    private String db11X3186;
-    private String db11X3187;
-    private String db11X3190;
-    private String db11X3191;
-    private String db11X3192;
-    private String db11X3193;
-    private String db11X3194;
-    private String db11X3195;
-    private String db11X3196;
-    private String db11X3200;
-    private String db11X3201;
-    private String db11X3202;
-    private String db11X3203;
-    private String db11X3204;
-    private String db11X3205;
-    private String db11X3206;
-    private String db11X3207;
-    private String db11X3210;
-    private String db11X3211;
-    private String db11X3214;
-    private String db11X3215;
-    private String db11X3220;
-    private String db11X3221;
-    private String db11X3240;
-    private String db11X3241;
-    private String db11X3242;
-    private String db11X3243;
-    private String db11X3244;
-    private String db11X3245;
-    private String db11X3260;
-    private String db11X3261;
-    private String db15Char4840;
-    private String db15Int022;
-    private Integer db15Sint46;
-    private String m980;
-    private String m985;
-
     @Id
-    @Column(name = "UUID", nullable = false, length = 32)
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    private String UUID;
+    private Date CREATE_DATE;
+    private String IS_SYNCH;
+    private BigDecimal DB11_INT10;
+    private BigDecimal DB11_INT314;
+    private BigDecimal DB11_INT8;
+    private BigDecimal DB11_REAL0;
+    private BigDecimal DB11_REAL102;
+    private BigDecimal DB11_REAL106;
+    private BigDecimal DB11_REAL110;
+    private BigDecimal DB11_REAL114;
+    private BigDecimal DB11_REAL130;
+    private BigDecimal DB11_REAL134;
+    private BigDecimal DB11_REAL138;
+    private BigDecimal DB11_REAL142;
+    private BigDecimal DB11_REAL146;
+    private BigDecimal DB11_REAL150;
+    private BigDecimal DB11_REAL154;
+    private BigDecimal DB11_REAL158;
+    private BigDecimal DB11_REAL174;
+    private BigDecimal DB11_REAL178;
+    private BigDecimal DB11_REAL18;
+    private BigDecimal DB11_REAL182;
+    private BigDecimal DB11_REAL186;
+    private BigDecimal DB11_REAL190;
+    private BigDecimal DB11_REAL194;
+    private BigDecimal DB11_REAL198;
+    private BigDecimal DB11_REAL202;
+    private BigDecimal DB11_REAL218;
+    private BigDecimal DB11_REAL222;
+    private BigDecimal DB11_REAL226;
+    private BigDecimal DB11_REAL230;
+    private BigDecimal DB11_REAL234;
+    private BigDecimal DB11_REAL238;
+    private BigDecimal DB11_REAL242;
+    private BigDecimal DB11_REAL246;
+    private BigDecimal DB11_REAL264;
+    private BigDecimal DB11_REAL268;
+    private BigDecimal DB11_REAL272;
+    private BigDecimal DB11_REAL276;
+    private BigDecimal DB11_REAL280;
+    private BigDecimal DB11_REAL284;
+    private BigDecimal DB11_REAL288;
+    private BigDecimal DB11_REAL292;
+    private BigDecimal DB11_REAL296;
+    private BigDecimal DB11_REAL30;
+    private BigDecimal DB11_REAL300;
+    private BigDecimal DB11_REAL304;
+    private BigDecimal DB11_REAL308;
+    private BigDecimal DB11_REAL4;
+    private BigDecimal DB11_REAL42;
+    private BigDecimal DB11_REAL54;
+    private BigDecimal DB11_REAL66;
+    private BigDecimal DB11_REAL78;
+    private BigDecimal DB11_REAL86;
+    private BigDecimal DB11_REAL90;
+    private BigDecimal DB11_REAL94;
+    private BigDecimal DB11_REAL98;
+    private String DB11_X129_0;
+    private String DB11_X129_2;
+    private String DB11_X12_0;
+    private String DB11_X12_1;
+    private String DB11_X173_0;
+    private String DB11_X173_2;
+    private String DB11_X217_0;
+    private String DB11_X217_2;
+    private String DB11_X261_0;
+    private String DB11_X261_2;
+    private String DB11_X316_0;
+    private String DB11_X316_1;
+    private String DB11_X316_2;
+    private String DB11_X316_3;
+    private String DB11_X316_4;
+    private String DB11_X316_5;
+    private String DB11_X317_0;
+    private String DB11_X317_1;
+    private String DB11_X317_2;
+    private String DB11_X317_3;
+    private String DB11_X317_4;
+    private String DB11_X317_5;
+    private String DB11_X317_6;
+    private String DB11_X318_0;
+    private String DB11_X318_1;
+    private String DB11_X318_2;
+    private String DB11_X318_3;
+    private String DB11_X318_4;
+    private String DB11_X318_5;
+    private String DB11_X318_6;
+    private String DB11_X318_7;
+    private String DB11_X319_0;
+    private String DB11_X319_1;
+    private String DB11_X319_2;
+    private String DB11_X319_3;
+    private String DB11_X319_4;
+    private String DB11_X319_5;
+    private String DB11_X319_6;
+    private String DB11_X320_0;
+    private String DB11_X320_1;
+    private String DB11_X320_2;
+    private String DB11_X320_3;
+    private String DB11_X320_4;
+    private String DB11_X320_5;
+    private String DB11_X320_6;
+    private String DB11_X320_7;
+    private String DB11_X321_0;
+    private String DB11_X321_1;
+    private String DB11_X321_4;
+    private String DB11_X321_5;
+    private String DB11_X322_0;
+    private String DB11_X322_1;
+    private String DB11_X324_0;
+    private String DB11_X324_1;
+    private String DB11_X324_2;
+    private String DB11_X324_3;
+    private String DB11_X324_4;
+    private String DB11_X324_5;
+    private String DB11_X326_0;
+    private String DB11_X326_1;
+    private String DB15_CHAR48_40;
+    private String DB15_INT0_22;
+    private BigDecimal DB15_SINT46;
+    private String M98_0;
+    private String M98_5;
 
-    @Basic
-    @Column(name = "CREATE_DATE", nullable = true)
-    public Date getCreateDate() {
-        return createDate;
+    public String getUUID() {
+        return UUID;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    @Basic
-    @Column(name = "IS_SYNCH", nullable = true, length = 2)
-    public String getIsSynch() {
-        return isSynch;
+    public Date getCREATE_DATE() {
+        return CREATE_DATE;
     }
 
-    public void setIsSynch(String isSynch) {
-        this.isSynch = isSynch;
+    public void setCREATE_DATE(Date CREATE_DATE) {
+        this.CREATE_DATE = CREATE_DATE;
     }
 
-    @Basic
-    @Column(name = "DB11_INT10", nullable = true, precision = 0)
-    public Integer getDb11Int10() {
-        return db11Int10;
+    public String getIS_SYNCH() {
+        return IS_SYNCH;
     }
 
-    public void setDb11Int10(Integer db11Int10) {
-        this.db11Int10 = db11Int10;
+    public void setIS_SYNCH(String IS_SYNCH) {
+        this.IS_SYNCH = IS_SYNCH;
     }
 
-    @Basic
-    @Column(name = "DB11_INT314", nullable = true, precision = 0)
-    public Integer getDb11Int314() {
-        return db11Int314;
+    public BigDecimal getDB11_INT10() {
+        return DB11_INT10;
     }
 
-    public void setDb11Int314(Integer db11Int314) {
-        this.db11Int314 = db11Int314;
+    public void setDB11_INT10(BigDecimal DB11_INT10) {
+        this.DB11_INT10 = DB11_INT10;
     }
 
-    @Basic
-    @Column(name = "DB11_INT8", nullable = true, precision = 0)
-    public Integer getDb11Int8() {
-        return db11Int8;
+    public BigDecimal getDB11_INT314() {
+        return DB11_INT314;
     }
 
-    public void setDb11Int8(Integer db11Int8) {
-        this.db11Int8 = db11Int8;
+    public void setDB11_INT314(BigDecimal DB11_INT314) {
+        this.DB11_INT314 = DB11_INT314;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL0", nullable = true, precision = 8)
-    public BigDecimal getDb11Real0() {
-        return db11Real0;
+    public BigDecimal getDB11_INT8() {
+        return DB11_INT8;
     }
 
-    public void setDb11Real0(BigDecimal db11Real0) {
-        this.db11Real0 = db11Real0;
+    public void setDB11_INT8(BigDecimal DB11_INT8) {
+        this.DB11_INT8 = DB11_INT8;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL102", nullable = true, precision = 8)
-    public BigDecimal getDb11Real102() {
-        return db11Real102;
+    public BigDecimal getDB11_REAL0() {
+        return DB11_REAL0;
     }
 
-    public void setDb11Real102(BigDecimal db11Real102) {
-        this.db11Real102 = db11Real102;
+    public void setDB11_REAL0(BigDecimal DB11_REAL0) {
+        this.DB11_REAL0 = DB11_REAL0;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL106", nullable = true, precision = 8)
-    public BigDecimal getDb11Real106() {
-        return db11Real106;
+    public BigDecimal getDB11_REAL102() {
+        return DB11_REAL102;
     }
 
-    public void setDb11Real106(BigDecimal db11Real106) {
-        this.db11Real106 = db11Real106;
+    public void setDB11_REAL102(BigDecimal DB11_REAL102) {
+        this.DB11_REAL102 = DB11_REAL102;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL110", nullable = true, precision = 8)
-    public BigDecimal getDb11Real110() {
-        return db11Real110;
+    public BigDecimal getDB11_REAL106() {
+        return DB11_REAL106;
     }
 
-    public void setDb11Real110(BigDecimal db11Real110) {
-        this.db11Real110 = db11Real110;
+    public void setDB11_REAL106(BigDecimal DB11_REAL106) {
+        this.DB11_REAL106 = DB11_REAL106;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL114", nullable = true, precision = 8)
-    public BigDecimal getDb11Real114() {
-        return db11Real114;
+    public BigDecimal getDB11_REAL110() {
+        return DB11_REAL110;
     }
 
-    public void setDb11Real114(BigDecimal db11Real114) {
-        this.db11Real114 = db11Real114;
+    public void setDB11_REAL110(BigDecimal DB11_REAL110) {
+        this.DB11_REAL110 = DB11_REAL110;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL130", nullable = true, precision = 8)
-    public BigDecimal getDb11Real130() {
-        return db11Real130;
+    public BigDecimal getDB11_REAL114() {
+        return DB11_REAL114;
     }
 
-    public void setDb11Real130(BigDecimal db11Real130) {
-        this.db11Real130 = db11Real130;
+    public void setDB11_REAL114(BigDecimal DB11_REAL114) {
+        this.DB11_REAL114 = DB11_REAL114;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL134", nullable = true, precision = 8)
-    public BigDecimal getDb11Real134() {
-        return db11Real134;
+    public BigDecimal getDB11_REAL130() {
+        return DB11_REAL130;
     }
 
-    public void setDb11Real134(BigDecimal db11Real134) {
-        this.db11Real134 = db11Real134;
+    public void setDB11_REAL130(BigDecimal DB11_REAL130) {
+        this.DB11_REAL130 = DB11_REAL130;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL138", nullable = true, precision = 8)
-    public BigDecimal getDb11Real138() {
-        return db11Real138;
+    public BigDecimal getDB11_REAL134() {
+        return DB11_REAL134;
     }
 
-    public void setDb11Real138(BigDecimal db11Real138) {
-        this.db11Real138 = db11Real138;
+    public void setDB11_REAL134(BigDecimal DB11_REAL134) {
+        this.DB11_REAL134 = DB11_REAL134;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL142", nullable = true, precision = 8)
-    public BigDecimal getDb11Real142() {
-        return db11Real142;
+    public BigDecimal getDB11_REAL138() {
+        return DB11_REAL138;
     }
 
-    public void setDb11Real142(BigDecimal db11Real142) {
-        this.db11Real142 = db11Real142;
+    public void setDB11_REAL138(BigDecimal DB11_REAL138) {
+        this.DB11_REAL138 = DB11_REAL138;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL146", nullable = true, precision = 8)
-    public BigDecimal getDb11Real146() {
-        return db11Real146;
+    public BigDecimal getDB11_REAL142() {
+        return DB11_REAL142;
     }
 
-    public void setDb11Real146(BigDecimal db11Real146) {
-        this.db11Real146 = db11Real146;
+    public void setDB11_REAL142(BigDecimal DB11_REAL142) {
+        this.DB11_REAL142 = DB11_REAL142;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL150", nullable = true, precision = 8)
-    public BigDecimal getDb11Real150() {
-        return db11Real150;
+    public BigDecimal getDB11_REAL146() {
+        return DB11_REAL146;
     }
 
-    public void setDb11Real150(BigDecimal db11Real150) {
-        this.db11Real150 = db11Real150;
+    public void setDB11_REAL146(BigDecimal DB11_REAL146) {
+        this.DB11_REAL146 = DB11_REAL146;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL154", nullable = true, precision = 8)
-    public BigDecimal getDb11Real154() {
-        return db11Real154;
+    public BigDecimal getDB11_REAL150() {
+        return DB11_REAL150;
     }
 
-    public void setDb11Real154(BigDecimal db11Real154) {
-        this.db11Real154 = db11Real154;
+    public void setDB11_REAL150(BigDecimal DB11_REAL150) {
+        this.DB11_REAL150 = DB11_REAL150;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL158", nullable = true, precision = 8)
-    public BigDecimal getDb11Real158() {
-        return db11Real158;
+    public BigDecimal getDB11_REAL154() {
+        return DB11_REAL154;
     }
 
-    public void setDb11Real158(BigDecimal db11Real158) {
-        this.db11Real158 = db11Real158;
+    public void setDB11_REAL154(BigDecimal DB11_REAL154) {
+        this.DB11_REAL154 = DB11_REAL154;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL174", nullable = true, precision = 8)
-    public BigDecimal getDb11Real174() {
-        return db11Real174;
+    public BigDecimal getDB11_REAL158() {
+        return DB11_REAL158;
     }
 
-    public void setDb11Real174(BigDecimal db11Real174) {
-        this.db11Real174 = db11Real174;
+    public void setDB11_REAL158(BigDecimal DB11_REAL158) {
+        this.DB11_REAL158 = DB11_REAL158;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL178", nullable = true, precision = 8)
-    public BigDecimal getDb11Real178() {
-        return db11Real178;
+    public BigDecimal getDB11_REAL174() {
+        return DB11_REAL174;
     }
 
-    public void setDb11Real178(BigDecimal db11Real178) {
-        this.db11Real178 = db11Real178;
+    public void setDB11_REAL174(BigDecimal DB11_REAL174) {
+        this.DB11_REAL174 = DB11_REAL174;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL18", nullable = true, precision = 8)
-    public BigDecimal getDb11Real18() {
-        return db11Real18;
+    public BigDecimal getDB11_REAL178() {
+        return DB11_REAL178;
     }
 
-    public void setDb11Real18(BigDecimal db11Real18) {
-        this.db11Real18 = db11Real18;
+    public void setDB11_REAL178(BigDecimal DB11_REAL178) {
+        this.DB11_REAL178 = DB11_REAL178;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL182", nullable = true, precision = 8)
-    public BigDecimal getDb11Real182() {
-        return db11Real182;
+    public BigDecimal getDB11_REAL18() {
+        return DB11_REAL18;
     }
 
-    public void setDb11Real182(BigDecimal db11Real182) {
-        this.db11Real182 = db11Real182;
+    public void setDB11_REAL18(BigDecimal DB11_REAL18) {
+        this.DB11_REAL18 = DB11_REAL18;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL186", nullable = true, precision = 8)
-    public BigDecimal getDb11Real186() {
-        return db11Real186;
+    public BigDecimal getDB11_REAL182() {
+        return DB11_REAL182;
     }
 
-    public void setDb11Real186(BigDecimal db11Real186) {
-        this.db11Real186 = db11Real186;
+    public void setDB11_REAL182(BigDecimal DB11_REAL182) {
+        this.DB11_REAL182 = DB11_REAL182;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL190", nullable = true, precision = 8)
-    public BigDecimal getDb11Real190() {
-        return db11Real190;
+    public BigDecimal getDB11_REAL186() {
+        return DB11_REAL186;
     }
 
-    public void setDb11Real190(BigDecimal db11Real190) {
-        this.db11Real190 = db11Real190;
+    public void setDB11_REAL186(BigDecimal DB11_REAL186) {
+        this.DB11_REAL186 = DB11_REAL186;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL194", nullable = true, precision = 8)
-    public BigDecimal getDb11Real194() {
-        return db11Real194;
+    public BigDecimal getDB11_REAL190() {
+        return DB11_REAL190;
     }
 
-    public void setDb11Real194(BigDecimal db11Real194) {
-        this.db11Real194 = db11Real194;
+    public void setDB11_REAL190(BigDecimal DB11_REAL190) {
+        this.DB11_REAL190 = DB11_REAL190;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL198", nullable = true, precision = 8)
-    public BigDecimal getDb11Real198() {
-        return db11Real198;
+    public BigDecimal getDB11_REAL194() {
+        return DB11_REAL194;
     }
 
-    public void setDb11Real198(BigDecimal db11Real198) {
-        this.db11Real198 = db11Real198;
+    public void setDB11_REAL194(BigDecimal DB11_REAL194) {
+        this.DB11_REAL194 = DB11_REAL194;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL202", nullable = true, precision = 8)
-    public BigDecimal getDb11Real202() {
-        return db11Real202;
+    public BigDecimal getDB11_REAL198() {
+        return DB11_REAL198;
     }
 
-    public void setDb11Real202(BigDecimal db11Real202) {
-        this.db11Real202 = db11Real202;
+    public void setDB11_REAL198(BigDecimal DB11_REAL198) {
+        this.DB11_REAL198 = DB11_REAL198;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL218", nullable = true, precision = 8)
-    public BigDecimal getDb11Real218() {
-        return db11Real218;
+    public BigDecimal getDB11_REAL202() {
+        return DB11_REAL202;
     }
 
-    public void setDb11Real218(BigDecimal db11Real218) {
-        this.db11Real218 = db11Real218;
+    public void setDB11_REAL202(BigDecimal DB11_REAL202) {
+        this.DB11_REAL202 = DB11_REAL202;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL222", nullable = true, precision = 8)
-    public BigDecimal getDb11Real222() {
-        return db11Real222;
+    public BigDecimal getDB11_REAL218() {
+        return DB11_REAL218;
     }
 
-    public void setDb11Real222(BigDecimal db11Real222) {
-        this.db11Real222 = db11Real222;
+    public void setDB11_REAL218(BigDecimal DB11_REAL218) {
+        this.DB11_REAL218 = DB11_REAL218;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL226", nullable = true, precision = 8)
-    public BigDecimal getDb11Real226() {
-        return db11Real226;
+    public BigDecimal getDB11_REAL222() {
+        return DB11_REAL222;
     }
 
-    public void setDb11Real226(BigDecimal db11Real226) {
-        this.db11Real226 = db11Real226;
+    public void setDB11_REAL222(BigDecimal DB11_REAL222) {
+        this.DB11_REAL222 = DB11_REAL222;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL230", nullable = true, precision = 8)
-    public BigDecimal getDb11Real230() {
-        return db11Real230;
+    public BigDecimal getDB11_REAL226() {
+        return DB11_REAL226;
     }
 
-    public void setDb11Real230(BigDecimal db11Real230) {
-        this.db11Real230 = db11Real230;
+    public void setDB11_REAL226(BigDecimal DB11_REAL226) {
+        this.DB11_REAL226 = DB11_REAL226;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL234", nullable = true, precision = 8)
-    public BigDecimal getDb11Real234() {
-        return db11Real234;
+    public BigDecimal getDB11_REAL230() {
+        return DB11_REAL230;
     }
 
-    public void setDb11Real234(BigDecimal db11Real234) {
-        this.db11Real234 = db11Real234;
+    public void setDB11_REAL230(BigDecimal DB11_REAL230) {
+        this.DB11_REAL230 = DB11_REAL230;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL238", nullable = true, precision = 8)
-    public BigDecimal getDb11Real238() {
-        return db11Real238;
+    public BigDecimal getDB11_REAL234() {
+        return DB11_REAL234;
     }
 
-    public void setDb11Real238(BigDecimal db11Real238) {
-        this.db11Real238 = db11Real238;
+    public void setDB11_REAL234(BigDecimal DB11_REAL234) {
+        this.DB11_REAL234 = DB11_REAL234;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL242", nullable = true, precision = 8)
-    public BigDecimal getDb11Real242() {
-        return db11Real242;
+    public BigDecimal getDB11_REAL238() {
+        return DB11_REAL238;
     }
 
-    public void setDb11Real242(BigDecimal db11Real242) {
-        this.db11Real242 = db11Real242;
+    public void setDB11_REAL238(BigDecimal DB11_REAL238) {
+        this.DB11_REAL238 = DB11_REAL238;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL246", nullable = true, precision = 8)
-    public BigDecimal getDb11Real246() {
-        return db11Real246;
+    public BigDecimal getDB11_REAL242() {
+        return DB11_REAL242;
     }
 
-    public void setDb11Real246(BigDecimal db11Real246) {
-        this.db11Real246 = db11Real246;
+    public void setDB11_REAL242(BigDecimal DB11_REAL242) {
+        this.DB11_REAL242 = DB11_REAL242;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL264", nullable = true, precision = 8)
-    public BigDecimal getDb11Real264() {
-        return db11Real264;
+    public BigDecimal getDB11_REAL246() {
+        return DB11_REAL246;
     }
 
-    public void setDb11Real264(BigDecimal db11Real264) {
-        this.db11Real264 = db11Real264;
+    public void setDB11_REAL246(BigDecimal DB11_REAL246) {
+        this.DB11_REAL246 = DB11_REAL246;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL268", nullable = true, precision = 8)
-    public BigDecimal getDb11Real268() {
-        return db11Real268;
+    public BigDecimal getDB11_REAL264() {
+        return DB11_REAL264;
     }
 
-    public void setDb11Real268(BigDecimal db11Real268) {
-        this.db11Real268 = db11Real268;
+    public void setDB11_REAL264(BigDecimal DB11_REAL264) {
+        this.DB11_REAL264 = DB11_REAL264;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL272", nullable = true, precision = 8)
-    public BigDecimal getDb11Real272() {
-        return db11Real272;
+    public BigDecimal getDB11_REAL268() {
+        return DB11_REAL268;
     }
 
-    public void setDb11Real272(BigDecimal db11Real272) {
-        this.db11Real272 = db11Real272;
+    public void setDB11_REAL268(BigDecimal DB11_REAL268) {
+        this.DB11_REAL268 = DB11_REAL268;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL276", nullable = true, precision = 8)
-    public BigDecimal getDb11Real276() {
-        return db11Real276;
+    public BigDecimal getDB11_REAL272() {
+        return DB11_REAL272;
     }
 
-    public void setDb11Real276(BigDecimal db11Real276) {
-        this.db11Real276 = db11Real276;
+    public void setDB11_REAL272(BigDecimal DB11_REAL272) {
+        this.DB11_REAL272 = DB11_REAL272;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL280", nullable = true, precision = 8)
-    public BigDecimal getDb11Real280() {
-        return db11Real280;
+    public BigDecimal getDB11_REAL276() {
+        return DB11_REAL276;
     }
 
-    public void setDb11Real280(BigDecimal db11Real280) {
-        this.db11Real280 = db11Real280;
+    public void setDB11_REAL276(BigDecimal DB11_REAL276) {
+        this.DB11_REAL276 = DB11_REAL276;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL284", nullable = true, precision = 8)
-    public BigDecimal getDb11Real284() {
-        return db11Real284;
+    public BigDecimal getDB11_REAL280() {
+        return DB11_REAL280;
     }
 
-    public void setDb11Real284(BigDecimal db11Real284) {
-        this.db11Real284 = db11Real284;
+    public void setDB11_REAL280(BigDecimal DB11_REAL280) {
+        this.DB11_REAL280 = DB11_REAL280;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL288", nullable = true, precision = 8)
-    public BigDecimal getDb11Real288() {
-        return db11Real288;
+    public BigDecimal getDB11_REAL284() {
+        return DB11_REAL284;
     }
 
-    public void setDb11Real288(BigDecimal db11Real288) {
-        this.db11Real288 = db11Real288;
+    public void setDB11_REAL284(BigDecimal DB11_REAL284) {
+        this.DB11_REAL284 = DB11_REAL284;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL292", nullable = true, precision = 8)
-    public BigDecimal getDb11Real292() {
-        return db11Real292;
+    public BigDecimal getDB11_REAL288() {
+        return DB11_REAL288;
     }
 
-    public void setDb11Real292(BigDecimal db11Real292) {
-        this.db11Real292 = db11Real292;
+    public void setDB11_REAL288(BigDecimal DB11_REAL288) {
+        this.DB11_REAL288 = DB11_REAL288;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL296", nullable = true, precision = 8)
-    public BigDecimal getDb11Real296() {
-        return db11Real296;
+    public BigDecimal getDB11_REAL292() {
+        return DB11_REAL292;
     }
 
-    public void setDb11Real296(BigDecimal db11Real296) {
-        this.db11Real296 = db11Real296;
+    public void setDB11_REAL292(BigDecimal DB11_REAL292) {
+        this.DB11_REAL292 = DB11_REAL292;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL30", nullable = true, precision = 8)
-    public BigDecimal getDb11Real30() {
-        return db11Real30;
+    public BigDecimal getDB11_REAL296() {
+        return DB11_REAL296;
     }
 
-    public void setDb11Real30(BigDecimal db11Real30) {
-        this.db11Real30 = db11Real30;
+    public void setDB11_REAL296(BigDecimal DB11_REAL296) {
+        this.DB11_REAL296 = DB11_REAL296;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL300", nullable = true, precision = 8)
-    public BigDecimal getDb11Real300() {
-        return db11Real300;
+    public BigDecimal getDB11_REAL30() {
+        return DB11_REAL30;
     }
 
-    public void setDb11Real300(BigDecimal db11Real300) {
-        this.db11Real300 = db11Real300;
+    public void setDB11_REAL30(BigDecimal DB11_REAL30) {
+        this.DB11_REAL30 = DB11_REAL30;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL304", nullable = true, precision = 8)
-    public BigDecimal getDb11Real304() {
-        return db11Real304;
+    public BigDecimal getDB11_REAL300() {
+        return DB11_REAL300;
     }
 
-    public void setDb11Real304(BigDecimal db11Real304) {
-        this.db11Real304 = db11Real304;
+    public void setDB11_REAL300(BigDecimal DB11_REAL300) {
+        this.DB11_REAL300 = DB11_REAL300;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL308", nullable = true, precision = 8)
-    public BigDecimal getDb11Real308() {
-        return db11Real308;
+    public BigDecimal getDB11_REAL304() {
+        return DB11_REAL304;
     }
 
-    public void setDb11Real308(BigDecimal db11Real308) {
-        this.db11Real308 = db11Real308;
+    public void setDB11_REAL304(BigDecimal DB11_REAL304) {
+        this.DB11_REAL304 = DB11_REAL304;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL4", nullable = true, precision = 8)
-    public BigDecimal getDb11Real4() {
-        return db11Real4;
+    public BigDecimal getDB11_REAL308() {
+        return DB11_REAL308;
     }
 
-    public void setDb11Real4(BigDecimal db11Real4) {
-        this.db11Real4 = db11Real4;
+    public void setDB11_REAL308(BigDecimal DB11_REAL308) {
+        this.DB11_REAL308 = DB11_REAL308;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL42", nullable = true, precision = 8)
-    public BigDecimal getDb11Real42() {
-        return db11Real42;
+    public BigDecimal getDB11_REAL4() {
+        return DB11_REAL4;
     }
 
-    public void setDb11Real42(BigDecimal db11Real42) {
-        this.db11Real42 = db11Real42;
+    public void setDB11_REAL4(BigDecimal DB11_REAL4) {
+        this.DB11_REAL4 = DB11_REAL4;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL54", nullable = true, precision = 8)
-    public BigDecimal getDb11Real54() {
-        return db11Real54;
+    public BigDecimal getDB11_REAL42() {
+        return DB11_REAL42;
     }
 
-    public void setDb11Real54(BigDecimal db11Real54) {
-        this.db11Real54 = db11Real54;
+    public void setDB11_REAL42(BigDecimal DB11_REAL42) {
+        this.DB11_REAL42 = DB11_REAL42;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL66", nullable = true, precision = 8)
-    public BigDecimal getDb11Real66() {
-        return db11Real66;
+    public BigDecimal getDB11_REAL54() {
+        return DB11_REAL54;
     }
 
-    public void setDb11Real66(BigDecimal db11Real66) {
-        this.db11Real66 = db11Real66;
+    public void setDB11_REAL54(BigDecimal DB11_REAL54) {
+        this.DB11_REAL54 = DB11_REAL54;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL78", nullable = true, precision = 8)
-    public BigDecimal getDb11Real78() {
-        return db11Real78;
+    public BigDecimal getDB11_REAL66() {
+        return DB11_REAL66;
     }
 
-    public void setDb11Real78(BigDecimal db11Real78) {
-        this.db11Real78 = db11Real78;
+    public void setDB11_REAL66(BigDecimal DB11_REAL66) {
+        this.DB11_REAL66 = DB11_REAL66;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL86", nullable = true, precision = 8)
-    public BigDecimal getDb11Real86() {
-        return db11Real86;
+    public BigDecimal getDB11_REAL78() {
+        return DB11_REAL78;
     }
 
-    public void setDb11Real86(BigDecimal db11Real86) {
-        this.db11Real86 = db11Real86;
+    public void setDB11_REAL78(BigDecimal DB11_REAL78) {
+        this.DB11_REAL78 = DB11_REAL78;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL90", nullable = true, precision = 8)
-    public BigDecimal getDb11Real90() {
-        return db11Real90;
+    public BigDecimal getDB11_REAL86() {
+        return DB11_REAL86;
     }
 
-    public void setDb11Real90(BigDecimal db11Real90) {
-        this.db11Real90 = db11Real90;
+    public void setDB11_REAL86(BigDecimal DB11_REAL86) {
+        this.DB11_REAL86 = DB11_REAL86;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL94", nullable = true, precision = 8)
-    public BigDecimal getDb11Real94() {
-        return db11Real94;
+    public BigDecimal getDB11_REAL90() {
+        return DB11_REAL90;
     }
 
-    public void setDb11Real94(BigDecimal db11Real94) {
-        this.db11Real94 = db11Real94;
+    public void setDB11_REAL90(BigDecimal DB11_REAL90) {
+        this.DB11_REAL90 = DB11_REAL90;
     }
 
-    @Basic
-    @Column(name = "DB11_REAL98", nullable = true, precision = 8)
-    public BigDecimal getDb11Real98() {
-        return db11Real98;
+    public BigDecimal getDB11_REAL94() {
+        return DB11_REAL94;
     }
 
-    public void setDb11Real98(BigDecimal db11Real98) {
-        this.db11Real98 = db11Real98;
+    public void setDB11_REAL94(BigDecimal DB11_REAL94) {
+        this.DB11_REAL94 = DB11_REAL94;
     }
 
-    @Basic
-    @Column(name = "DB11_X129_0", nullable = true, length = 2)
-    public String getDb11X1290() {
-        return db11X1290;
+    public BigDecimal getDB11_REAL98() {
+        return DB11_REAL98;
     }
 
-    public void setDb11X1290(String db11X1290) {
-        this.db11X1290 = db11X1290;
+    public void setDB11_REAL98(BigDecimal DB11_REAL98) {
+        this.DB11_REAL98 = DB11_REAL98;
     }
 
-    @Basic
-    @Column(name = "DB11_X129_2", nullable = true, length = 2)
-    public String getDb11X1292() {
-        return db11X1292;
+    public String getDB11_X129_0() {
+        return DB11_X129_0;
     }
 
-    public void setDb11X1292(String db11X1292) {
-        this.db11X1292 = db11X1292;
+    public void setDB11_X129_0(String DB11_X129_0) {
+        this.DB11_X129_0 = DB11_X129_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X12_0", nullable = true, length = 2)
-    public String getDb11X120() {
-        return db11X120;
+    public String getDB11_X129_2() {
+        return DB11_X129_2;
     }
 
-    public void setDb11X120(String db11X120) {
-        this.db11X120 = db11X120;
+    public void setDB11_X129_2(String DB11_X129_2) {
+        this.DB11_X129_2 = DB11_X129_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X12_1", nullable = true, length = 2)
-    public String getDb11X121() {
-        return db11X121;
+    public String getDB11_X12_0() {
+        return DB11_X12_0;
     }
 
-    public void setDb11X121(String db11X121) {
-        this.db11X121 = db11X121;
+    public void setDB11_X12_0(String DB11_X12_0) {
+        this.DB11_X12_0 = DB11_X12_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X173_0", nullable = true, length = 2)
-    public String getDb11X1730() {
-        return db11X1730;
+    public String getDB11_X12_1() {
+        return DB11_X12_1;
     }
 
-    public void setDb11X1730(String db11X1730) {
-        this.db11X1730 = db11X1730;
+    public void setDB11_X12_1(String DB11_X12_1) {
+        this.DB11_X12_1 = DB11_X12_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X173_2", nullable = true, length = 2)
-    public String getDb11X1732() {
-        return db11X1732;
+    public String getDB11_X173_0() {
+        return DB11_X173_0;
     }
 
-    public void setDb11X1732(String db11X1732) {
-        this.db11X1732 = db11X1732;
+    public void setDB11_X173_0(String DB11_X173_0) {
+        this.DB11_X173_0 = DB11_X173_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X217_0", nullable = true, length = 2)
-    public String getDb11X2170() {
-        return db11X2170;
+    public String getDB11_X173_2() {
+        return DB11_X173_2;
     }
 
-    public void setDb11X2170(String db11X2170) {
-        this.db11X2170 = db11X2170;
+    public void setDB11_X173_2(String DB11_X173_2) {
+        this.DB11_X173_2 = DB11_X173_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X217_2", nullable = true, length = 2)
-    public String getDb11X2172() {
-        return db11X2172;
+    public String getDB11_X217_0() {
+        return DB11_X217_0;
     }
 
-    public void setDb11X2172(String db11X2172) {
-        this.db11X2172 = db11X2172;
+    public void setDB11_X217_0(String DB11_X217_0) {
+        this.DB11_X217_0 = DB11_X217_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X261_0", nullable = true, length = 2)
-    public String getDb11X2610() {
-        return db11X2610;
+    public String getDB11_X217_2() {
+        return DB11_X217_2;
     }
 
-    public void setDb11X2610(String db11X2610) {
-        this.db11X2610 = db11X2610;
+    public void setDB11_X217_2(String DB11_X217_2) {
+        this.DB11_X217_2 = DB11_X217_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X261_2", nullable = true, length = 2)
-    public String getDb11X2612() {
-        return db11X2612;
+    public String getDB11_X261_0() {
+        return DB11_X261_0;
     }
 
-    public void setDb11X2612(String db11X2612) {
-        this.db11X2612 = db11X2612;
+    public void setDB11_X261_0(String DB11_X261_0) {
+        this.DB11_X261_0 = DB11_X261_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_0", nullable = true, length = 2)
-    public String getDb11X3160() {
-        return db11X3160;
+    public String getDB11_X261_2() {
+        return DB11_X261_2;
     }
 
-    public void setDb11X3160(String db11X3160) {
-        this.db11X3160 = db11X3160;
+    public void setDB11_X261_2(String DB11_X261_2) {
+        this.DB11_X261_2 = DB11_X261_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_1", nullable = true, length = 2)
-    public String getDb11X3161() {
-        return db11X3161;
+    public String getDB11_X316_0() {
+        return DB11_X316_0;
     }
 
-    public void setDb11X3161(String db11X3161) {
-        this.db11X3161 = db11X3161;
+    public void setDB11_X316_0(String DB11_X316_0) {
+        this.DB11_X316_0 = DB11_X316_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_2", nullable = true, length = 2)
-    public String getDb11X3162() {
-        return db11X3162;
+    public String getDB11_X316_1() {
+        return DB11_X316_1;
     }
 
-    public void setDb11X3162(String db11X3162) {
-        this.db11X3162 = db11X3162;
+    public void setDB11_X316_1(String DB11_X316_1) {
+        this.DB11_X316_1 = DB11_X316_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_3", nullable = true, length = 2)
-    public String getDb11X3163() {
-        return db11X3163;
+    public String getDB11_X316_2() {
+        return DB11_X316_2;
     }
 
-    public void setDb11X3163(String db11X3163) {
-        this.db11X3163 = db11X3163;
+    public void setDB11_X316_2(String DB11_X316_2) {
+        this.DB11_X316_2 = DB11_X316_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_4", nullable = true, length = 2)
-    public String getDb11X3164() {
-        return db11X3164;
+    public String getDB11_X316_3() {
+        return DB11_X316_3;
     }
 
-    public void setDb11X3164(String db11X3164) {
-        this.db11X3164 = db11X3164;
+    public void setDB11_X316_3(String DB11_X316_3) {
+        this.DB11_X316_3 = DB11_X316_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X316_5", nullable = true, length = 2)
-    public String getDb11X3165() {
-        return db11X3165;
+    public String getDB11_X316_4() {
+        return DB11_X316_4;
     }
 
-    public void setDb11X3165(String db11X3165) {
-        this.db11X3165 = db11X3165;
+    public void setDB11_X316_4(String DB11_X316_4) {
+        this.DB11_X316_4 = DB11_X316_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_0", nullable = true, length = 2)
-    public String getDb11X3170() {
-        return db11X3170;
+    public String getDB11_X316_5() {
+        return DB11_X316_5;
     }
 
-    public void setDb11X3170(String db11X3170) {
-        this.db11X3170 = db11X3170;
+    public void setDB11_X316_5(String DB11_X316_5) {
+        this.DB11_X316_5 = DB11_X316_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_1", nullable = true, length = 2)
-    public String getDb11X3171() {
-        return db11X3171;
+    public String getDB11_X317_0() {
+        return DB11_X317_0;
     }
 
-    public void setDb11X3171(String db11X3171) {
-        this.db11X3171 = db11X3171;
+    public void setDB11_X317_0(String DB11_X317_0) {
+        this.DB11_X317_0 = DB11_X317_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_2", nullable = true, length = 2)
-    public String getDb11X3172() {
-        return db11X3172;
+    public String getDB11_X317_1() {
+        return DB11_X317_1;
     }
 
-    public void setDb11X3172(String db11X3172) {
-        this.db11X3172 = db11X3172;
+    public void setDB11_X317_1(String DB11_X317_1) {
+        this.DB11_X317_1 = DB11_X317_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_3", nullable = true, length = 2)
-    public String getDb11X3173() {
-        return db11X3173;
+    public String getDB11_X317_2() {
+        return DB11_X317_2;
     }
 
-    public void setDb11X3173(String db11X3173) {
-        this.db11X3173 = db11X3173;
+    public void setDB11_X317_2(String DB11_X317_2) {
+        this.DB11_X317_2 = DB11_X317_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_4", nullable = true, length = 2)
-    public String getDb11X3174() {
-        return db11X3174;
+    public String getDB11_X317_3() {
+        return DB11_X317_3;
     }
 
-    public void setDb11X3174(String db11X3174) {
-        this.db11X3174 = db11X3174;
+    public void setDB11_X317_3(String DB11_X317_3) {
+        this.DB11_X317_3 = DB11_X317_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_5", nullable = true, length = 2)
-    public String getDb11X3175() {
-        return db11X3175;
+    public String getDB11_X317_4() {
+        return DB11_X317_4;
     }
 
-    public void setDb11X3175(String db11X3175) {
-        this.db11X3175 = db11X3175;
+    public void setDB11_X317_4(String DB11_X317_4) {
+        this.DB11_X317_4 = DB11_X317_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X317_6", nullable = true, length = 2)
-    public String getDb11X3176() {
-        return db11X3176;
+    public String getDB11_X317_5() {
+        return DB11_X317_5;
     }
 
-    public void setDb11X3176(String db11X3176) {
-        this.db11X3176 = db11X3176;
+    public void setDB11_X317_5(String DB11_X317_5) {
+        this.DB11_X317_5 = DB11_X317_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_0", nullable = true, length = 2)
-    public String getDb11X3180() {
-        return db11X3180;
+    public String getDB11_X317_6() {
+        return DB11_X317_6;
     }
 
-    public void setDb11X3180(String db11X3180) {
-        this.db11X3180 = db11X3180;
+    public void setDB11_X317_6(String DB11_X317_6) {
+        this.DB11_X317_6 = DB11_X317_6;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_1", nullable = true, length = 2)
-    public String getDb11X3181() {
-        return db11X3181;
+    public String getDB11_X318_0() {
+        return DB11_X318_0;
     }
 
-    public void setDb11X3181(String db11X3181) {
-        this.db11X3181 = db11X3181;
+    public void setDB11_X318_0(String DB11_X318_0) {
+        this.DB11_X318_0 = DB11_X318_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_2", nullable = true, length = 2)
-    public String getDb11X3182() {
-        return db11X3182;
+    public String getDB11_X318_1() {
+        return DB11_X318_1;
     }
 
-    public void setDb11X3182(String db11X3182) {
-        this.db11X3182 = db11X3182;
+    public void setDB11_X318_1(String DB11_X318_1) {
+        this.DB11_X318_1 = DB11_X318_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_3", nullable = true, length = 2)
-    public String getDb11X3183() {
-        return db11X3183;
+    public String getDB11_X318_2() {
+        return DB11_X318_2;
     }
 
-    public void setDb11X3183(String db11X3183) {
-        this.db11X3183 = db11X3183;
+    public void setDB11_X318_2(String DB11_X318_2) {
+        this.DB11_X318_2 = DB11_X318_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_4", nullable = true, length = 2)
-    public String getDb11X3184() {
-        return db11X3184;
+    public String getDB11_X318_3() {
+        return DB11_X318_3;
     }
 
-    public void setDb11X3184(String db11X3184) {
-        this.db11X3184 = db11X3184;
+    public void setDB11_X318_3(String DB11_X318_3) {
+        this.DB11_X318_3 = DB11_X318_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_5", nullable = true, length = 2)
-    public String getDb11X3185() {
-        return db11X3185;
+    public String getDB11_X318_4() {
+        return DB11_X318_4;
     }
 
-    public void setDb11X3185(String db11X3185) {
-        this.db11X3185 = db11X3185;
+    public void setDB11_X318_4(String DB11_X318_4) {
+        this.DB11_X318_4 = DB11_X318_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_6", nullable = true, length = 2)
-    public String getDb11X3186() {
-        return db11X3186;
+    public String getDB11_X318_5() {
+        return DB11_X318_5;
     }
 
-    public void setDb11X3186(String db11X3186) {
-        this.db11X3186 = db11X3186;
+    public void setDB11_X318_5(String DB11_X318_5) {
+        this.DB11_X318_5 = DB11_X318_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X318_7", nullable = true, length = 2)
-    public String getDb11X3187() {
-        return db11X3187;
+    public String getDB11_X318_6() {
+        return DB11_X318_6;
     }
 
-    public void setDb11X3187(String db11X3187) {
-        this.db11X3187 = db11X3187;
+    public void setDB11_X318_6(String DB11_X318_6) {
+        this.DB11_X318_6 = DB11_X318_6;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_0", nullable = true, length = 2)
-    public String getDb11X3190() {
-        return db11X3190;
+    public String getDB11_X318_7() {
+        return DB11_X318_7;
     }
 
-    public void setDb11X3190(String db11X3190) {
-        this.db11X3190 = db11X3190;
+    public void setDB11_X318_7(String DB11_X318_7) {
+        this.DB11_X318_7 = DB11_X318_7;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_1", nullable = true, length = 2)
-    public String getDb11X3191() {
-        return db11X3191;
+    public String getDB11_X319_0() {
+        return DB11_X319_0;
     }
 
-    public void setDb11X3191(String db11X3191) {
-        this.db11X3191 = db11X3191;
+    public void setDB11_X319_0(String DB11_X319_0) {
+        this.DB11_X319_0 = DB11_X319_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_2", nullable = true, length = 2)
-    public String getDb11X3192() {
-        return db11X3192;
+    public String getDB11_X319_1() {
+        return DB11_X319_1;
     }
 
-    public void setDb11X3192(String db11X3192) {
-        this.db11X3192 = db11X3192;
+    public void setDB11_X319_1(String DB11_X319_1) {
+        this.DB11_X319_1 = DB11_X319_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_3", nullable = true, length = 2)
-    public String getDb11X3193() {
-        return db11X3193;
+    public String getDB11_X319_2() {
+        return DB11_X319_2;
     }
 
-    public void setDb11X3193(String db11X3193) {
-        this.db11X3193 = db11X3193;
+    public void setDB11_X319_2(String DB11_X319_2) {
+        this.DB11_X319_2 = DB11_X319_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_4", nullable = true, length = 2)
-    public String getDb11X3194() {
-        return db11X3194;
+    public String getDB11_X319_3() {
+        return DB11_X319_3;
     }
 
-    public void setDb11X3194(String db11X3194) {
-        this.db11X3194 = db11X3194;
+    public void setDB11_X319_3(String DB11_X319_3) {
+        this.DB11_X319_3 = DB11_X319_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_5", nullable = true, length = 2)
-    public String getDb11X3195() {
-        return db11X3195;
+    public String getDB11_X319_4() {
+        return DB11_X319_4;
     }
 
-    public void setDb11X3195(String db11X3195) {
-        this.db11X3195 = db11X3195;
+    public void setDB11_X319_4(String DB11_X319_4) {
+        this.DB11_X319_4 = DB11_X319_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X319_6", nullable = true, length = 2)
-    public String getDb11X3196() {
-        return db11X3196;
+    public String getDB11_X319_5() {
+        return DB11_X319_5;
     }
 
-    public void setDb11X3196(String db11X3196) {
-        this.db11X3196 = db11X3196;
+    public void setDB11_X319_5(String DB11_X319_5) {
+        this.DB11_X319_5 = DB11_X319_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_0", nullable = true, length = 2)
-    public String getDb11X3200() {
-        return db11X3200;
+    public String getDB11_X319_6() {
+        return DB11_X319_6;
     }
 
-    public void setDb11X3200(String db11X3200) {
-        this.db11X3200 = db11X3200;
+    public void setDB11_X319_6(String DB11_X319_6) {
+        this.DB11_X319_6 = DB11_X319_6;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_1", nullable = true, length = 2)
-    public String getDb11X3201() {
-        return db11X3201;
+    public String getDB11_X320_0() {
+        return DB11_X320_0;
     }
 
-    public void setDb11X3201(String db11X3201) {
-        this.db11X3201 = db11X3201;
+    public void setDB11_X320_0(String DB11_X320_0) {
+        this.DB11_X320_0 = DB11_X320_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_2", nullable = true, length = 2)
-    public String getDb11X3202() {
-        return db11X3202;
+    public String getDB11_X320_1() {
+        return DB11_X320_1;
     }
 
-    public void setDb11X3202(String db11X3202) {
-        this.db11X3202 = db11X3202;
+    public void setDB11_X320_1(String DB11_X320_1) {
+        this.DB11_X320_1 = DB11_X320_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_3", nullable = true, length = 2)
-    public String getDb11X3203() {
-        return db11X3203;
+    public String getDB11_X320_2() {
+        return DB11_X320_2;
     }
 
-    public void setDb11X3203(String db11X3203) {
-        this.db11X3203 = db11X3203;
+    public void setDB11_X320_2(String DB11_X320_2) {
+        this.DB11_X320_2 = DB11_X320_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_4", nullable = true, length = 2)
-    public String getDb11X3204() {
-        return db11X3204;
+    public String getDB11_X320_3() {
+        return DB11_X320_3;
     }
 
-    public void setDb11X3204(String db11X3204) {
-        this.db11X3204 = db11X3204;
+    public void setDB11_X320_3(String DB11_X320_3) {
+        this.DB11_X320_3 = DB11_X320_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_5", nullable = true, length = 2)
-    public String getDb11X3205() {
-        return db11X3205;
+    public String getDB11_X320_4() {
+        return DB11_X320_4;
     }
 
-    public void setDb11X3205(String db11X3205) {
-        this.db11X3205 = db11X3205;
+    public void setDB11_X320_4(String DB11_X320_4) {
+        this.DB11_X320_4 = DB11_X320_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_6", nullable = true, length = 2)
-    public String getDb11X3206() {
-        return db11X3206;
+    public String getDB11_X320_5() {
+        return DB11_X320_5;
     }
 
-    public void setDb11X3206(String db11X3206) {
-        this.db11X3206 = db11X3206;
+    public void setDB11_X320_5(String DB11_X320_5) {
+        this.DB11_X320_5 = DB11_X320_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X320_7", nullable = true, length = 2)
-    public String getDb11X3207() {
-        return db11X3207;
+    public String getDB11_X320_6() {
+        return DB11_X320_6;
     }
 
-    public void setDb11X3207(String db11X3207) {
-        this.db11X3207 = db11X3207;
+    public void setDB11_X320_6(String DB11_X320_6) {
+        this.DB11_X320_6 = DB11_X320_6;
     }
 
-    @Basic
-    @Column(name = "DB11_X321_0", nullable = true, length = 2)
-    public String getDb11X3210() {
-        return db11X3210;
+    public String getDB11_X320_7() {
+        return DB11_X320_7;
     }
 
-    public void setDb11X3210(String db11X3210) {
-        this.db11X3210 = db11X3210;
+    public void setDB11_X320_7(String DB11_X320_7) {
+        this.DB11_X320_7 = DB11_X320_7;
     }
 
-    @Basic
-    @Column(name = "DB11_X321_1", nullable = true, length = 2)
-    public String getDb11X3211() {
-        return db11X3211;
+    public String getDB11_X321_0() {
+        return DB11_X321_0;
     }
 
-    public void setDb11X3211(String db11X3211) {
-        this.db11X3211 = db11X3211;
+    public void setDB11_X321_0(String DB11_X321_0) {
+        this.DB11_X321_0 = DB11_X321_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X321_4", nullable = true, length = 2)
-    public String getDb11X3214() {
-        return db11X3214;
+    public String getDB11_X321_1() {
+        return DB11_X321_1;
     }
 
-    public void setDb11X3214(String db11X3214) {
-        this.db11X3214 = db11X3214;
+    public void setDB11_X321_1(String DB11_X321_1) {
+        this.DB11_X321_1 = DB11_X321_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X321_5", nullable = true, length = 2)
-    public String getDb11X3215() {
-        return db11X3215;
+    public String getDB11_X321_4() {
+        return DB11_X321_4;
     }
 
-    public void setDb11X3215(String db11X3215) {
-        this.db11X3215 = db11X3215;
+    public void setDB11_X321_4(String DB11_X321_4) {
+        this.DB11_X321_4 = DB11_X321_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X322_0", nullable = true, length = 2)
-    public String getDb11X3220() {
-        return db11X3220;
+    public String getDB11_X321_5() {
+        return DB11_X321_5;
     }
 
-    public void setDb11X3220(String db11X3220) {
-        this.db11X3220 = db11X3220;
+    public void setDB11_X321_5(String DB11_X321_5) {
+        this.DB11_X321_5 = DB11_X321_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X322_1", nullable = true, length = 2)
-    public String getDb11X3221() {
-        return db11X3221;
+    public String getDB11_X322_0() {
+        return DB11_X322_0;
     }
 
-    public void setDb11X3221(String db11X3221) {
-        this.db11X3221 = db11X3221;
+    public void setDB11_X322_0(String DB11_X322_0) {
+        this.DB11_X322_0 = DB11_X322_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_0", nullable = true, length = 2)
-    public String getDb11X3240() {
-        return db11X3240;
+    public String getDB11_X322_1() {
+        return DB11_X322_1;
     }
 
-    public void setDb11X3240(String db11X3240) {
-        this.db11X3240 = db11X3240;
+    public void setDB11_X322_1(String DB11_X322_1) {
+        this.DB11_X322_1 = DB11_X322_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_1", nullable = true, length = 2)
-    public String getDb11X3241() {
-        return db11X3241;
+    public String getDB11_X324_0() {
+        return DB11_X324_0;
     }
 
-    public void setDb11X3241(String db11X3241) {
-        this.db11X3241 = db11X3241;
+    public void setDB11_X324_0(String DB11_X324_0) {
+        this.DB11_X324_0 = DB11_X324_0;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_2", nullable = true, length = 2)
-    public String getDb11X3242() {
-        return db11X3242;
+    public String getDB11_X324_1() {
+        return DB11_X324_1;
     }
 
-    public void setDb11X3242(String db11X3242) {
-        this.db11X3242 = db11X3242;
+    public void setDB11_X324_1(String DB11_X324_1) {
+        this.DB11_X324_1 = DB11_X324_1;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_3", nullable = true, length = 2)
-    public String getDb11X3243() {
-        return db11X3243;
+    public String getDB11_X324_2() {
+        return DB11_X324_2;
     }
 
-    public void setDb11X3243(String db11X3243) {
-        this.db11X3243 = db11X3243;
+    public void setDB11_X324_2(String DB11_X324_2) {
+        this.DB11_X324_2 = DB11_X324_2;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_4", nullable = true, length = 2)
-    public String getDb11X3244() {
-        return db11X3244;
+    public String getDB11_X324_3() {
+        return DB11_X324_3;
     }
 
-    public void setDb11X3244(String db11X3244) {
-        this.db11X3244 = db11X3244;
+    public void setDB11_X324_3(String DB11_X324_3) {
+        this.DB11_X324_3 = DB11_X324_3;
     }
 
-    @Basic
-    @Column(name = "DB11_X324_5", nullable = true, length = 2)
-    public String getDb11X3245() {
-        return db11X3245;
+    public String getDB11_X324_4() {
+        return DB11_X324_4;
     }
 
-    public void setDb11X3245(String db11X3245) {
-        this.db11X3245 = db11X3245;
+    public void setDB11_X324_4(String DB11_X324_4) {
+        this.DB11_X324_4 = DB11_X324_4;
     }
 
-    @Basic
-    @Column(name = "DB11_X326_0", nullable = true, length = 2)
-    public String getDb11X3260() {
-        return db11X3260;
+    public String getDB11_X324_5() {
+        return DB11_X324_5;
     }
 
-    public void setDb11X3260(String db11X3260) {
-        this.db11X3260 = db11X3260;
+    public void setDB11_X324_5(String DB11_X324_5) {
+        this.DB11_X324_5 = DB11_X324_5;
     }
 
-    @Basic
-    @Column(name = "DB11_X326_1", nullable = true, length = 2)
-    public String getDb11X3261() {
-        return db11X3261;
+    public String getDB11_X326_0() {
+        return DB11_X326_0;
     }
 
-    public void setDb11X3261(String db11X3261) {
-        this.db11X3261 = db11X3261;
+    public void setDB11_X326_0(String DB11_X326_0) {
+        this.DB11_X326_0 = DB11_X326_0;
     }
 
-    @Basic
-    @Column(name = "DB15_CHAR48_40", nullable = true, length = 4000)
-    public String getDb15Char4840() {
-        return db15Char4840;
+    public String getDB11_X326_1() {
+        return DB11_X326_1;
     }
 
-    public void setDb15Char4840(String db15Char4840) {
-        this.db15Char4840 = db15Char4840;
+    public void setDB11_X326_1(String DB11_X326_1) {
+        this.DB11_X326_1 = DB11_X326_1;
     }
 
-    @Basic
-    @Column(name = "DB15_INT0_22", nullable = true, length = 4000)
-    public String getDb15Int022() {
-        return db15Int022;
+    public String getDB15_CHAR48_40() {
+        return DB15_CHAR48_40;
     }
 
-    public void setDb15Int022(String db15Int022) {
-        this.db15Int022 = db15Int022;
+    public void setDB15_CHAR48_40(String DB15_CHAR48_40) {
+        this.DB15_CHAR48_40 = DB15_CHAR48_40;
     }
 
-    @Basic
-    @Column(name = "DB15_SINT46", nullable = true, precision = 0)
-    public Integer getDb15Sint46() {
-        return db15Sint46;
+    public String getDB15_INT0_22() {
+        return DB15_INT0_22;
     }
 
-    public void setDb15Sint46(Integer db15Sint46) {
-        this.db15Sint46 = db15Sint46;
+    public void setDB15_INT0_22(String DB15_INT0_22) {
+        this.DB15_INT0_22 = DB15_INT0_22;
     }
 
-    @Basic
-    @Column(name = "M98_0", nullable = true, length = 2)
-    public String getM980() {
-        return m980;
+    public BigDecimal getDB15_SINT46() {
+        return DB15_SINT46;
     }
 
-    public void setM980(String m980) {
-        this.m980 = m980;
+    public void setDB15_SINT46(BigDecimal DB15_SINT46) {
+        this.DB15_SINT46 = DB15_SINT46;
     }
 
-    @Basic
-    @Column(name = "M98_5", nullable = true, length = 2)
-    public String getM985() {
-        return m985;
+    public String getM98_0() {
+        return M98_0;
     }
 
-    public void setM985(String m985) {
-        this.m985 = m985;
+    public void setM98_0(String m98_0) {
+        M98_0 = m98_0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CL_COMOP130 that = (CL_COMOP130) o;
-        return Objects.equals(uuid, that.uuid) &&
-                Objects.equals(createDate, that.createDate) &&
-                Objects.equals(isSynch, that.isSynch) &&
-                Objects.equals(db11Int10, that.db11Int10) &&
-                Objects.equals(db11Int314, that.db11Int314) &&
-                Objects.equals(db11Int8, that.db11Int8) &&
-                Objects.equals(db11Real0, that.db11Real0) &&
-                Objects.equals(db11Real102, that.db11Real102) &&
-                Objects.equals(db11Real106, that.db11Real106) &&
-                Objects.equals(db11Real110, that.db11Real110) &&
-                Objects.equals(db11Real114, that.db11Real114) &&
-                Objects.equals(db11Real130, that.db11Real130) &&
-                Objects.equals(db11Real134, that.db11Real134) &&
-                Objects.equals(db11Real138, that.db11Real138) &&
-                Objects.equals(db11Real142, that.db11Real142) &&
-                Objects.equals(db11Real146, that.db11Real146) &&
-                Objects.equals(db11Real150, that.db11Real150) &&
-                Objects.equals(db11Real154, that.db11Real154) &&
-                Objects.equals(db11Real158, that.db11Real158) &&
-                Objects.equals(db11Real174, that.db11Real174) &&
-                Objects.equals(db11Real178, that.db11Real178) &&
-                Objects.equals(db11Real18, that.db11Real18) &&
-                Objects.equals(db11Real182, that.db11Real182) &&
-                Objects.equals(db11Real186, that.db11Real186) &&
-                Objects.equals(db11Real190, that.db11Real190) &&
-                Objects.equals(db11Real194, that.db11Real194) &&
-                Objects.equals(db11Real198, that.db11Real198) &&
-                Objects.equals(db11Real202, that.db11Real202) &&
-                Objects.equals(db11Real218, that.db11Real218) &&
-                Objects.equals(db11Real222, that.db11Real222) &&
-                Objects.equals(db11Real226, that.db11Real226) &&
-                Objects.equals(db11Real230, that.db11Real230) &&
-                Objects.equals(db11Real234, that.db11Real234) &&
-                Objects.equals(db11Real238, that.db11Real238) &&
-                Objects.equals(db11Real242, that.db11Real242) &&
-                Objects.equals(db11Real246, that.db11Real246) &&
-                Objects.equals(db11Real264, that.db11Real264) &&
-                Objects.equals(db11Real268, that.db11Real268) &&
-                Objects.equals(db11Real272, that.db11Real272) &&
-                Objects.equals(db11Real276, that.db11Real276) &&
-                Objects.equals(db11Real280, that.db11Real280) &&
-                Objects.equals(db11Real284, that.db11Real284) &&
-                Objects.equals(db11Real288, that.db11Real288) &&
-                Objects.equals(db11Real292, that.db11Real292) &&
-                Objects.equals(db11Real296, that.db11Real296) &&
-                Objects.equals(db11Real30, that.db11Real30) &&
-                Objects.equals(db11Real300, that.db11Real300) &&
-                Objects.equals(db11Real304, that.db11Real304) &&
-                Objects.equals(db11Real308, that.db11Real308) &&
-                Objects.equals(db11Real4, that.db11Real4) &&
-                Objects.equals(db11Real42, that.db11Real42) &&
-                Objects.equals(db11Real54, that.db11Real54) &&
-                Objects.equals(db11Real66, that.db11Real66) &&
-                Objects.equals(db11Real78, that.db11Real78) &&
-                Objects.equals(db11Real86, that.db11Real86) &&
-                Objects.equals(db11Real90, that.db11Real90) &&
-                Objects.equals(db11Real94, that.db11Real94) &&
-                Objects.equals(db11Real98, that.db11Real98) &&
-                Objects.equals(db11X1290, that.db11X1290) &&
-                Objects.equals(db11X1292, that.db11X1292) &&
-                Objects.equals(db11X120, that.db11X120) &&
-                Objects.equals(db11X121, that.db11X121) &&
-                Objects.equals(db11X1730, that.db11X1730) &&
-                Objects.equals(db11X1732, that.db11X1732) &&
-                Objects.equals(db11X2170, that.db11X2170) &&
-                Objects.equals(db11X2172, that.db11X2172) &&
-                Objects.equals(db11X2610, that.db11X2610) &&
-                Objects.equals(db11X2612, that.db11X2612) &&
-                Objects.equals(db11X3160, that.db11X3160) &&
-                Objects.equals(db11X3161, that.db11X3161) &&
-                Objects.equals(db11X3162, that.db11X3162) &&
-                Objects.equals(db11X3163, that.db11X3163) &&
-                Objects.equals(db11X3164, that.db11X3164) &&
-                Objects.equals(db11X3165, that.db11X3165) &&
-                Objects.equals(db11X3170, that.db11X3170) &&
-                Objects.equals(db11X3171, that.db11X3171) &&
-                Objects.equals(db11X3172, that.db11X3172) &&
-                Objects.equals(db11X3173, that.db11X3173) &&
-                Objects.equals(db11X3174, that.db11X3174) &&
-                Objects.equals(db11X3175, that.db11X3175) &&
-                Objects.equals(db11X3176, that.db11X3176) &&
-                Objects.equals(db11X3180, that.db11X3180) &&
-                Objects.equals(db11X3181, that.db11X3181) &&
-                Objects.equals(db11X3182, that.db11X3182) &&
-                Objects.equals(db11X3183, that.db11X3183) &&
-                Objects.equals(db11X3184, that.db11X3184) &&
-                Objects.equals(db11X3185, that.db11X3185) &&
-                Objects.equals(db11X3186, that.db11X3186) &&
-                Objects.equals(db11X3187, that.db11X3187) &&
-                Objects.equals(db11X3190, that.db11X3190) &&
-                Objects.equals(db11X3191, that.db11X3191) &&
-                Objects.equals(db11X3192, that.db11X3192) &&
-                Objects.equals(db11X3193, that.db11X3193) &&
-                Objects.equals(db11X3194, that.db11X3194) &&
-                Objects.equals(db11X3195, that.db11X3195) &&
-                Objects.equals(db11X3196, that.db11X3196) &&
-                Objects.equals(db11X3200, that.db11X3200) &&
-                Objects.equals(db11X3201, that.db11X3201) &&
-                Objects.equals(db11X3202, that.db11X3202) &&
-                Objects.equals(db11X3203, that.db11X3203) &&
-                Objects.equals(db11X3204, that.db11X3204) &&
-                Objects.equals(db11X3205, that.db11X3205) &&
-                Objects.equals(db11X3206, that.db11X3206) &&
-                Objects.equals(db11X3207, that.db11X3207) &&
-                Objects.equals(db11X3210, that.db11X3210) &&
-                Objects.equals(db11X3211, that.db11X3211) &&
-                Objects.equals(db11X3214, that.db11X3214) &&
-                Objects.equals(db11X3215, that.db11X3215) &&
-                Objects.equals(db11X3220, that.db11X3220) &&
-                Objects.equals(db11X3221, that.db11X3221) &&
-                Objects.equals(db11X3240, that.db11X3240) &&
-                Objects.equals(db11X3241, that.db11X3241) &&
-                Objects.equals(db11X3242, that.db11X3242) &&
-                Objects.equals(db11X3243, that.db11X3243) &&
-                Objects.equals(db11X3244, that.db11X3244) &&
-                Objects.equals(db11X3245, that.db11X3245) &&
-                Objects.equals(db11X3260, that.db11X3260) &&
-                Objects.equals(db11X3261, that.db11X3261) &&
-                Objects.equals(db15Char4840, that.db15Char4840) &&
-                Objects.equals(db15Int022, that.db15Int022) &&
-                Objects.equals(db15Sint46, that.db15Sint46) &&
-                Objects.equals(m980, that.m980) &&
-                Objects.equals(m985, that.m985);
+    public String getM98_5() {
+        return M98_5;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid, createDate, isSynch, db11Int10, db11Int314, db11Int8, db11Real0, db11Real102, db11Real106, db11Real110, db11Real114, db11Real130, db11Real134, db11Real138, db11Real142, db11Real146, db11Real150, db11Real154, db11Real158, db11Real174, db11Real178, db11Real18, db11Real182, db11Real186, db11Real190, db11Real194, db11Real198, db11Real202, db11Real218, db11Real222, db11Real226, db11Real230, db11Real234, db11Real238, db11Real242, db11Real246, db11Real264, db11Real268, db11Real272, db11Real276, db11Real280, db11Real284, db11Real288, db11Real292, db11Real296, db11Real30, db11Real300, db11Real304, db11Real308, db11Real4, db11Real42, db11Real54, db11Real66, db11Real78, db11Real86, db11Real90, db11Real94, db11Real98, db11X1290, db11X1292, db11X120, db11X121, db11X1730, db11X1732, db11X2170, db11X2172, db11X2610, db11X2612, db11X3160, db11X3161, db11X3162, db11X3163, db11X3164, db11X3165, db11X3170, db11X3171, db11X3172, db11X3173, db11X3174, db11X3175, db11X3176, db11X3180, db11X3181, db11X3182, db11X3183, db11X3184, db11X3185, db11X3186, db11X3187, db11X3190, db11X3191, db11X3192, db11X3193, db11X3194, db11X3195, db11X3196, db11X3200, db11X3201, db11X3202, db11X3203, db11X3204, db11X3205, db11X3206, db11X3207, db11X3210, db11X3211, db11X3214, db11X3215, db11X3220, db11X3221, db11X3240, db11X3241, db11X3242, db11X3243, db11X3244, db11X3245, db11X3260, db11X3261, db15Char4840, db15Int022, db15Sint46, m980, m985);
+    public void setM98_5(String m98_5) {
+        M98_5 = m98_5;
     }
 }
