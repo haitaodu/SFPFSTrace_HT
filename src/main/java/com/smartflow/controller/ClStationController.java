@@ -1,6 +1,7 @@
 package com.smartflow.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.smartflow.dto.AddCLStationDeviceDTO;
 import com.smartflow.service.CL_StationService;
 import org.apache.log4j.Logger;
@@ -52,6 +53,15 @@ public class ClStationController extends BaseController{
                 return json;
             }
             try {
+                JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(clStationDeviceDTO.getObject()));
+                String serialNumber = jsonObject.get("SerialNumber") == null ? null : jsonObject.get("SerialNumber").toString();
+                System.out.println(jsonObject.get("UUID"));
+                if(serialNumber == null){
+                    jsonObject.put("SerialNumber", jsonObject.get("UUID"));
+                }
+                Integer workOrderId = clStationService.getCurrentActivedWorkOrder();
+                jsonObject.put("WorkOrderId",workOrderId);
+                clStationDeviceDTO.setObject(jsonObject);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
             }

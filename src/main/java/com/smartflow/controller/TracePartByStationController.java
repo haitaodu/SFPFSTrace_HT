@@ -7,12 +7,11 @@ import com.smartflow.service.CL_StationService;
 import com.smartflow.service.StationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 通过工站追溯工件
@@ -81,10 +80,21 @@ public class TracePartByStationController extends BaseController{
 					return json;
 				} else {
 					List<Map<String,Object>> dataList = clstationService.getCLStationDeviceListByLinkTableName(linkTableName, vmTracePartByStationInput);
+
+					if(!CollectionUtils.isEmpty(dataList)){
+						for (Map<String,Object> map: dataList) {
+							Integer workOrderId = map.get("WorkOrderId") == null ? null : Integer.parseInt(map.get("WorkOrderId").toString());
+							if(workOrderId != null){
+								String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
+								map.put("WorkOrderId", workOrderNumber);
+							}
+						}
+					}
 					headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
-					vmTracePartByStationOutput.setHeaderList(headerList);
+					List<TableHeaderDTO> filterList = headerList.stream().filter(h -> !h.getDataIndex().startsWith("M5")).filter(h -> !h.getDataIndex().equals("DB48_DBW364")).collect(Collectors.toList());
+					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
 					vmTracePartByStationOutput.setTotal(rowCount);
 					json = this.setJson(SUCESS_CODE, GET_SUCESS, vmTracePartByStationOutput);

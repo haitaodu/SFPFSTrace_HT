@@ -39,4 +39,14 @@ public class CL_StationServiceImpl implements CL_StationService {
     public List<TableHeaderDTO> getHeaderListByLinkTableName(String linkTableName) {
         return cl_stationDao.getHeaderListByLinkTableName(linkTableName);
     }
+
+    @Override
+    public Integer getCurrentActivedWorkOrder() {
+        return cl_stationDao.getCurrentActivedWorkOrder();
+    }
+
+    @Override
+    public String getWorkOrderNumberByWorkOrderId(Integer workOrderId) {
+        return cl_stationDao.getWorkOrderNumberByWorkOrderId(workOrderId);
+    }
 }

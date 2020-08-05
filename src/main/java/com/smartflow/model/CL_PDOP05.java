@@ -1,12 +1,10 @@
 package com.smartflow.model;
 
-import oracle.sql.DATE;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * @author ：tao
