@@ -42,4 +42,16 @@ public interface CL_StationService {
      * @return 根据数据库表名返回表头
      */
     public List<TableHeaderDTO> getHeaderListByLinkTableName(String linkTableName);
+    /**
+     * 查询当前已激活的工单
+     * @return
+     */
+    public Integer getCurrentActivedWorkOrder();
+
+    /**
+     * 根据工单id查询工单号
+     * @param workOrderId
+     * @return
+     */
+    public String getWorkOrderNumberByWorkOrderId(Integer workOrderId);
 }

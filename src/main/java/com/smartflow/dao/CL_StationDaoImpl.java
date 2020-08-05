@@ -2,8 +2,11 @@ package com.smartflow.dao;
 
 import com.smartflow.dto.TableHeaderDTO;
 import com.smartflow.dto.VMTracePartByStationInput;
+import com.smartflow.model.CurrentActivedWorkOrderInformation;
+import com.smartflow.model.WorkOrder;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,8 @@ public class CL_StationDaoImpl implements CL_StationDao {
     public CL_StationDaoImpl(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
     }
+    @Autowired
+    SessionFactory sessionFactory;
 
     @Override
     public String getLinkTableNameByStationId(Integer stationId) {
@@ -88,14 +93,14 @@ public class CL_StationDaoImpl implements CL_StationDao {
     public List<TableHeaderDTO> getHeaderListByLinkTableName(String linkTableName) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         Query query = session.createSQLQuery
-                ("select cast(a.name as varchar(50))as title," +
-                        "cast(b.value as varchar(50)) as dataIndex " +
+                ("select cast(a.name as varchar(50))as dataIndex," +
+                        "cast(b.value as varchar(50)) as title " +
                         "from SysColumns a left join sys.extended_properties b " +
                         "on a.id = b.major_id where" +
                         " b.minor_id=a.colid and a.id = Object_Id('core."+linkTableName+"')");
         try {
             return query.setResultTransformer
-                    (Transformers.ALIAS_TO_ENTITY_MAP).list();
+                    (Transformers.aliasToBean(TableHeaderDTO.class)).list();
         }
         catch (Exception e)
         {
@@ -127,5 +132,49 @@ public class CL_StationDaoImpl implements CL_StationDao {
             query.setParameter("EndDateTime", calendar.getTime());
         }
         return query;
+    }
+
+
+//    public Integer getWorkOrderBySerialNumber(String serialNumber) {
+//        List<PartSerialNumber> partSerialNumberList =
+//                (List<PartSerialNumber>)
+//                        hibernateTemplate.findByNamedParam
+//                                ("FROM PartSerialNumber WHERE serialNumber=:SerialNumber",
+//                                        "SerialNumber", serialNumber);
+//        if(!CollectionUtils.isEmpty(partSerialNumberList)){
+//            WorkOrder workOrder = partSerialNumberList.get(0).getWorkOrder();
+//            if(workOrder != null){
+//                return workOrder.getId();
+//            }
+//        }
+//        return null;
+//    }
+
+
+    @Override
+    public Integer getCurrentActivedWorkOrder() {
+        String hql = "from CurrentActivedWorkOrderInformation order by Id desc";
+        Session session = sessionFactory.openSession();
+        try{
+            Query query = session.createQuery(hql);
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            CurrentActivedWorkOrderInformation currentActivedWorkOrderInformation = query.uniqueResult() == null ? null : (CurrentActivedWorkOrderInformation)query.uniqueResult();
+            if(currentActivedWorkOrderInformation != null){
+                return currentActivedWorkOrderInformation.getWorkOrder().getId();
+            }
+            return null;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public String getWorkOrderNumberByWorkOrderId(Integer workOrderId) {
+        WorkOrder workOrder = hibernateTemplate.get(WorkOrder.class, workOrderId);
+        return workOrder == null ? null : workOrder.getWorkOrderNumber();
     }
 }

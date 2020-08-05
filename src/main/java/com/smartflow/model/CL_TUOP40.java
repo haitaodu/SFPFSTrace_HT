@@ -17,6 +17,8 @@ public class CL_TUOP40 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private BigDecimal DB2_DBD40;
     private BigDecimal DB2_DBD44;
     private BigDecimal DB2_DBD48;
@@ -114,6 +116,21 @@ public class CL_TUOP40 {
         this.IS_SYNCH = IS_SYNCH;
     }
 
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
+    }
     public BigDecimal getDB2_DBD40() {
         return DB2_DBD40;
     }
