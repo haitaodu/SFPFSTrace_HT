@@ -2,9 +2,6 @@ package com.smartflow.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * @author haita
- */
 public class VMTracePartByStationInput {
 	private Integer StationId;
 	private String StartDateTime;

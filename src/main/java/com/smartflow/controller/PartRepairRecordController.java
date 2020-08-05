@@ -1,5 +1,21 @@
 package com.smartflow.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.smartflow.dto.VMPartRepairDetailInput;
 import com.smartflow.dto.VMPartRepairDetailOutput;
 import com.smartflow.dto.VMPartRepairRecordInput;
@@ -9,38 +25,22 @@ import com.smartflow.model.PartRepairQualityCheckRecord;
 import com.smartflow.model.PartRepairRecord;
 import com.smartflow.model.PartSerialNumber;
 import com.smartflow.service.PartRepairRecordService;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-/**
- * @author haita
- */
 @RestController
 @RequestMapping("/api/PartRepairRecord")
 public class PartRepairRecordController extends BaseController{
 	
-	final
-    PartRepairRecordService partRepairRecordService;
+	@Autowired
+	PartRepairRecordService partRepairRecordService;
 	
 	private static final Logger logger = Logger.getLogger(PartRepairRecordController.class);
-
-    @Autowired
-    public PartRepairRecordController(PartRepairRecordService partRepairRecordService) {
-        this.partRepairRecordService = partRepairRecordService;
-    }
-
-    /**
+	
+	/**
 	 * 工件维修记录页面-获取维修记录信息
 	 * @param vmPartRepairRecordInput
 	 * @return
 	 */
 	@CrossOrigin(origins="*",maxAge=3600)
-	@PostMapping (value="/GetPartRepairRecordByPartSerialNumber")
+	@RequestMapping(value="/GetPartRepairRecordByPartSerialNumber",method=RequestMethod.POST)
 	public Map<String, Object> getPartRepairRecordByPartSerialNumber(@RequestBody VMPartRepairRecordInput vmPartRepairRecordInput){
 		Map<String, Object> json = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
@@ -76,6 +76,13 @@ public class PartRepairRecordController extends BaseController{
 					vmPartRepairRecordOutput.setPartState(partRepairRecord.getPartFailureDataRecord().getPartSerialNumber().getState()==1?"正常":"锁定");
 					vmPartRepairRecordOutput.setPosition(partRepairRecord.getPartFailureDataRecord().getPartSerialNumber().getPosition());
 					vmPartRepairRecordOutput.setWorkOrder(partRepairRecord.getPartFailureDataRecord().getPartSerialNumber().getWorkOrder().getWorkOrderNumber());
+//					Set<PartRepairQualityCheckRecord> partRepairQualityCheckRecords = partRepairRecord.getPartRepairQualityCheckRecords();
+//					if(partRepairQualityCheckRecords != null && !partRepairQualityCheckRecords.isEmpty()){
+//						vmPartRepairRecordOutput.setQualityPersonName(partRepairQualityCheckRecords.iterator().next().getUser().getUserName());
+//						vmPartRepairRecordOutput.setQualityPersonNumber(partRepairQualityCheckRecords.iterator().next().getUser().getUserCode());
+//						vmPartRepairRecordOutput.setQuanlityConfirmDateTime(partRepairQualityCheckRecords.iterator().next().getCreationDateTime());
+//					}
+					//根据工件维修记录id查询工件维修质量判定记录
 					PartRepairQualityCheckRecord partRepairQualityCheckRecord = partRepairRecordService.getPartRepairQualityCheckRecordByPartRepairRecordId(partRepairRecord.getId());
 					if(partRepairQualityCheckRecord != null){
 						vmPartRepairRecordOutput.setQualityPersonName(partRepairQualityCheckRecord.getUser().getUserName());
@@ -112,9 +119,74 @@ public class PartRepairRecordController extends BaseController{
 		return json;
 	}
 	
-
 	/**
 	 * 工件维修记录页面-获取维修记录详情
+	 * @param id
+	 * @return
+	
+	@CrossOrigin(origins="*",maxAge=3600)
+	@RequestMapping(value="/GetPartRepairDetailByRepairRecordId",method=RequestMethod.POST)
+	public Map<String, Object> GetPartRepairDetailByRepairRecordId(@RequestBody VMPartRepairDetailInput vmPartRepairDetailInput){
+//		public Map<String, Object> GetPartRepairDetailByRepairRecordId(@PathVariable Integer repairRecordId){
+		Map<String, Object> json = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
+		if(vmPartRepairDetailInput.getRepairRecordId() == null || "".equals(vmPartRepairDetailInput.getRepairRecordId())){
+			json = this.setJson(200, "维修记录编号不能为空！", -1);
+			return json;
+		}
+//		if(repairRecordId == null){
+//			json = this.setJson(200, "维修记录编号不能为空！", -1);
+//		}
+		VMPartRepairDetailOutput vmPartRepairDetailOutput =  new VMPartRepairDetailOutput();
+//		PartRepairRecord partRepairRecord = partRepairRecordService.getPartRepairRecordById(repairRecordId);
+//		Integer rowCount = partRepairRecordService.getTotalCountFromPartRepairRecordById(repairRecordId);
+		
+		PartRepairRecord partRepairRecord = partRepairRecordService.getPartRepairRecordById(vmPartRepairDetailInput.getRepairRecordId());
+		Integer rowCount = partRepairRecordService.getTotalCountFromPartRepairRecordById(vmPartRepairDetailInput.getRepairRecordId());
+		PartFailureDataRecord partFailureDataRecord = partRepairRecord.getPartFailureDataRecord();
+		List<VMPartRepairDetailOutput> vmPartRepairDetailOutputList = new ArrayList<VMPartRepairDetailOutput>();
+		try{	
+			vmPartRepairDetailOutput.setDesignator(partFailureDataRecord.getDesignator());
+			if(partFailureDataRecord.getFailureCause() != null){
+				vmPartRepairDetailOutput.setFailureCauseName(partFailureDataRecord.getFailureCause().getName());
+			}			
+			vmPartRepairDetailOutput.setFailureTypeName(partFailureDataRecord.getFailureType().getName());
+			vmPartRepairDetailOutput.setIsRepaired(partRepairRecord.getRepairState()==0?false:true);
+			vmPartRepairDetailOutput.setMachineOperatorCode(partRepairRecord.getUser().getUserCode());
+			vmPartRepairDetailOutput.setMachineOperatorName(partRepairRecord.getUser().getUserName());
+			vmPartRepairDetailOutput.setMaterialPartNumber(partRepairRecord.getPartFailureDataRecord().getPartSerialNumber().getWorkOrder().getBomHead().getMaterial().getMaterialNumber());
+//			vmPartRepairDetailOutput.setNewContainerId();
+//			Set<PartRepairQualityCheckRecord> partRepairQualityCheckRecords = partRepairRecord.getPartRepairQualityCheckRecords();
+//			if(partRepairQualityCheckRecords != null && !partRepairQualityCheckRecords.isEmpty()){
+//				vmPartRepairDetailOutput.setQualityConfirmDateTime(partRepairQualityCheckRecords.iterator().next().getCreationDateTime());		
+//			}
+			//根据工件维修记录id查询工件维修质量判定记录
+			PartRepairQualityCheckRecord partRepairQualityCheckRecord = partRepairRecordService.getPartRepairQualityCheckRecordByPartRepairRecordId(partRepairRecord.getId());
+			if(partRepairQualityCheckRecord != null){
+				vmPartRepairDetailOutput.setQualityConfirmDateTime(partRepairQualityCheckRecord.getCreationDateTime());
+			}
+			if(partRepairRecord.getRepairAction() != null){
+				vmPartRepairDetailOutput.setRepairActionName(partRepairRecord.getRepairAction().getName());
+			}	
+			vmPartRepairDetailOutput.setRepairDateTime(partRepairRecord.getCreationDateTime());
+			vmPartRepairDetailOutput.setRepairRecordId(partRepairRecord.getId());
+			vmPartRepairDetailOutput.setRepairState(partRepairRecord.getRepairState()==0?"未维修":"已维修");
+			vmPartRepairDetailOutputList.add(vmPartRepairDetailOutput);
+			map.put("RowCount", rowCount);
+			map.put("Tdto", vmPartRepairDetailOutputList);
+			json = this.setJson(200, "查询成功！", map);
+		}catch(Exception e){
+			json = this.setJson(0, "查询失败:"+e.getMessage(), -1);
+			logger.error(e);
+			e.printStackTrace();
+		}
+		return json;
+	}
+	 */
+	
+	/**
+	 * 工件维修记录页面-获取维修记录详情
+	 * @param id
 	 * @return
 	 */
 	@CrossOrigin(origins="*",maxAge=3600)
