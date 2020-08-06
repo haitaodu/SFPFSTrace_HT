@@ -18,6 +18,8 @@ public class CL_ZPZC {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private String DB407_DBX60_3;
     private String DB407_DBX60_4;
     private String DB407_DBX60_5;
@@ -112,6 +114,22 @@ public class CL_ZPZC {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public String getDB407_DBX60_3() {

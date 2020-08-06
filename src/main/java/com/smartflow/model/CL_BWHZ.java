@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Entity
 @Table(name = "core.CL_BWHZ")
 public class CL_BWHZ {
@@ -17,6 +18,8 @@ public class CL_BWHZ {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private BigDecimal DB13_DBD932;
     private BigDecimal DB13_DBD936;
     private BigDecimal DB13_DBD940;
@@ -67,6 +70,22 @@ public class CL_BWHZ {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public BigDecimal getDB13_DBD932() {
