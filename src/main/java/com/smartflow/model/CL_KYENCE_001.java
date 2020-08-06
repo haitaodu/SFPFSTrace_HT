@@ -1,4 +1,5 @@
 package com.smartflow.model;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -7,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Entity
-@Table(name="core.CL_KYENCE_001")
+@Table(name = "core.CL_KYENCE_001")
 public class CL_KYENCE_001 {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -16,6 +18,8 @@ public class CL_KYENCE_001 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private BigDecimal MES_CUT1_ANGLE1;
     private BigDecimal MES_CUT1_ANGLE2;
     private BigDecimal MES_CUT1_WEIGHT;
@@ -222,6 +226,22 @@ public class CL_KYENCE_001 {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public BigDecimal getMES_CUT1_ANGLE1() {

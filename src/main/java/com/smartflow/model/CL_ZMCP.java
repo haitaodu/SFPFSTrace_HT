@@ -18,6 +18,8 @@ public class CL_ZMCP {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private BigDecimal DB17_DBD706;
     private BigDecimal DB17_DBD710;
     private BigDecimal DB17_DBD714;
@@ -116,6 +118,22 @@ public class CL_ZMCP {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public BigDecimal getDB17_DBD706() {

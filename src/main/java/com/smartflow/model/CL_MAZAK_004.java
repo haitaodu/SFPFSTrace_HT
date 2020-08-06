@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="core.CL_MAZAK_004")
+@Table(name = "core.CL_MAZAK_004")
 public class CL_MAZAK_004 {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,6 +18,8 @@ public class CL_MAZAK_004 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private String AUTO_TIME;
     private String AVAIL;
     private BigDecimal CABS;
@@ -109,6 +111,22 @@ public class CL_MAZAK_004 {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public String getAUTO_TIME() {

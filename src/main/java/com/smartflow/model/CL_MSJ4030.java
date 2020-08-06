@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Entity
 @Table(name = "core.CL_MSJ4030")
 public class CL_MSJ4030 {
@@ -17,6 +18,8 @@ public class CL_MSJ4030 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private BigDecimal DB167_DBD0;
     private BigDecimal DB167_DBD12;
     private BigDecimal DB167_DBD16;
@@ -121,6 +124,22 @@ public class CL_MSJ4030 {
 
     public void setIS_SYNCH(String IS_SYNCH) {
         this.IS_SYNCH = IS_SYNCH;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public BigDecimal getDB167_DBD0() {
