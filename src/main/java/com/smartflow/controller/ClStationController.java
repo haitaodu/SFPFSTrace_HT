@@ -63,7 +63,6 @@ public class ClStationController extends BaseController{
                 JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(clStationDeviceDTO.getObject()));
                 Integer workOrderId = clStationService.getCurrentActivedWorkOrder();
                 jsonObject.put("WorkOrderId",workOrderId);
-
                 String serialNumber = jsonObject.get("SerialNumber") == null ? null : jsonObject.get("SerialNumber").toString();
                 VirtualSerialNumber virtualSerialNumber = new VirtualSerialNumber();
                 if(linkTableName.startsWith("CL_TU")){
@@ -86,7 +85,6 @@ public class ClStationController extends BaseController{
                             }
                             virtualSerialNumberService.updateVirtualSerialNumber(virtualSerialNumber);
                         }else{
-
                             jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                         }
                     }
@@ -100,11 +98,15 @@ public class ClStationController extends BaseController{
                         virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
                         jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                     }else {
-                        String lastStation = StationUtil.getIMLastStationName(linkTableName);
-                        String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
+                        if(serialNumber != null){
+                            jsonObject.put("SerialNumber", serialNumber);
+                        }else {
+                            String lastStation = StationUtil.getIMLastStationName(linkTableName);
+                            String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
+                            jsonObject.put("SerialNumber", serialNumberId);
+                        }
                     }
                 }
-
                 clStationDeviceDTO.setObject(jsonObject);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
