@@ -86,6 +86,7 @@ public class ClStationController extends BaseController{
                             }
                             virtualSerialNumberService.updateVirtualSerialNumber(virtualSerialNumber);
                         }else{
+
                             jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                         }
                     }
@@ -101,7 +102,6 @@ public class ClStationController extends BaseController{
                     }else {
                         String lastStation = StationUtil.getIMLastStationName(linkTableName);
                         String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
-                        jsonObject.put("SerialNumber", serialNumberId);
                     }
                 }
 
