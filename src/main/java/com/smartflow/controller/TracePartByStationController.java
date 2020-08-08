@@ -5,6 +5,7 @@ import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.dto.VMTracePartByStationOutput;
 import com.smartflow.service.CL_StationService;
 import com.smartflow.service.StationService;
+import com.smartflow.service.VirtualSerialNumberService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -31,6 +32,9 @@ public class TracePartByStationController extends BaseController{
 	private static final int  FALL_CODE=0;
 	private final
 	CL_StationService clstationService;
+
+	@Autowired
+	VirtualSerialNumberService virtualSerialNumberService;
 
 	@Autowired
 	public TracePartByStationController(CL_StationService clstationService,  StationService stationService) {
@@ -83,6 +87,8 @@ public class TracePartByStationController extends BaseController{
 
 					if(!CollectionUtils.isEmpty(dataList)){
 						for (Map<String,Object> map: dataList) {
+							String serialNumber = map.get("SerialNumber") == null ? null : virtualSerialNumberService.getSerialNumberById(Integer.parseInt(map.get("SerialNumber").toString()));
+							map.put("SerialNumber", serialNumber);
 							Integer workOrderId = map.get("WorkOrderId") == null ? null : Integer.parseInt(map.get("WorkOrderId").toString());
 							if(workOrderId != null){
 								String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
