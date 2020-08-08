@@ -106,6 +106,8 @@ public class ClStationController extends BaseController{
                             jsonObject.put("SerialNumber", serialNumberId);
                         }
                     }
+                }else{
+                    jsonObject.put("SerialNumber", serialNumber);
                 }
                 clStationDeviceDTO.setObject(jsonObject);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
