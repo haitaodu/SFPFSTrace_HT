@@ -2,6 +2,9 @@ package com.smartflow.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author haita
+ */
 public class AddCLStationDeviceDTO {
     private String LinkTableName;
     private Object Object;

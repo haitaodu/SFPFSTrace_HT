@@ -24,76 +24,33 @@ import com.smartflow.service.TracePartMaterialRecordService;
 import com.smartflow.util.MaterialRecordOutput;
 import com.smartflow.util.ReadDataUtil;
 
+/**
+ * @author haita
+ */
 @Controller
 @RequestMapping("/api/PartMaterialRecord")
 public class PartMaterialRecordController extends BaseController{
-	@Autowired
+	final
 	TracePartMaterialRecordService tracePartMaterialRecordService;
-	@Autowired
+	final
 	GetPartInformationByContainerNumberService getPartInformationByContainerNumberService;
-	@Autowired
+	final
 	GetPartMaterialRecordByPartSerialNumberService getPartMaterialRecordByPartSerialNumberService;
-	@Autowired
+	final
 	PartSerialNumberService partSerialNumberService;
-	@Autowired
+	final
 	PartSerialNumberDao partSerialNumberDao;
 	private static Logger logger = Logger.getLogger(TracePartMaterialRecordController.class);
-	/*
-	@CrossOrigin(origins = "*",maxAge = 3600)
-	@RequestMapping(value="/GetMaterialContainerByCondition",method=RequestMethod.POST)
-	public @ResponseBody Object getPages(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{
-		JSONObject jsonObject=ReadDataUtil.paramData(request);
-		int pageSize=jsonObject.getIntValue("PageSize");
-		int pageIndex=jsonObject.getIntValue("PageIndex");
-		String containerNumber = jsonObject.getString("ContainerNumber")==null?null:jsonObject.getString("ContainerNumber");
-		String materialPartNumber = jsonObject.getString("MaterialPartNumber")==null?null:jsonObject.getString("MaterialPartNumber");
-		String supplierCode = jsonObject.getString("SupplierCode")==null?null:jsonObject.getString("SupplierCode");
-		String batchNumber = jsonObject.getString("BatchNumber")==null?null:jsonObject.getString("BatchNumber");
-		String supplierMaterialPartNumber = jsonObject.getString("SupplierMaterialPartNumber")==null?null:jsonObject.getString("SupplierMaterialPartNumber");
-		Map<String, Object> json=new HashMap<String,Object>();
-		List<MaterialContainer> pagedata=tracePartMaterialRecordService.getDataForMaterialRecord(containerNumber, materialPartNumber, supplierCode, batchNumber, supplierMaterialPartNumber, pageIndex, pageSize);
-		Map<String, Object> map=new HashMap<String,Object>();
-	
-		map.put("Tdto", pagedata);
-        map.put("RowCount", tracePartMaterialRecordService.getCountData(containerNumber, materialPartNumber, supplierCode, batchNumber, supplierMaterialPartNumber, pageIndex, pageSize));
-		try {
-			json= this.setJson(200, "Success", map);
-		} catch (Exception e) {
-			json = this.setJson(0, e.getMessage(),1);
-			logger.error(e);
-			e.printStackTrace();
-		}
-		return json;
 
+	@Autowired
+	public PartMaterialRecordController(TracePartMaterialRecordService tracePartMaterialRecordService, GetPartInformationByContainerNumberService getPartInformationByContainerNumberService, GetPartMaterialRecordByPartSerialNumberService getPartMaterialRecordByPartSerialNumberService, PartSerialNumberService partSerialNumberService, PartSerialNumberDao partSerialNumberDao) {
+		this.tracePartMaterialRecordService = tracePartMaterialRecordService;
+		this.getPartInformationByContainerNumberService = getPartInformationByContainerNumberService;
+		this.getPartMaterialRecordByPartSerialNumberService = getPartMaterialRecordByPartSerialNumberService;
+		this.partSerialNumberService = partSerialNumberService;
+		this.partSerialNumberDao = partSerialNumberDao;
 	}
-	@CrossOrigin(origins = "*",maxAge = 3600)
-	@RequestMapping(value="/GetPartInformationListByContainerNumber",method=RequestMethod.POST)
-	public @ResponseBody Object getPartInformation(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{
-		JSONObject jsonObject=ReadDataUtil.paramData(request);
-		int pageSize=jsonObject.getIntValue("PageSize");
-		int pageIndex=jsonObject.getIntValue("PageIndex");
-		String containerNumber = jsonObject.getString("ContainerNumber")==null?null:jsonObject.getString("ContainerNumber");
-		
-		Map<String, Object> json=new HashMap<String,Object>();
-		List<PartInformation> partInformations=getPartInformationByContainerNumberService.getPartInformationByContainerNumber(pageSize, pageIndex, containerNumber);
-		Map<String, Object> map=new HashMap<String,Object>();
-	    
-		map.put("Tdto", partInformations);
-		map.put("RowCount",getPartInformationByContainerNumberService.getRowCountInChosenContainerNumber(containerNumber));
-       // map.put("RowCount", tracePartMaterialRecordService.getCountData(containerNumber, materialPartNumber, supplierCode, batchNumber, supplierMaterialPartNumber, pageIndex, pageSize));
-		try {
-			json= this.setJson(200, "Success", map);
-		} catch (Exception e) {
-			json = this.setJson(0, e.getMessage(),1);
-			logger.error(e);
-			e.printStackTrace();
-		}
-		return json;
 
-	}
-	*/
 	@CrossOrigin(origins = "*",maxAge = 3600)
 	@RequestMapping(value="/GetPartMaterialRecordByPartSerialNumber",method=RequestMethod.POST)
 	public @ResponseBody Object getPartMaterialRecordByPartSerialNumber(HttpServletRequest request,HttpServletResponse response) throws Exception
@@ -109,7 +66,6 @@ public class PartMaterialRecordController extends BaseController{
 
 		getPartMaterialRecordByPartSerialNumberService.init();
 		MaterialRecordOutput materialRecordOutput=getPartMaterialRecordByPartSerialNumberService.getPartMaterialRecordById(serialNumber);
-       // map.put("RowCount", tracePartMaterialRecordService.getCountData(containerNumber, materialPartNumber, supplierCode, batchNumber, supplierMaterialPartNumber, pageIndex, pageSize));
 		if (materialRecordOutput==null) {
 			map.put("Tdto", new ArrayList<>());
 		}else {
@@ -131,7 +87,6 @@ public class PartMaterialRecordController extends BaseController{
 		} catch (Exception e) {
 			json = this.setJson(0, e.getMessage(),1);
 			logger.error(e);
-			e.printStackTrace();
 		}
 		return json;
 

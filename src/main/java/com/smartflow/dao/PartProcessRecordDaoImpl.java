@@ -18,9 +18,14 @@ import com.smartflow.model.PartProcessRecord;
 @Repository
 public class PartProcessRecordDaoImpl implements PartProcessRecordDao {
 
-	@Autowired
+	final
 	HibernateTemplate hibernateTemplate;
-	
+
+	@Autowired
+	public PartProcessRecordDaoImpl(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
 	@Override
 	public Integer getTotalCountFromPartProcessRecordList(VMTracePartByStationInput vmTracePartByStationInput) {
 		String hql = "select count(*) from PartProcessRecord p where p.station = :Station and p.bookDateTime between :StartDateTime and :EndDateTime ";
