@@ -97,7 +97,7 @@ public class ClStationController extends BaseController{
                         virtualSerialNumber.setState(1);
                         virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
                         jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                    }else {
+                    }else if(!linkTableName.equals("CL_IMOP40")){
                         if(serialNumber != null){
                             jsonObject.put("SerialNumber", serialNumber);
                         }else {
