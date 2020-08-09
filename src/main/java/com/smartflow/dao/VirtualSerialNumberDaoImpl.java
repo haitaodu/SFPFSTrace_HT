@@ -25,9 +25,9 @@ public class VirtualSerialNumberDaoImpl implements VirtualSerialNumberDao {
     }
 
     @Override
-    public VirtualSerialNumber getVirtualSerialNumberByWorkOrderId(Integer workOrdrId) {
+    public VirtualSerialNumber getVirtualSerialNumberByCell(String cell) {
         Session session = sessionFactory.openSession();
-        String hql = "from VirtualSerialNumber where WorkOrderId = "+workOrdrId+" order by Id desc";
+        String hql = "from VirtualSerialNumber where serialNumber like '%"+cell+"%' and State = 1 order by CreationDateTime desc";//"+cell+"%'
         try{
             Query query = session.createQuery(hql);
             query.setFirstResult(0);

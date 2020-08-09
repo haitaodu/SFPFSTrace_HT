@@ -22,8 +22,8 @@ public class VirtualSerialNumberServiceImpl implements VirtualSerialNumberServic
     }
 
     @Override
-    public VirtualSerialNumber getVirtualSerialNumberByWorkOrderId(Integer workOrderId) {
-        return virtualSerialNumberDao.getVirtualSerialNumberByWorkOrderId(workOrderId);
+    public VirtualSerialNumber getVirtualSerialNumberByCell(String cell) {
+        return virtualSerialNumberDao.getVirtualSerialNumberByCell(cell);
     }
 
     @Override
