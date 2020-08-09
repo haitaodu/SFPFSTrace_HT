@@ -63,10 +63,9 @@ public class ClStationController extends BaseController{
                 JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(clStationDeviceDTO.getObject()));
                 Integer workOrderId = clStationService.getCurrentActivedWorkOrder();
                 jsonObject.put("WorkOrderId",workOrderId);
-
                 String serialNumber = jsonObject.get("SerialNumber") == null ? null : jsonObject.get("SerialNumber").toString();
                 VirtualSerialNumber virtualSerialNumber = new VirtualSerialNumber();
-                if(linkTableName.startsWith("CL_TU")){
+                if(linkTableName.startsWith("CL_TU") || linkTableName.equals("CL_WLZPDM") || linkTableName.equals("CL_DOOSAN_001")){
                     if(linkTableName.equals("CL_TUOP20")){
                         virtualSerialNumber.setSerialNumber("TU_VirtualSerialNumber");
                         virtualSerialNumber.setWorkOrderId(workOrderId);
@@ -76,7 +75,7 @@ public class ClStationController extends BaseController{
                         virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
                         jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                     }else {
-                        virtualSerialNumber = virtualSerialNumberService.getVirtualSerialNumberByWorkOrderId(workOrderId);
+                        virtualSerialNumber = virtualSerialNumberService.getVirtualSerialNumberByCell("TU");
                         if((linkTableName.equals("CL_WLZPDM"))){
                             jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                             if(virtualSerialNumber != null){
@@ -86,11 +85,10 @@ public class ClStationController extends BaseController{
                             }
                             virtualSerialNumberService.updateVirtualSerialNumber(virtualSerialNumber);
                         }else{
-
                             jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                         }
                     }
-                }else if(linkTableName.startsWith("CL_IM")){
+                }else if(linkTableName.startsWith("CL_IM") || linkTableName.equals("CL_DHOP20160") || linkTableName.equals("CL_DOOSAN_002") || linkTableName.equals("CL_DOOSAN_003") || linkTableName.equals("CL_DOOSAN_004")){
                     if(linkTableName.equals("CL_IMOP10") && serialNumber == null){
                         virtualSerialNumber.setSerialNumber("IM_VirtualSerialNumber");
                         virtualSerialNumber.setWorkOrderId(workOrderId);
@@ -100,11 +98,18 @@ public class ClStationController extends BaseController{
                         virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
                         jsonObject.put("SerialNumber", virtualSerialNumber.getId());
                     }else {
-                        String lastStation = StationUtil.getIMLastStationName(linkTableName);
-                        String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
+                        if(serialNumber != null){
+                            jsonObject.put("SerialNumber", serialNumber);
+                        }else {
+                            virtualSerialNumber = virtualSerialNumberService.getVirtualSerialNumberByCell("IM");
+//                            String lastStation = StationUtil.getIMLastStationName(linkTableName);
+//                            String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
+                            jsonObject.put("SerialNumber", virtualSerialNumber.getId());
+                        }
                     }
+                }else{
+                    jsonObject.put("SerialNumber", serialNumber);
                 }
-
                 clStationDeviceDTO.setObject(jsonObject);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);

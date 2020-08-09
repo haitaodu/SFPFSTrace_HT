@@ -17,10 +17,10 @@ public interface VirtualSerialNumberService {
 
     /**
      * 根据id查询条码信息
-     * @param workOrderId
+     * @param cell
      * @return
      */
-    public VirtualSerialNumber getVirtualSerialNumberByWorkOrderId(Integer workOrderId);
+    public VirtualSerialNumber getVirtualSerialNumberByCell(String cell);
 
     /**
      * 根据id查询条码号
