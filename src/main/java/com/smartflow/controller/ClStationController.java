@@ -89,7 +89,7 @@ public class ClStationController extends BaseController{
                         }
                     }
                 }else if(linkTableName.startsWith("CL_IM") || linkTableName.equals("CL_DHOP20160") || linkTableName.equals("CL_DOOSAN_002") || linkTableName.equals("CL_DOOSAN_003") || linkTableName.equals("CL_DOOSAN_004")){
-                    if(linkTableName.equals("CL_IMOP10") && serialNumber == null){
+                    if(linkTableName.equals("CL_IMOP20") && serialNumber == null){
                         virtualSerialNumber.setSerialNumber("IM_VirtualSerialNumber");
                         virtualSerialNumber.setWorkOrderId(workOrderId);
                         virtualSerialNumber.setCreationDateTime(new Date());
