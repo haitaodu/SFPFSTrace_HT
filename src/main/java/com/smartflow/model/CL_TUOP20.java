@@ -79,7 +79,15 @@ public class CL_TUOP20 {
     private String M503_6;
     private String M506_0;
     private String M506_1;
+    private int state;
 
+    public int isState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
     public String getUUID() {
         return UUID;
     }

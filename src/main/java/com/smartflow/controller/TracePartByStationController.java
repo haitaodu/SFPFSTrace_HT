@@ -47,7 +47,7 @@ public class TracePartByStationController extends BaseController{
 	 * @return 返回初始化的下拉列表
 	 */
 	@CrossOrigin(origins="*",maxAge=3600)
-	@PostMapping(value="/GetPageInit")
+	@GetMapping (value="/GetPageInit")
 	public Map<String, Object> getStation(){
 		try{
 			List<Map<String, Object>> stationList = stationService.getStation();

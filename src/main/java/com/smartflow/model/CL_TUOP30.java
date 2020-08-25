@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name="core.CL_TUOP30")
@@ -124,6 +123,15 @@ public class CL_TUOP30 {
   private String DB200_CHAR200;
   private String DB200_CHAR240;
   private String M100_3;
+  private int state;
+
+  public int isState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
+  }
 
   public String getUUID() {
     return UUID;

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
@@ -83,6 +84,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
         }
     }
 
+    @Transactional
     @Override
     public void addCLStationDevice(String entityName, Object entity) {
         hibernateTemplate.save(entityName, entity);
@@ -135,20 +137,6 @@ public class CL_StationDaoImpl implements CL_StationDao {
     }
 
 
-//    public Integer getWorkOrderBySerialNumber(String serialNumber) {
-//        List<PartSerialNumber> partSerialNumberList =
-//                (List<PartSerialNumber>)
-//                        hibernateTemplate.findByNamedParam
-//                                ("FROM PartSerialNumber WHERE serialNumber=:SerialNumber",
-//                                        "SerialNumber", serialNumber);
-//        if(!CollectionUtils.isEmpty(partSerialNumberList)){
-//            WorkOrder workOrder = partSerialNumberList.get(0).getWorkOrder();
-//            if(workOrder != null){
-//                return workOrder.getId();
-//            }
-//        }
-//        return null;
-//    }
 
 
     @Override

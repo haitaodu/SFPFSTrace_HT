@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 
 
@@ -88,6 +87,15 @@ public class CL_IMOP20 {
     private String M503_6;
     private String M506_0;
     private String M506_1;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getUUID() {
         return UUID;

@@ -6,19 +6,19 @@ public class StationUtil {
         switch (linkTableName) {
             case "CL_IMOP80"://IM_OP80
                 return "CL_IMOP75";
-            case "CL_DOOSAN_004"://IM_OP72
-                return "CL_DOOSAN_003";
-            case "CL_DOOSAN_003"://IM_OP70
+            case "CL_IMOP70B"://IM_OP72
+                return "CL_IMOP70A";
+            case "CL_IMOP70A"://IM_OP70
                 return "CL_IMOP67";
             case "CL_IMOP67"://IM_OP67
                 return "CL_IMOP75";
             case "CL_IMOP75"://IM_OP75
-                return "CL_DHOP20160";
-            case "CL_DHOP20160"://IM_OP60
-                return "CL_DOOSAN_002";
-            case "CL_DOOSAN_002"://IM_OP50
-                return "CL_IMOP045";
-            case "CL_IMOP045"://IM_OP45
+                return "CL_IMOP60";
+            case "CL_IMOP60"://IM_OP60
+                return "CL_IMOP50";
+            case "CL_IMOP50"://IM_OP50
+                return "CL_IMOP45";
+            case "CL_IMOP45"://IM_OP45
                 return "CL_IMOP40";
             case "CL_IMOP40"://IM_OP40
                 return "CL_IMOP30";

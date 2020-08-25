@@ -20,8 +20,6 @@ public class CL_REOP40 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
-    private String DB11_0X134_0;
-    private String DB11_0X134_1;
     private String DB11_BYTE132;
     private BigDecimal DB11_INT130;
     private BigDecimal DB11_REAL10;
@@ -52,6 +50,8 @@ public class CL_REOP40 {
     private BigDecimal DB11_REAL88;
     private BigDecimal DB11_REAL92;
     private BigDecimal DB11_REAL96;
+    private String DB11_X134_0;
+    private String DB11_X134_1;
     private String DB11_X136_0;
     private String DB11_X136_1;
     private String DB11_X136_2;
@@ -91,6 +91,8 @@ public class CL_REOP40 {
     private String DB11_X140_7;
     private String DB11_X141_0;
     private String DB11_X141_1;
+    private String DB11_X141_2;
+    private String DB11_X141_3;
     private String DB11_X141_4;
     private String DB11_X141_5;
     private String DB11_X141_6;
@@ -120,13 +122,279 @@ public class CL_REOP40 {
     private String DB11_X145_0;
     private String DB11_X145_1;
     private String DB11_X145_2;
+    private String DB11_X145_3;
+    private String DB11_X145_4;
+    private String DB11_X145_5;
+    private String DB11_X145_6;
+    private String DB11_X145_7;
     private String DB11_X146_0;
     private String DB11_X146_1;
+    private String DB11_X146_2;
+    private String DB11_X146_3;
+    private String DB11_X146_4;
+    private String DB11_X146_5;
+    private String DB11_X147_2;
+    private String DB11_X147_3;
+    private String DB11_X147_4;
+    private String DB11_X147_5;
+    private String DB11_X147_6;
+    private String DB11_X147_7;
+    private String DB11_X148_0;
+    private String DB11_X148_1;
+    private String DB11_X148_2;
+    private String DB11_X148_3;
+    private String DB11_X148_4;
+    private String DB11_X148_5;
+    private String DB11_X149_0;
+    private String DB11_X149_1;
+    private String DB15_BYTE208_8;
+    private String DB15_BYTE218_8;
     private String DB15_CHAR48_40;
     private String DB15_INT0_22;
     private BigDecimal DB15_SINT46;
     private String M100_0;
     private String M98_5;
+    private String M98_6;
+
+    public String getDB11_X134_0() {
+        return DB11_X134_0;
+    }
+
+    public void setDB11_X134_0(String DB11_X134_0) {
+        this.DB11_X134_0 = DB11_X134_0;
+    }
+
+    public String getDB11_X134_1() {
+        return DB11_X134_1;
+    }
+
+    public void setDB11_X134_1(String DB11_X134_1) {
+        this.DB11_X134_1 = DB11_X134_1;
+    }
+
+    public String getDB11_X141_2() {
+        return DB11_X141_2;
+    }
+
+    public void setDB11_X141_2(String DB11_X141_2) {
+        this.DB11_X141_2 = DB11_X141_2;
+    }
+
+    public String getDB11_X141_3() {
+        return DB11_X141_3;
+    }
+
+    public void setDB11_X141_3(String DB11_X141_3) {
+        this.DB11_X141_3 = DB11_X141_3;
+    }
+
+    public String getDB11_X145_3() {
+        return DB11_X145_3;
+    }
+
+    public void setDB11_X145_3(String DB11_X145_3) {
+        this.DB11_X145_3 = DB11_X145_3;
+    }
+
+    public String getDB11_X145_4() {
+        return DB11_X145_4;
+    }
+
+    public void setDB11_X145_4(String DB11_X145_4) {
+        this.DB11_X145_4 = DB11_X145_4;
+    }
+
+    public String getDB11_X145_5() {
+        return DB11_X145_5;
+    }
+
+    public void setDB11_X145_5(String DB11_X145_5) {
+        this.DB11_X145_5 = DB11_X145_5;
+    }
+
+    public String getDB11_X145_6() {
+        return DB11_X145_6;
+    }
+
+    public void setDB11_X145_6(String DB11_X145_6) {
+        this.DB11_X145_6 = DB11_X145_6;
+    }
+
+    public String getDB11_X145_7() {
+        return DB11_X145_7;
+    }
+
+    public void setDB11_X145_7(String DB11_X145_7) {
+        this.DB11_X145_7 = DB11_X145_7;
+    }
+
+    public String getDB11_X146_2() {
+        return DB11_X146_2;
+    }
+
+    public void setDB11_X146_2(String DB11_X146_2) {
+        this.DB11_X146_2 = DB11_X146_2;
+    }
+
+    public String getDB11_X146_3() {
+        return DB11_X146_3;
+    }
+
+    public void setDB11_X146_3(String DB11_X146_3) {
+        this.DB11_X146_3 = DB11_X146_3;
+    }
+
+    public String getDB11_X146_4() {
+        return DB11_X146_4;
+    }
+
+    public void setDB11_X146_4(String DB11_X146_4) {
+        this.DB11_X146_4 = DB11_X146_4;
+    }
+
+    public String getDB11_X146_5() {
+        return DB11_X146_5;
+    }
+
+    public void setDB11_X146_5(String DB11_X146_5) {
+        this.DB11_X146_5 = DB11_X146_5;
+    }
+
+    public String getDB11_X147_2() {
+        return DB11_X147_2;
+    }
+
+    public void setDB11_X147_2(String DB11_X147_2) {
+        this.DB11_X147_2 = DB11_X147_2;
+    }
+
+    public String getDB11_X147_3() {
+        return DB11_X147_3;
+    }
+
+    public void setDB11_X147_3(String DB11_X147_3) {
+        this.DB11_X147_3 = DB11_X147_3;
+    }
+
+    public String getDB11_X147_4() {
+        return DB11_X147_4;
+    }
+
+    public void setDB11_X147_4(String DB11_X147_4) {
+        this.DB11_X147_4 = DB11_X147_4;
+    }
+
+    public String getDB11_X147_5() {
+        return DB11_X147_5;
+    }
+
+    public void setDB11_X147_5(String DB11_X147_5) {
+        this.DB11_X147_5 = DB11_X147_5;
+    }
+
+    public String getDB11_X147_6() {
+        return DB11_X147_6;
+    }
+
+    public void setDB11_X147_6(String DB11_X147_6) {
+        this.DB11_X147_6 = DB11_X147_6;
+    }
+
+    public String getDB11_X147_7() {
+        return DB11_X147_7;
+    }
+
+    public void setDB11_X147_7(String DB11_X147_7) {
+        this.DB11_X147_7 = DB11_X147_7;
+    }
+
+    public String getDB11_X148_0() {
+        return DB11_X148_0;
+    }
+
+    public void setDB11_X148_0(String DB11_X148_0) {
+        this.DB11_X148_0 = DB11_X148_0;
+    }
+
+    public String getDB11_X148_1() {
+        return DB11_X148_1;
+    }
+
+    public void setDB11_X148_1(String DB11_X148_1) {
+        this.DB11_X148_1 = DB11_X148_1;
+    }
+
+    public String getDB11_X148_2() {
+        return DB11_X148_2;
+    }
+
+    public void setDB11_X148_2(String DB11_X148_2) {
+        this.DB11_X148_2 = DB11_X148_2;
+    }
+
+    public String getDB11_X148_3() {
+        return DB11_X148_3;
+    }
+
+    public void setDB11_X148_3(String DB11_X148_3) {
+        this.DB11_X148_3 = DB11_X148_3;
+    }
+
+    public String getDB11_X148_4() {
+        return DB11_X148_4;
+    }
+
+    public void setDB11_X148_4(String DB11_X148_4) {
+        this.DB11_X148_4 = DB11_X148_4;
+    }
+
+    public String getDB11_X148_5() {
+        return DB11_X148_5;
+    }
+
+    public void setDB11_X148_5(String DB11_X148_5) {
+        this.DB11_X148_5 = DB11_X148_5;
+    }
+
+    public String getDB11_X149_0() {
+        return DB11_X149_0;
+    }
+
+    public void setDB11_X149_0(String DB11_X149_0) {
+        this.DB11_X149_0 = DB11_X149_0;
+    }
+
+    public String getDB11_X149_1() {
+        return DB11_X149_1;
+    }
+
+    public void setDB11_X149_1(String DB11_X149_1) {
+        this.DB11_X149_1 = DB11_X149_1;
+    }
+
+    public String getDB15_BYTE208_8() {
+        return DB15_BYTE208_8;
+    }
+
+    public void setDB15_BYTE208_8(String DB15_BYTE208_8) {
+        this.DB15_BYTE208_8 = DB15_BYTE208_8;
+    }
+
+    public String getDB15_BYTE218_8() {
+        return DB15_BYTE218_8;
+    }
+
+    public void setDB15_BYTE218_8(String DB15_BYTE218_8) {
+        this.DB15_BYTE218_8 = DB15_BYTE218_8;
+    }
+
+    public String getM98_6() {
+        return M98_6;
+    }
+
+    public void setM98_6(String m98_6) {
+        M98_6 = m98_6;
+    }
 
     public String getUUID() {
         return UUID;
@@ -168,21 +436,7 @@ public class CL_REOP40 {
         WorkOrderId = workOrderId;
     }
 
-    public String getDB11_0X134_0() {
-        return DB11_0X134_0;
-    }
 
-    public void setDB11_0X134_0(String DB11_0X134_0) {
-        this.DB11_0X134_0 = DB11_0X134_0;
-    }
-
-    public String getDB11_0X134_1() {
-        return DB11_0X134_1;
-    }
-
-    public void setDB11_0X134_1(String DB11_0X134_1) {
-        this.DB11_0X134_1 = DB11_0X134_1;
-    }
 
     public String getDB11_BYTE132() {
         return DB11_BYTE132;

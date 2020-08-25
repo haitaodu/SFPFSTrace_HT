@@ -122,6 +122,15 @@ public class CL_IMOP30 {
     private String DB200_CHAR200;
     private String DB200_CHAR240;
     private String M100_3;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getUUID() {
         return UUID;

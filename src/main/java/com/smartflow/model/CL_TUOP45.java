@@ -32,6 +32,15 @@ public class CL_TUOP45 {
   private String DB100_DBX80_6;
   private BigDecimal DB100_REAL82;
   private BigDecimal DB100_REAL86;
+  private int state;
+
+  public int isState() {
+    return state;
+  }
+
+  public void setState(int state) {
+    this.state = state;
+  }
 
   public String getUUID() {
     return UUID;

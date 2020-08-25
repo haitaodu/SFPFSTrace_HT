@@ -92,6 +92,7 @@ public class CL_TUOP40 {
     private BigDecimal DB2_DBW62;
     private BigDecimal DB2_DBW8;
 
+
     public String getUUID() {
         return UUID;
     }

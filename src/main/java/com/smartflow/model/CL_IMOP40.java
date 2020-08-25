@@ -93,6 +93,16 @@ public class CL_IMOP40 {
     private BigDecimal DB2_DBW60;
     private BigDecimal DB2_DBW62;
     private BigDecimal DB2_DBW8;
+    private int state;
+
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getUUID() {
         return UUID;

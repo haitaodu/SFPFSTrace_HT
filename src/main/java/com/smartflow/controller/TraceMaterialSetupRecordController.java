@@ -26,7 +26,7 @@ public class TraceMaterialSetupRecordController extends BaseController{
 			{
 				Map<String, Object> station=new HashMap<>();
 				station.put("key", i);
-				station.put("label", "station"+i.toString());
+				station.put("label", "stationenum"+i.toString());
 				stationList.add(station);
 			}
 			map.put("StationList", stationList);
