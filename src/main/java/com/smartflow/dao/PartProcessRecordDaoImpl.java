@@ -18,12 +18,17 @@ import com.smartflow.model.PartProcessRecord;
 @Repository
 public class PartProcessRecordDaoImpl implements PartProcessRecordDao {
 
-	@Autowired
+	final
 	HibernateTemplate hibernateTemplate;
-	
+
+	@Autowired
+	public PartProcessRecordDaoImpl(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
 	@Override
 	public Integer getTotalCountFromPartProcessRecordList(VMTracePartByStationInput vmTracePartByStationInput) {
-		String hql = "select count(*) from PartProcessRecord p where p.station = :Station and p.bookDateTime between :StartDateTime and :EndDateTime ";
+		String hql = "select count(*) from PartProcessRecord p where p.stationenum = :Station and p.bookDateTime between :StartDateTime and :EndDateTime ";
 		Session session = hibernateTemplate.getSessionFactory().openSession();
 		try{
 			Query query = session.createQuery(hql);
@@ -64,7 +69,7 @@ public class PartProcessRecordDaoImpl implements PartProcessRecordDao {
 	
 	@Override
 	public List<PartProcessRecord> getPartProcessRecordList(VMTracePartByStationInput vmTracePartByStationInput) {
-		String hql = "from PartProcessRecord p where p.station = :Station and p.bookDateTime between :StartDateTime and :EndDateTime order by p.bookDateTime desc ";
+		String hql = "from PartProcessRecord p where p.stationenum = :Station and p.bookDateTime between :StartDateTime and :EndDateTime order by p.bookDateTime desc ";
 		Session session = hibernateTemplate.getSessionFactory().openSession();
 		Query query = session.createQuery(hql);
 		query.setInteger("Station", vmTracePartByStationInput.getStationId());		

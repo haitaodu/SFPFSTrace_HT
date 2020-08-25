@@ -20,136 +20,94 @@ public class CL_FCOP5050 {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    private String uuid;
-    private Date createDate;
-    private String machineTool;
-    private String isSynch;
-    private String serialNumber;
-    private Long workOrderId;
-    private String db9Db120;
-    private String db9Db80;
-    private String db9Dbx3704;
-    private String db9Dbx3705;
+    private String UUID;
+    private Date CREATEDATE;
+    private String MACHINETOOL;
+    private String ISSYNCH;
+    private String SerialNumber;
+    private Long WorkOrderId;
+    private String DB9DB120;
+    private String DB9DB80;
+    private String DB9DBx3704;
+    private String DB9DBx3705;
 
-    @Id
-    @Column(name = "UUID", nullable = false, length = 32)
-    public String getUuid() {
-        return uuid;
+    public String getUUID() {
+        return UUID;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    @Basic
-    @Column(name = "CREATE_DATE", nullable = true)
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCREATEDATE() {
+        return CREATEDATE;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCREATEDATE(Date CREATEDATE) {
+        this.CREATEDATE = CREATEDATE;
     }
 
-    @Basic
-    @Column(name = "MACHINE_TOOL", nullable = true, length = 100)
-    public String getMachineTool() {
-        return machineTool;
+    public String getMACHINETOOL() {
+        return MACHINETOOL;
     }
 
-    public void setMachineTool(String machineTool) {
-        this.machineTool = machineTool;
+    public void setMACHINETOOL(String MACHINETOOL) {
+        this.MACHINETOOL = MACHINETOOL;
     }
 
-    @Basic
-    @Column(name = "IS_SYNCH", nullable = true, length = 2)
-    public String getIsSynch() {
-        return isSynch;
+    public String getISSYNCH() {
+        return ISSYNCH;
     }
 
-    public void setIsSynch(String isSynch) {
-        this.isSynch = isSynch;
+    public void setISSYNCH(String ISSYNCH) {
+        this.ISSYNCH = ISSYNCH;
     }
 
-    @Basic
-    @Column(name = "SerialNumber", nullable = true, length = 100)
     public String getSerialNumber() {
-        return serialNumber;
+        return SerialNumber;
     }
 
     public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+        SerialNumber = serialNumber;
     }
 
-    @Basic
-    @Column(name = "WorkOrderId", nullable = true)
     public Long getWorkOrderId() {
-        return workOrderId;
+        return WorkOrderId;
     }
 
     public void setWorkOrderId(Long workOrderId) {
-        this.workOrderId = workOrderId;
+        WorkOrderId = workOrderId;
     }
 
-    @Basic
-    @Column(name = "DB9_DB120", nullable = true, length = 4000)
-    public String getDb9Db120() {
-        return db9Db120;
+    public String getDB9DB120() {
+        return DB9DB120;
     }
 
-    public void setDb9Db120(String db9Db120) {
-        this.db9Db120 = db9Db120;
+    public void setDB9DB120(String DB9DB120) {
+        this.DB9DB120 = DB9DB120;
     }
 
-    @Basic
-    @Column(name = "DB9_DB80", nullable = true, length = 4000)
-    public String getDb9Db80() {
-        return db9Db80;
+    public String getDB9DB80() {
+        return DB9DB80;
     }
 
-    public void setDb9Db80(String db9Db80) {
-        this.db9Db80 = db9Db80;
+    public void setDB9DB80(String DB9DB80) {
+        this.DB9DB80 = DB9DB80;
     }
 
-    @Basic
-    @Column(name = "DB9_DBX370_4", nullable = true, length = 2)
-    public String getDb9Dbx3704() {
-        return db9Dbx3704;
+    public String getDB9DBx3704() {
+        return DB9DBx3704;
     }
 
-    public void setDb9Dbx3704(String db9Dbx3704) {
-        this.db9Dbx3704 = db9Dbx3704;
+    public void setDB9DBx3704(String DB9DBx3704) {
+        this.DB9DBx3704 = DB9DBx3704;
     }
 
-    @Basic
-    @Column(name = "DB9_DBX370_5", nullable = true, length = 2)
-    public String getDb9Dbx3705() {
-        return db9Dbx3705;
+    public String getDB9DBx3705() {
+        return DB9DBx3705;
     }
 
-    public void setDb9Dbx3705(String db9Dbx3705) {
-        this.db9Dbx3705 = db9Dbx3705;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CL_FCOP5050 that = (CL_FCOP5050) o;
-        return Objects.equals(uuid, that.uuid) &&
-                Objects.equals(createDate, that.createDate) &&
-                Objects.equals(machineTool, that.machineTool) &&
-                Objects.equals(isSynch, that.isSynch) &&
-                Objects.equals(serialNumber, that.serialNumber) &&
-                Objects.equals(workOrderId, that.workOrderId) &&
-                Objects.equals(db9Db120, that.db9Db120) &&
-                Objects.equals(db9Db80, that.db9Db80) &&
-                Objects.equals(db9Dbx3704, that.db9Dbx3704) &&
-                Objects.equals(db9Dbx3705, that.db9Dbx3705);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid, createDate, machineTool, isSynch, serialNumber, workOrderId, db9Db120, db9Db80, db9Dbx3704, db9Dbx3705);
+    public void setDB9DBx3705(String DB9DBx3705) {
+        this.DB9DBx3705 = DB9DBx3705;
     }
 }

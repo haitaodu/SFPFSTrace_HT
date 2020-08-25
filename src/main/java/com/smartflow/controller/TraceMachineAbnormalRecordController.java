@@ -27,7 +27,7 @@ public class TraceMachineAbnormalRecordController extends BaseController{
 			{
 				Map<String, Object> station=new HashMap<>();
 				station.put("StationId", i);
-				station.put("label", "station"+i.toString());
+				station.put("label", "stationenum"+i.toString());
 				stationList.add(station);
 			}
 			map.put("StationList", stationList);

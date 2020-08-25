@@ -20,124 +20,85 @@ public class CL_FCOP45 {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    private String uuid;
-    private Date createDate;
-    private String isSynch;
-    private String serialNumber;
-    private Long workOrderId;
-    private String checkDate;
-    private String qrCode;
-    private String status;
-    private String product;
+    private String UUID;
+    private Date CREATE_DATE;
+    private String IS_SYNCH;
+    private String SerialNumber;
+    private Long WorkOrderId;
+    private String CHECK_DATE;
+    private String QRCODE;
+    private String STATUS;
+    private String PRODUCT;
 
-    @Basic
-    @Column(name = "UUID", nullable = false, length = 32)
-    public String getUuid() {
-        return uuid;
+    public String getUUID() {
+        return UUID;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    @Basic
-    @Column(name = "CREATE_DATE", nullable = true)
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCREATE_DATE() {
+        return CREATE_DATE;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCREATE_DATE(Date CREATE_DATE) {
+        this.CREATE_DATE = CREATE_DATE;
     }
 
-    @Basic
-    @Column(name = "IS_SYNCH", nullable = true, length = 2)
-    public String getIsSynch() {
-        return isSynch;
+    public String getIS_SYNCH() {
+        return IS_SYNCH;
     }
 
-    public void setIsSynch(String isSynch) {
-        this.isSynch = isSynch;
+    public void setIS_SYNCH(String IS_SYNCH) {
+        this.IS_SYNCH = IS_SYNCH;
     }
 
-    @Basic
-    @Column(name = "SerialNumber", nullable = true, length = 100)
     public String getSerialNumber() {
-        return serialNumber;
+        return SerialNumber;
     }
 
     public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+        SerialNumber = serialNumber;
     }
 
-    @Basic
-    @Column(name = "WorkOrderId", nullable = true)
     public Long getWorkOrderId() {
-        return workOrderId;
+        return WorkOrderId;
     }
 
     public void setWorkOrderId(Long workOrderId) {
-        this.workOrderId = workOrderId;
+        WorkOrderId = workOrderId;
     }
 
-    @Basic
-    @Column(name = "CHECK_DATE", nullable = true, length = 100)
-    public String getCheckDate() {
-        return checkDate;
+    public String getCHECK_DATE() {
+        return CHECK_DATE;
     }
 
-    public void setCheckDate(String checkDate) {
-        this.checkDate = checkDate;
+    public void setCHECK_DATE(String CHECK_DATE) {
+        this.CHECK_DATE = CHECK_DATE;
     }
 
-    @Basic
-    @Column(name = "QR_CODE", nullable = true, length = 100)
-    public String getQrCode() {
-        return qrCode;
+    public String getQRCODE() {
+        return QRCODE;
     }
 
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
+    public void setQRCODE(String QRCODE) {
+        this.QRCODE = QRCODE;
     }
 
-    @Basic
-    @Column(name = "STATUS", nullable = true, length = 10)
-    public String getStatus() {
-        return status;
+    public String getSTATUS() {
+        return STATUS;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
     }
 
-    @Basic
-    @Column(name = "PRODUCT", nullable = true, length = 100)
-    public String getProduct() {
-        return product;
+    public String getPRODUCT() {
+        return PRODUCT;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CL_FCOP45 that = (CL_FCOP45) o;
-        return Objects.equals(uuid, that.uuid) &&
-                Objects.equals(createDate, that.createDate) &&
-                Objects.equals(isSynch, that.isSynch) &&
-                Objects.equals(serialNumber, that.serialNumber) &&
-                Objects.equals(workOrderId, that.workOrderId) &&
-                Objects.equals(checkDate, that.checkDate) &&
-                Objects.equals(qrCode, that.qrCode) &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(product, that.product);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uuid, createDate, isSynch, serialNumber, workOrderId, checkDate, qrCode, status, product);
+    public void setPRODUCT(String PRODUCT) {
+        this.PRODUCT = PRODUCT;
     }
 }

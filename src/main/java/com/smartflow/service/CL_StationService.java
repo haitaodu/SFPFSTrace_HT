@@ -19,7 +19,9 @@ public interface CL_StationService {
      * @param linkTableName
      * @return
      */
-    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput);
+    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName
+    (String linkTableName,
+     VMTracePartByStationInput vmTracePartByStationInput);
 
     /**
      * 根据关联的表名查询工站设备相关信息总条数
@@ -50,8 +52,22 @@ public interface CL_StationService {
 
     /**
      * 根据工单id查询工单号
-     * @param workOrderId
-     * @return
+     * @param workOrderId 工单id
+     * @return 根据工单Id返回工单号
      */
     public String getWorkOrderNumberByWorkOrderId(Integer workOrderId);
+
+
+
+
+    public void reWriteSerialNumber(String serialNumber, String tableName);
+
+    /**
+     *
+     * @param serialNumber
+     * @param tableName
+     */
+    public void setSerialNumber(String serialNumber,String tableName) throws ClassNotFoundException;
+
+
 }

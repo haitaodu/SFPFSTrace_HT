@@ -108,6 +108,15 @@ public class CL_IMOP25 {
     private String M248_5;
     private String M620_3;
     private BigDecimal MD200;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getUUID() {
         return UUID;

@@ -2,11 +2,9 @@ package com.smartflow.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.smartflow.common.stationenum.StationEnumUtil;
 import com.smartflow.dto.AddCLStationDeviceDTO;
-import com.smartflow.model.VirtualSerialNumber;
 import com.smartflow.service.CL_StationService;
-import com.smartflow.service.VirtualSerialNumberService;
-import com.smartflow.util.StationUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -19,6 +17,7 @@ import java.util.Map;
 /**
  * @author haita
  */
+
 @RestController
 @RequestMapping("/api/CLStation")
 public class ClStationController extends BaseController{
@@ -28,14 +27,18 @@ public class ClStationController extends BaseController{
     private final
     CL_StationService clStationService;
 
-    @Autowired
-    VirtualSerialNumberService virtualSerialNumberService;
+
 
     private static final int ERROR_CODE=0;
     private static final int SUCEESS_CODE=200;
+
+
+    private static final  String SERIAL_ARG="SERIALNUMBER";
     @Autowired
-    public ClStationController(CL_StationService clStationService) {
+    public ClStationController(CL_StationService clStationService
+    ) {
         this.clStationService = clStationService;
+
     }
 
 
@@ -63,69 +66,80 @@ public class ClStationController extends BaseController{
                 JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(clStationDeviceDTO.getObject()));
                 Integer workOrderId = clStationService.getCurrentActivedWorkOrder();
                 jsonObject.put("WorkOrderId",workOrderId);
-                String serialNumber = jsonObject.get("SerialNumber") == null ? null : jsonObject.get("SerialNumber").toString();
-                VirtualSerialNumber virtualSerialNumber = new VirtualSerialNumber();
-                if(linkTableName.startsWith("CL_TU") || linkTableName.equals("CL_WLZPDM") || linkTableName.equals("CL_DOOSAN_001")){
-                    if(linkTableName.equals("CL_TUOP20")){
-                        virtualSerialNumber.setSerialNumber("TU_VirtualSerialNumber");
-                        virtualSerialNumber.setWorkOrderId(workOrderId);
-                        virtualSerialNumber.setCreationDateTime(new Date());
-                        virtualSerialNumber.setEditDateTime(new Date());
-                        virtualSerialNumber.setState(1);
-                        virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
-                        jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                    }else {
-                        virtualSerialNumber = virtualSerialNumberService.getVirtualSerialNumberByCell("TU");
-                        if((linkTableName.equals("CL_WLZPDM"))){
-                            jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                            if(virtualSerialNumber != null){
-                                virtualSerialNumber.setEditDateTime(new Date());
-                                virtualSerialNumber.setState(0);
-                                virtualSerialNumber.setSerialNumber(serialNumber);
-                            }
-                            virtualSerialNumberService.updateVirtualSerialNumber(virtualSerialNumber);
-                        }else{
-                            jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                        }
-                    }
-                }else if(linkTableName.startsWith("CL_IM") || linkTableName.equals("CL_DHOP20160") || linkTableName.equals("CL_DOOSAN_002") || linkTableName.equals("CL_DOOSAN_003") || linkTableName.equals("CL_DOOSAN_004")){
-                    if(linkTableName.equals("CL_IMOP20") && serialNumber == null){
-                        virtualSerialNumber.setSerialNumber("IM_VirtualSerialNumber");
-                        virtualSerialNumber.setWorkOrderId(workOrderId);
-                        virtualSerialNumber.setCreationDateTime(new Date());
-                        virtualSerialNumber.setEditDateTime(new Date());
-                        virtualSerialNumber.setState(1);
-                        virtualSerialNumberService.addVirtualSerialNumber(virtualSerialNumber);
-                        jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                    }else if(!linkTableName.equals("CL_IMOP40")){
-                        if(serialNumber != null){
-                            jsonObject.put("SerialNumber", serialNumber);
-                        }else {
-                            virtualSerialNumber = virtualSerialNumberService.getVirtualSerialNumberByCell("IM");
-//                            String lastStation = StationUtil.getIMLastStationName(linkTableName);
-//                            String serialNumberId = virtualSerialNumberService.getLastStationSerialNumber(lastStation, workOrderId);
-                            jsonObject.put("SerialNumber", virtualSerialNumber.getId());
-                        }
-                    }
-                }else{
-                    jsonObject.put("SerialNumber", serialNumber);
-                }
-                clStationDeviceDTO.setObject(jsonObject);
+                String serialNumber = jsonObject.get
+                        (SERIAL_ARG) == null ? null : jsonObject.get(SERIAL_ARG).toString();
+                clStationDeviceDTO.setObject(reWrite(serialNumber,jsonObject,linkTableName));
+                logger.info(clStationDeviceDTO);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
+                //System.out.println(clStationDeviceDTO);
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
             }
             catch (Exception e)
             {
                 logger.info(e.getCause());
+                e.printStackTrace();
             }
         return json;
     }
+
+    /**
+     * 利用反射根据表名生成实体
+     * @param linkedName 表名
+     * @param clStationDeviceDTO 请求参数
+     * @return 返回请求实体
+     * @throws ClassNotFoundException 根据表名未查到相应的类
+     */
     @SuppressWarnings("unckecked")
     private  Object parseToEntity(String linkedName,AddCLStationDeviceDTO clStationDeviceDTO) throws ClassNotFoundException {
         Class<?> classEntity=Class.forName("com.smartflow.model."+linkedName);
+        //System.out.println(clStationDeviceDTO);
         return  JSON.parseObject
                 (JSON.toJSONString(clStationDeviceDTO.getObject()),
                         classEntity);
 
     }
+
+    /**
+     * 根据seialNumber和linkTableName判断是否覆盖op50以前的serialNumber
+     * @param serialNumber 条形码
+     * @param jsonObject 请求实体
+     * @param linkTableName 请求表名
+     * @return 返回修饰的请求实体
+     */
+    private JSONObject reWrite(String serialNumber,JSONObject jsonObject,String linkTableName) {
+
+
+        if (serialNumber == null||"".equals(serialNumber))
+        {
+            Date date = new Date();
+            serialNumber=date.toString();
+        }
+        /*
+         * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
+         * 包含工站组Tu,Re,Im
+         */
+     if (StationEnumUtil.isReWriteStation(linkTableName)) {
+         jsonObject.put("state", 0);
+         jsonObject.put("SerialNumber", serialNumber);
+     }else
+        if (StationEnumUtil.isLastStation(linkTableName)) {
+
+                jsonObject.put(SERIAL_ARG, serialNumber);
+                clStationService.reWriteSerialNumber
+                        (serialNumber,linkTableName);
+
+
+        }
+        else
+            {
+                jsonObject.put("SerialNumber", serialNumber);
+            }
+        //System.out.println(serialNumber);
+        logger.info(serialNumber);
+        return jsonObject;
+    }
+
+
+
+
 }
