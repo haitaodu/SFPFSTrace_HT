@@ -1,9 +1,11 @@
 package com.smartflow.dao;
 
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CurrentActivedWorkOrderInformation;
 import com.smartflow.model.WorkOrder;
+import org.apache.poi.util.StringUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -76,6 +78,77 @@ public class CL_StationDaoImpl implements CL_StationDao {
             Query query = session.createSQLQuery("select count(*) from core."+linkTableName+ " where CREATE_DATE between :StartDateTime and :EndDateTime");
             query=parseToQuery(query,vmTracePartByStationInput);
             return query.uniqueResult() == null ? 0 : Integer.parseInt(query.uniqueResult().toString());
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String sql = "select count(*) from core."+linkTableName+ " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
+        try {
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime())){
+                sql += " and CREATE_DATE >= :StartDateTime";
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime())){
+                sql += " and CREATE_DATE <= :EndDateTime";
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())){
+                sql += " and SerialNumber = :SerialNumber ";
+            }
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
+                sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
+            }
+            Query query = session.createSQLQuery(sql);
+            VMTracePartByStationInput vmTracePartByStationInput = new VMTracePartByStationInput();
+            vmTracePartByStationInput.setStartDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime());
+            vmTracePartByStationInput.setEndDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime());
+            query=parseToQuery(query,vmTracePartByStationInput);
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
+                query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+            }
+            return query.uniqueResult() == null ? 0 : Integer.parseInt(query.uniqueResult().toString());
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        String sql = "select * from core."+linkTableName+ " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
+        try {
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime())){
+                sql += " and CREATE_DATE >= :StartDateTime";
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime())){
+                sql += " and CREATE_DATE <= :EndDateTime";
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())){
+                sql += " and SerialNumber = :SerialNumber ";
+            }
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
+                sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
+            }
+            Query query = session.createSQLQuery(sql);
+            VMTracePartByStationInput vmTracePartByStationInput = new VMTracePartByStationInput();
+            vmTracePartByStationInput.setStartDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime());
+            vmTracePartByStationInput.setEndDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime());
+            query = parseToQuery(query, vmTracePartByStationInput);
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
+                query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+            }
+            query.setFirstResult((vmTracePartBySerialNumberOrWorkOrderInput.getPageIndex() - 1) * vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());
+            query.setMaxResults(vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());
+            return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
         }catch(Exception e){
             e.printStackTrace();
             return null;
