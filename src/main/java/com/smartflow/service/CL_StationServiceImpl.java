@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.smartflow.common.stationenum.StationNameIm;
 import com.smartflow.dao.CL_StationDao;
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CL_REOP10A;
 import com.smartflow.model.CL_REOP10B;
@@ -43,6 +44,16 @@ public class CL_StationServiceImpl implements CL_StationService {
     @Override
     public Integer getTotalCountCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput) {
         return cl_stationDao.getTotalCountCLStationDeviceListByLinkTableName(linkTableName, vmTracePartByStationInput);
+    }
+
+    @Override
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+        return cl_stationDao.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+    }
+
+    @Override
+    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+        return cl_stationDao.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
     }
 
     @Transactional

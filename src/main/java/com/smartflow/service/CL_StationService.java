@@ -1,6 +1,7 @@
 package com.smartflow.service;
 
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 
 import java.util.List;
@@ -30,6 +31,23 @@ public interface CL_StationService {
      * @return
      */
     public Integer getTotalCountCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput);
+
+    /**
+     * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息总条
+     * @param linkTableName
+     * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @return
+     */
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+
+    /**
+     * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息数
+     * @param linkTableName
+     * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @return
+     */
+    public List<Map<String,Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+
 
     /**
      * 添加工站设备生产信息

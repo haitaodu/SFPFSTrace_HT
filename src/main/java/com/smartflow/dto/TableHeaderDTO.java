@@ -26,4 +26,12 @@ public class TableHeaderDTO {
         this.title = title;
         this.dataIndex = dataIndex;
     }
+
+    @Override
+    public String toString() {
+        return "TableHeaderDTO{" +
+                "title='" + title + '\'' +
+                ", dataIndex='" + dataIndex + '\'' +
+                '}';
+    }
 }

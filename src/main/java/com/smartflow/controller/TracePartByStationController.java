@@ -6,6 +6,9 @@ import com.smartflow.dto.VMTracePartByStationOutput;
 import com.smartflow.service.CL_StationService;
 import com.smartflow.service.StationService;
 import com.smartflow.service.VirtualSerialNumberService;
+import com.smartflow.service.WorkOrderService;
+import com.smartflow.util.ComparatorUtil;
+import com.smartflow.util.StationUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -100,6 +103,16 @@ public class TracePartByStationController extends BaseController{
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
 					List<TableHeaderDTO> filterList = headerList.stream().filter(h -> !h.getDataIndex().startsWith("M5")).filter(h -> !h.getDataIndex().equals("DB48_DBW364")).collect(Collectors.toList());
+//					String[] dataIndexList = filterList.stream().map(h -> h.getDataIndex()).toArray(String[] :: new);//.collect(Collectors.toList());
+//					Arrays.sort(StationUtil.getTargetSortString(dataIndexList), StationUtil.ChsLogicCmp);
+//					filterList.stream().forEach(System.out::println);
+//					System.out.println("==============================================");
+//					filterList.stream().skip(1).skip(2).forEach(System.out::println);
+
+
+					Collections.sort(filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList()), new ComparatorUtil());
+
+
 					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
 					vmTracePartByStationOutput.setTotal(rowCount);
