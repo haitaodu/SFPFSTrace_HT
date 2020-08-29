@@ -33,6 +33,15 @@ public class CL_IMOP67 {
     private BigDecimal DB14_DBW170;
     private String DB14_DBX0_0;
     private String DB14_DBX0_1;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

@@ -159,6 +159,15 @@ public class CL_FCOP90 {
     private String M620_4;
     private BigDecimal MD200;
     private BigDecimal MD201;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

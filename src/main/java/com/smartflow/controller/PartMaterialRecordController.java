@@ -56,7 +56,7 @@ public class PartMaterialRecordController extends BaseController {
     public @ResponseBody
     Object getPartMaterialRecordByPartSerialNumber(HttpServletRequest request, HttpServletResponse response) throws Exception {
         JSONObject jsonObject = ReadDataUtil.paramData(request);
-        Map<String, Object> json = new HashMap<>();
+        Map<String, Object> json;
         Map<String, Object> map = new HashMap<>();
         String serialNumber = jsonObject.getString("SerialNumber") == null ? null : jsonObject.getString("SerialNumber");
         System.out.println(serialNumber);

@@ -20,6 +20,7 @@ public class CL_IMOP75 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB11_INT10;
     private BigDecimal DB11_INT314;
     private BigDecimal DB11_INT8;
@@ -157,6 +158,14 @@ public class CL_IMOP75 {
     private BigDecimal DB15_SINT46;
     private String M98_0;
     private String M98_5;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

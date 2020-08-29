@@ -109,6 +109,16 @@ public class CL_IMOP25 {
     private String M620_3;
     private BigDecimal MD200;
     private int state;
+    private String IS_OK;
+
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public int getState() {
         return state;

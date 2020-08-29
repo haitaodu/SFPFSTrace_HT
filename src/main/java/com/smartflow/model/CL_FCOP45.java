@@ -25,10 +25,19 @@ public class CL_FCOP45 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Long WorkOrderId;
+    private String IS_OK;
     private String CHECK_DATE;
     private String QRCODE;
     private String STATUS;
     private String PRODUCT;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

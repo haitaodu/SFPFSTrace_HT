@@ -19,6 +19,7 @@ public class CL_REOP10A {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String ALARM1;
     private String ALARM10;
     private String ALARM11;
@@ -49,6 +50,14 @@ public class CL_REOP10A {
     private String TOOL_NUM;
     private String TOOL_USE_CT;
     private int state;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public int getState() {
         return state;

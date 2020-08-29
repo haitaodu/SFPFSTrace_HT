@@ -20,6 +20,7 @@ public class CL_FCOP140 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB1_DBD0;
     private BigDecimal DB1_DBD116;
     private BigDecimal DB1_DBD120;
@@ -53,6 +54,14 @@ public class CL_FCOP140 {
     private String M245_2;
     private String M245_3;
     private String M620_3;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

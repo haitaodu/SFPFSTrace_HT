@@ -20,6 +20,7 @@ public class CL_REOP40 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String DB11_BYTE132;
     private BigDecimal DB11_INT130;
     private BigDecimal DB11_REAL10;
@@ -155,6 +156,14 @@ public class CL_REOP40 {
     private String M100_0;
     private String M98_5;
     private String M98_6;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getDB11_X134_0() {
         return DB11_X134_0;

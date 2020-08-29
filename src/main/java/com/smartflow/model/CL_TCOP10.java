@@ -20,6 +20,7 @@ public class CL_TCOP10 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String DB407_DBX60_3;
     private String DB407_DBX60_4;
     private String DB407_DBX60_5;
@@ -91,6 +92,14 @@ public class CL_TCOP10 {
     private String M155_3;
     private String M155_4;
     private String M155_5;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

@@ -20,6 +20,7 @@ public class CL_FCOP80B {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String AUTO_TIME;
     private String AVAIL;
     private BigDecimal CABS;
@@ -88,6 +89,14 @@ public class CL_FCOP80B {
     private BigDecimal ZLOAD;
     private BigDecimal ZPOS;
     private String ZTRAVEL;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

@@ -80,6 +80,15 @@ public class CL_IMOP10 {
     private String M503_6;
     private String M506_0;
     private String M506_1;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

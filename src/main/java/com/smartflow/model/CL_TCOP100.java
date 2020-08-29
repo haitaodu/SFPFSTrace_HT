@@ -20,6 +20,7 @@ public class CL_TCOP100 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal D2000;
     private BigDecimal D2001;
     private BigDecimal D2002;
@@ -249,6 +250,14 @@ public class CL_TCOP100 {
     private String M306;
     private String M310;
     private String QRCODE;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

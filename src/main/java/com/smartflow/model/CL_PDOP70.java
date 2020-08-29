@@ -20,6 +20,7 @@ public class CL_PDOP70 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB17_DBD706;
     private BigDecimal DB17_DBD710;
     private BigDecimal DB17_DBD714;
@@ -95,6 +96,14 @@ public class CL_PDOP70 {
     private String M52_0;
     private String M52_1;
     private String M52_2;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

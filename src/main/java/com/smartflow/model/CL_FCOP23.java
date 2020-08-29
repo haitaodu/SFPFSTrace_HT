@@ -20,6 +20,7 @@ public class CL_FCOP23 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String IS_OK;
     private String DB126_DBX10_0;
     private String DB126_DBX10_1;
     private String DB126_DBX10_2;
@@ -186,7 +187,7 @@ public class CL_FCOP23 {
     private String DB127_DBX54_3;
     private String DB127_DBX54_4;
     private String DB127_DBX54_5;
-    private String DB127_DBX54_6_;
+    private String DB127_DBX54_6;
     private String DB127_DBX54_7;
     private String DB127_DBX55_0;
     private String DB127_DBX56_0;
@@ -218,7 +219,7 @@ public class CL_FCOP23 {
     private String DB127_DBX9_0;
     private String DB2000_DB12;
     private String DB2000_DB40;
-    private String DB2000_DB552_;
+    private String DB2000_DB552;
     private Integer DB2000_DBW0;
     private Integer DB2000_DBW10;
     private Integer DB2000_DBW2;
@@ -241,6 +242,22 @@ public class CL_FCOP23 {
     private String DB2000_DBX1100_5;
     private String DB2000_DBX1100_6;
     private String DB2000_DBX1100_7;
+
+    public String getDB2000_DB552() {
+        return DB2000_DB552;
+    }
+
+    public void setDB2000_DB552(String DB2000_DB552) {
+        this.DB2000_DB552 = DB2000_DB552;
+    }
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;
@@ -1594,12 +1611,12 @@ public class CL_FCOP23 {
         this.DB127_DBX54_5 = DB127_DBX54_5;
     }
 
-    public String getDB127_DBX54_6_() {
-        return DB127_DBX54_6_;
+    public String getDB127_DBX54_6() {
+        return DB127_DBX54_6;
     }
 
-    public void setDB127_DBX54_6_(String DB127_DBX54_6_) {
-        this.DB127_DBX54_6_ = DB127_DBX54_6_;
+    public void setDB127_DBX54_6(String DB127_DBX54_6) {
+        this.DB127_DBX54_6 = DB127_DBX54_6;
     }
 
     public String getDB127_DBX54_7() {
@@ -1848,14 +1865,6 @@ public class CL_FCOP23 {
 
     public void setDB2000_DB40(String DB2000_DB40) {
         this.DB2000_DB40 = DB2000_DB40;
-    }
-
-    public String getDB2000_DB552_() {
-        return DB2000_DB552_;
-    }
-
-    public void setDB2000_DB552_(String DB2000_DB552_) {
-        this.DB2000_DB552_ = DB2000_DB552_;
     }
 
     public Integer getDB2000_DBW0() {

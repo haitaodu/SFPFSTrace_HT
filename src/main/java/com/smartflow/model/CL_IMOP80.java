@@ -20,6 +20,7 @@ public class CL_IMOP80 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB1_DBD0;
     private BigDecimal DB1_DBD116;
     private BigDecimal DB1_DBD12;
@@ -108,6 +109,14 @@ public class CL_IMOP80 {
     private String M248_5;
     private String M620_3;
     private BigDecimal MD200;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

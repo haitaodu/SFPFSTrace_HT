@@ -22,6 +22,7 @@ public class CL_PDOP75 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String DB126DBX100;
     private String DB126DBX101;
     private String DB126DBX102;
@@ -229,6 +230,13 @@ public class CL_PDOP75 {
     private String DB2000DBX11006;
     private String DB2000DBX11007;
 
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

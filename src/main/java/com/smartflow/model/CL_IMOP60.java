@@ -258,6 +258,15 @@ public class CL_IMOP60 {
     private String DB7_DBX8_3;
     private String DB7_DBX8_4;
     private String DB7_DBX8_5;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

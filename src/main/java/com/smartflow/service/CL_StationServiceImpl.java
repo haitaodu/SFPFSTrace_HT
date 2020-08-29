@@ -99,13 +99,6 @@ public class CL_StationServiceImpl implements CL_StationService {
         }
     }
 
-
-
-
-
-
-
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void setSerialNumber(String serialNumber,String tableName) throws ClassNotFoundException {
@@ -121,7 +114,6 @@ public class CL_StationServiceImpl implements CL_StationService {
                 jsonObject.put("state",1);
                 Class<?> classEntity=Class.forName
                         ("com.smartflow.model."+tableName);
-                //hibernateTemplate.clear();
                 hibernateTemplate.merge
                         (JSON.parseObject(jsonObject.toString(),
                                 classEntity));

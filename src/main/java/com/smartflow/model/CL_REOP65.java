@@ -24,6 +24,7 @@ public class CL_REOP65 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Long WorkOrderId;
+    private String IS_OK;
     private String DB126_DBX10_0;
     private String DB126_DBX10_1;
     private String DB126_DBX10_2;
@@ -260,6 +261,14 @@ public class CL_REOP65 {
     private String DB2000_DBX1100_5;
     private String DB2000_DBX1100_6;
     private String DB2000_DBX1100_7;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

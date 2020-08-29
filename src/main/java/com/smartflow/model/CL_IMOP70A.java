@@ -48,6 +48,15 @@ public class CL_IMOP70A {
     private String TOOL_NO;
     private String TOOL_NUM;
     private String TOOL_USE_CT;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

@@ -17,7 +17,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "CL_IMOP20", schema = "core", catalog = "MESDB_SXHTDL")
+@Table(name = "core.CL_IMOP20")
 public class CL_IMOP20 {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -88,6 +88,15 @@ public class CL_IMOP20 {
     private String M506_0;
     private String M506_1;
     private int state;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public int getState() {
         return state;

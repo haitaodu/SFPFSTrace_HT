@@ -20,6 +20,7 @@ public class CL_TCOP70 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB14_DBD12;
     private BigDecimal DB14_DBD16;
     private BigDecimal DB14_DBD20;
@@ -33,6 +34,14 @@ public class CL_TCOP70 {
     private BigDecimal DB14_DBW170;
     private String DB14_DBX0_0;
     private String DB14_DBX0_1;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

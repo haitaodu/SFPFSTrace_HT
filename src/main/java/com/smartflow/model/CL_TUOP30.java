@@ -19,6 +19,7 @@ public class CL_TUOP30 {
   private String IS_SYNCH;
   private String SerialNumber;
   private Integer WorkOrderId;
+  private String IS_OK;
   private BigDecimal DB100_DBD12;
   private BigDecimal DB100_DBD16;
   private BigDecimal DB100_DBD2;
@@ -124,6 +125,14 @@ public class CL_TUOP30 {
   private String DB200_CHAR240;
   private String M100_3;
   private int state;
+
+  public String getIS_OK() {
+    return IS_OK;
+  }
+
+  public void setIS_OK(String IS_OK) {
+    this.IS_OK = IS_OK;
+  }
 
   public int isState() {
     return state;

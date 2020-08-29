@@ -26,10 +26,19 @@ public class CL_FCOP5050 {
     private String ISSYNCH;
     private String SerialNumber;
     private Long WorkOrderId;
+    private String IS_OK;
     private String DB9DB120;
     private String DB9DB80;
     private String DB9DBx3704;
     private String DB9DBx3705;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

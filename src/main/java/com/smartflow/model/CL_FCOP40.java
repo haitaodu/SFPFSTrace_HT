@@ -105,6 +105,15 @@ public class CL_FCOP40 {
     private String QW842;
     private String QW843;
     private String QW844;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

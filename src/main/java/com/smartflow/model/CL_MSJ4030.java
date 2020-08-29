@@ -20,6 +20,7 @@ public class CL_MSJ4030 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB167_DBD0;
     private BigDecimal DB167_DBD12;
     private BigDecimal DB167_DBD16;
@@ -101,6 +102,14 @@ public class CL_MSJ4030 {
     private String DB167_DBD28_LEN;
     private String DB167_DBW378;
     private String DB167_DBW380;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

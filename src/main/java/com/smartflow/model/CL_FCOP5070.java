@@ -29,6 +29,15 @@ public class CL_FCOP5070 {
     private String DB9DB160;
     private String DB9DBx3705;
     private String DB9DBx3706;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

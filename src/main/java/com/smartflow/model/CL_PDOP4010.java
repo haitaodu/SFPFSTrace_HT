@@ -26,6 +26,7 @@ public class CL_PDOP4010 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String DB15DB120;
     private String DB15DB160;
     private String DB15DB360;
@@ -35,6 +36,13 @@ public class CL_PDOP4010 {
     private String DB15DBx6586;
     private String DB15DBx6587;
 
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getMACHINETOOL() {
         return MACHINETOOL;

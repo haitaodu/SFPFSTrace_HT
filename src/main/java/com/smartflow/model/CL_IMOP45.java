@@ -37,6 +37,15 @@ public class CL_IMOP45 {
     private String DB100_DBX80_6;
     private BigDecimal DB100_REAL82;
     private BigDecimal DB100_REAL86;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

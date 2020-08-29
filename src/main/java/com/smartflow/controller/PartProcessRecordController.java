@@ -1,28 +1,21 @@
 package com.smartflow.controller;
 
+import com.smartflow.dto.VMPartProcessRecordInput;
+import com.smartflow.dto.VMPartProcessRecordOutput;
+import com.smartflow.dto.VMPartProcessRecordRow;
+import com.smartflow.model.PartProcessRecord;
+import com.smartflow.model.PartSerialNumber;
+import com.smartflow.service.PartRepairRecordService;
+import com.smartflow.service.PartSerialNumberService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.smartflow.dto.VMPartProcessRecordInput;
-import com.smartflow.dto.VMPartProcessRecordOutput;
-import com.smartflow.dto.VMPartProcessRecordRow;
-import com.smartflow.dto.VMPartRepairRecordInput;
-import com.smartflow.model.PartProcessRecord;
-import com.smartflow.model.PartRepairRecord;
-import com.smartflow.model.PartSerialNumber;
-import com.smartflow.service.PartRepairRecordService;
-import com.smartflow.service.PartSerialNumberService;
 /**
  * 通过工站追溯页面__工件过站记录
  * @author admin
@@ -35,11 +28,18 @@ public class PartProcessRecordController extends BaseController{
 
 	private static final Logger logger = Logger.getLogger(PartProcessRecordController.class);
 
-	@Autowired
+	final
 	PartSerialNumberService partSerialNumberService;
 	
-	@Autowired
+	final
 	PartRepairRecordService partRepairRecordService;
+
+	@Autowired
+	public PartProcessRecordController(PartSerialNumberService partSerialNumberService, PartRepairRecordService partRepairRecordService) {
+		this.partSerialNumberService = partSerialNumberService;
+		this.partRepairRecordService = partRepairRecordService;
+	}
+
 	/**
 	 * 获得记录类型下拉列表
 	 * @param
@@ -81,7 +81,7 @@ public class PartProcessRecordController extends BaseController{
 
 	@CrossOrigin(origins="*",maxAge=3600)
 	@RequestMapping(value="/GetPartProcessRecordByPartSerialNumber",method=RequestMethod.POST)
-	public Map<String, Object> GetPartProcessRecordByStation(@RequestBody VMPartProcessRecordInput vmPartProcessRecordInput){
+	public Map<String, Object> getPartProcessRecordByStation(@RequestBody VMPartProcessRecordInput vmPartProcessRecordInput){
 		Map<String, Object> json = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		VMPartProcessRecordOutput vmPartProcessRecordOutput = new VMPartProcessRecordOutput();
@@ -142,7 +142,6 @@ public class PartProcessRecordController extends BaseController{
 						}
 					}						
 				}
-//				vmPartProcessRecordOutput.setPartProcessRecordsData(vmPartProcessRecordRowList);
 				map.put("PartState", vmPartProcessRecordOutput.getPartState());
 				map.put("CustomerPartNumber", vmPartProcessRecordOutput.getCustomerPartNumber());
 				map.put("PartDescription", vmPartProcessRecordOutput.getPartDescription());

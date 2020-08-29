@@ -20,6 +20,7 @@ public class CL_COMOP20 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal MES_CUT1_ANGLE1;
     private BigDecimal MES_CUT1_ANGLE2;
     private BigDecimal MES_CUT1_WEIGHT;
@@ -222,6 +223,14 @@ public class CL_COMOP20 {
     private String MES_SCAN_18;
     private String MES_SCAN_19;
     private String MES_SCAN_20;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

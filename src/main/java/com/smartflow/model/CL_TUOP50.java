@@ -20,6 +20,7 @@ public class CL_TUOP50 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private BigDecimal DB10_DBD1830;
     private BigDecimal DB10_DBD1834;
     private BigDecimal DB10_DBD1838;
@@ -86,6 +87,14 @@ public class CL_TUOP50 {
     private String DB10_DBX1155_1;
     private String M53_5;
     private String M15_6;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getSerialNumber() {
         return SerialNumber;

@@ -66,8 +66,10 @@ public class ClStationController extends BaseController{
                 JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(clStationDeviceDTO.getObject()));
                 Integer workOrderId = clStationService.getCurrentActivedWorkOrder();
                 jsonObject.put("WorkOrderId",workOrderId);
+                jsonObject.put("CREATE_DATE",new Date());
                 String serialNumber = jsonObject.get
-                        (SERIAL_ARG) == null ? null : jsonObject.get(SERIAL_ARG).toString();
+                        (SERIAL_ARG) == null ? null :
+                        jsonObject.get(SERIAL_ARG).toString();
                 clStationDeviceDTO.setObject(reWrite(serialNumber,jsonObject,linkTableName));
                 logger.info(clStationDeviceDTO);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
@@ -123,12 +125,9 @@ public class ClStationController extends BaseController{
          jsonObject.put("SerialNumber", serialNumber);
      }else
         if (StationEnumUtil.isLastStation(linkTableName)) {
-
                 jsonObject.put(SERIAL_ARG, serialNumber);
                 clStationService.reWriteSerialNumber
                         (serialNumber,linkTableName);
-
-
         }
         else
             {

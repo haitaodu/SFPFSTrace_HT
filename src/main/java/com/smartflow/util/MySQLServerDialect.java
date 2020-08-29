@@ -12,11 +12,12 @@ public class MySQLServerDialect extends SQLServerDialect{
 		registerHibernateType(1, "string");     
 		registerHibernateType(-9, "string");     
 		registerHibernateType(-16, "string");     
-		registerHibernateType(3, "double");  
-
+		registerHibernateType(3, "double");
+		registerHibernateType(-15, "string");
 		registerHibernateType(Types.CHAR, StandardBasicTypes.STRING.getName());     
 		registerHibernateType(Types.NVARCHAR, StandardBasicTypes.STRING.getName());     
-		registerHibernateType(Types.LONGNVARCHAR, StandardBasicTypes.STRING.getName());     
+		registerHibernateType(Types.LONGNVARCHAR, StandardBasicTypes.STRING.getName());
+		registerHibernateType(Types.NCHAR, StandardBasicTypes.STRING.getName());
 		registerHibernateType(Types.DECIMAL, StandardBasicTypes.DOUBLE.getName());
 	}
 }

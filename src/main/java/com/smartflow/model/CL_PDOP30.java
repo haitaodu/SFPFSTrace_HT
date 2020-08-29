@@ -2,10 +2,12 @@ package com.smartflow.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.Objects;
 
 /**
  * @author ：tao
@@ -13,7 +15,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "CL_PDOP30", schema = "core", catalog = "MESDBSXHTDL")
+@Table(name = "core.CL_PDOP30")
 public class CL_PDOP30 {
     @Id
     @GeneratedValue(generator = "uuid")

@@ -47,6 +47,15 @@ public class CL_COMOP10 {
     private BigDecimal MW604;
     private String DB13_DBX676_0;
     private String DB13_DBX718_0;
+    private String IS_OK;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

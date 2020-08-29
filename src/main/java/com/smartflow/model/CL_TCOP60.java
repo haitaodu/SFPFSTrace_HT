@@ -19,10 +19,19 @@ public class CL_TCOP60 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private String CHECK_DATE;
     private String QR_CODE;
     private String STATUS;
     private String PRODUCT;
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public String getUUID() {
         return UUID;

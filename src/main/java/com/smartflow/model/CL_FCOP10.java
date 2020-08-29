@@ -25,6 +25,7 @@ public class CL_FCOP10 {
     private String IS_SYNCH;
     private String SerialNuMber;
     private Integer WorkOrderId;
+    private String IS_OK;
     private Integer DB64_DBW0;
     private Integer DB64_DBW2;
     private String DB64_DBX4_0;
@@ -91,6 +92,32 @@ public class CL_FCOP10 {
     private BigDecimal DB64_DBD6;
     private BigDecimal DB64_DBD10;
     private BigDecimal DB64_DBD14;
+    private String Q203_0;
+    private String DB64_DBX18_0;
+
+    public String getQ203_0() {
+        return Q203_0;
+    }
+
+    public void setQ203_0(String q203_0) {
+        Q203_0 = q203_0;
+    }
+
+    public String getDB64_DBX18_0() {
+        return DB64_DBX18_0;
+    }
+
+    public void setDB64_DBX18_0(String DB64_DBX18_0) {
+        this.DB64_DBX18_0 = DB64_DBX18_0;
+    }
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
+    }
 
     public BigDecimal getDB64_DBD6() {
         return DB64_DBD6;
