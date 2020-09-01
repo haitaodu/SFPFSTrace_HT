@@ -108,7 +108,17 @@ public class CL_TUOP25 {
   private String M248_5;
   private String M620_3;
   private BigDecimal MD200;
+  private String DB73_DBX44_0;
   private int state;
+
+
+  public String getDB73_DBX44_0() {
+    return DB73_DBX44_0;
+  }
+
+  public void setDB73_DBX44_0(String DB73_DBX44_0) {
+    this.DB73_DBX44_0 = DB73_DBX44_0;
+  }
 
   public String getIS_OK() {
     return IS_OK;

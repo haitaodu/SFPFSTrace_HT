@@ -160,6 +160,15 @@ public class CL_FCOP90 {
     private BigDecimal MD200;
     private BigDecimal MD201;
     private String IS_OK;
+    private String DB9_DBX44_0;
+
+    public String getDB9_DBX44_0() {
+        return DB9_DBX44_0;
+    }
+
+    public void setDB9_DBX44_0(String DB9_DBX44_0) {
+        this.DB9_DBX44_0 = DB9_DBX44_0;
+    }
 
     public String getIS_OK() {
         return IS_OK;

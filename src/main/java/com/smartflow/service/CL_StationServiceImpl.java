@@ -14,8 +14,10 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 @Service
 public class CL_StationServiceImpl implements CL_StationService {
@@ -123,11 +125,16 @@ public class CL_StationServiceImpl implements CL_StationService {
                 JSONObject jsonObject=JSONObject.parseObject(jsonString);
                 jsonObject.put("SerialNumber",serialNumber);
                 jsonObject.put("state",1);
+                //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                //sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+                //jsonObject.put("CREATE_DATE",sdf.format(jsonObject.get("cREATE_DATE")));
                 Class<?> classEntity=Class.forName
                         ("com.smartflow.model."+tableName);
                 hibernateTemplate.merge
                         (JSON.parseObject(jsonObject.toString(),
                                 classEntity));
+                System.out.println("覆盖后时间"+JSON.parseObject(jsonObject.toString(),
+                        classEntity));
             }
         }catch (Exception e)
         {

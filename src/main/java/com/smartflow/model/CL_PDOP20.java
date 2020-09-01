@@ -109,6 +109,15 @@ public class CL_PDOP20 {
     private String M248_5;
     private String M620_3;
     private BigDecimal MD200;
+    private String DB71_DBX44_0;
+
+    public String getDB71_DBX44_0() {
+        return DB71_DBX44_0;
+    }
+
+    public void setDB71_DBX44_0(String DB71_DBX44_0) {
+        this.DB71_DBX44_0 = DB71_DBX44_0;
+    }
 
     public String getIS_OK() {
         return IS_OK;

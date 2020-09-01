@@ -109,6 +109,15 @@ public class CL_REOP90 {
     private String M248_5;
     private String M620_3;
     private BigDecimal MD200;
+    private String DB77_DBX44_0;
+
+    public String getDB77_DBX44_0() {
+        return DB77_DBX44_0;
+    }
+
+    public void setDB77_DBX44_0(String DB77_DBX44_0) {
+        this.DB77_DBX44_0 = DB77_DBX44_0;
+    }
 
     public String getIS_OK() {
         return IS_OK;
