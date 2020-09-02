@@ -7,13 +7,29 @@
   <properties>
 		<log4j.version>1.2.17</log4j.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
+	  <project.build.sourceEncoding>
+		  UTF-8
+	  </project.build.sourceEncoding>
+	  <log4mongo.version>0.7.4</log4mongo.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
+			<groupId>org.log4mongo</groupId>
+			<artifactId>log4mongo-java</artifactId>
+			<version>${log4mongo.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>se.jiderhamn.classloader-leak-prevention</groupId>
+			<artifactId>classloader-leak-prevention-servlet</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -29,6 +45,11 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<verbose />
+						<extdirs>E:\IdeaProjects\CommonLib</extdirs>
+						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -36,10 +57,10 @@
 			<artifactId>tomcat7-maven-plugin</artifactId>
 			<version>2.2</version>
 			<configuration>
-				<port>8080</port>
-				<path>/</path>
+				<port>8088</port>
+				<path>/SFPFSTrace_HT</path>
 				<uriEncoding>UTF-8</uriEncoding>
-				<url>http://192.168.1.211:8080/manager/text</url>
+				<url>http://192.168.1.6:8088/manager/text</url>
 				<username>admin</username>
 				<password>123456</password>
 			</configuration>

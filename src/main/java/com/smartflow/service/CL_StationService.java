@@ -82,10 +82,16 @@ public interface CL_StationService {
 
     /**
      *
-     * @param serialNumber
-     * @param tableName
+     * @param serialNumber 条形码
+     * @param tableName 表名
      */
-    public void setSerialNumber(String serialNumber,String tableName) throws ClassNotFoundException;
+    public void setSerialNumber(String serialNumber,String tableName)
+            throws ClassNotFoundException;
 
-
+    /**
+     *
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     */
+    public void writeNg(String serialNumber,String tableName);
 }

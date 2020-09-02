@@ -14,10 +14,8 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 @Service
 public class CL_StationServiceImpl implements CL_StationService {
@@ -27,6 +25,8 @@ public class CL_StationServiceImpl implements CL_StationService {
     private final
     CL_StationDao cl_stationDao;
 
+
+
     @Autowired
     public CL_StationServiceImpl(CL_StationDao cl_stationDao, HibernateTemplate hibernateTemplate) {
         this.cl_stationDao = cl_stationDao;
@@ -35,6 +35,7 @@ public class CL_StationServiceImpl implements CL_StationService {
 
     @Override
     public String getLinkTableNameByStationId(Integer stationId) {
+
         return cl_stationDao.getLinkTableNameByStationId(stationId);
     }
 
@@ -141,6 +142,11 @@ public class CL_StationServiceImpl implements CL_StationService {
             e.printStackTrace();
             throw  e;
         }
+    }
+
+    @Override
+    public void writeNg(String serialNumber, String tableName) {
+
     }
 
     @SuppressWarnings("unchecked")
