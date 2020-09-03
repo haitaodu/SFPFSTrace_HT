@@ -91,8 +91,8 @@ public class TracePartByStationController extends BaseController{
 
 					if(!CollectionUtils.isEmpty(dataList)){
 						for (Map<String,Object> map: dataList) {
-							String serialNumber = map.get("SerialNumber") == null ? null : virtualSerialNumberService.getSerialNumberById(Integer.parseInt(map.get("SerialNumber").toString()));
-							map.put("SerialNumber", serialNumber);
+							//String serialNumber = map.get("SerialNumber") == null ? null : virtualSerialNumberService.getSerialNumberById(Integer.parseInt(map.get("SerialNumber").toString()));
+							map.put("SerialNumber", map.get("SerialNumber"));
 							Integer workOrderId = map.get("WorkOrderId") == null ? null : Integer.parseInt(map.get("WorkOrderId").toString());
 							if(workOrderId != null){
 								String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
@@ -110,11 +110,11 @@ public class TracePartByStationController extends BaseController{
 //					System.out.println("==============================================");
 //					filterList.stream().skip(1).skip(2).forEach(System.out::println);
 
+                    filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
+                    filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.equals);
 
 					Collections.sort(filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList()), new ComparatorUtil());
 
-                    filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterStartsWithCondition(), FilterModeEnum.startsWith);
-					filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), FilterModeEnum.equals);
 					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
 					vmTracePartByStationOutput.setTotal(rowCount);
