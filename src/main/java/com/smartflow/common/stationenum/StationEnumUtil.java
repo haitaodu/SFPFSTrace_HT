@@ -87,4 +87,13 @@ public class StationEnumUtil {
         return isIm(name) || isRe(name) || isTu(name);
     }
 
+    public static boolean isNgWriteTable(String name)
+    {
+        for (StationNgWrite stationNgWrite:StationNgWrite.values())
+        {
+            return name.equals(stationNgWrite.getName());
+        }
+        return false;
+    }
+
 }

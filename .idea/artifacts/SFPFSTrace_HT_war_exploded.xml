@@ -1,13 +1,24 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="SFPFSTrace_HT:war exploded">
     <output-path>$PROJECT_DIR$/target/SFPFSTrace_HT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>SFPFSTrace_HT</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="SFPFSTrace_HT" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.log4mongo:log4mongo-java:0.7.4" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:2.10.1" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
+          <element id="library" level="project" name="Maven: se.jiderhamn.classloader-leak-prevention:classloader-leak-prevention-servlet:2.1.0" />
+          <element id="library" level="project" name="Maven: se.jiderhamn.classloader-leak-prevention:classloader-leak-prevention-core:2.1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

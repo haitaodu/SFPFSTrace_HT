@@ -14,10 +14,9 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 @Service
 public class CL_StationServiceImpl implements CL_StationService {
@@ -27,6 +26,11 @@ public class CL_StationServiceImpl implements CL_StationService {
     private final
     CL_StationDao cl_stationDao;
 
+    private final static List<String> tus=new ArrayList<>();
+    private final static List<String> ims=new ArrayList<>();
+    private final static List<String> res=new ArrayList<>();
+
+
     @Autowired
     public CL_StationServiceImpl(CL_StationDao cl_stationDao, HibernateTemplate hibernateTemplate) {
         this.cl_stationDao = cl_stationDao;
@@ -35,6 +39,7 @@ public class CL_StationServiceImpl implements CL_StationService {
 
     @Override
     public String getLinkTableNameByStationId(Integer stationId) {
+
         return cl_stationDao.getLinkTableNameByStationId(stationId);
     }
 
@@ -81,6 +86,11 @@ public class CL_StationServiceImpl implements CL_StationService {
     }
 
 
+    /**
+     * 条形码的覆盖业务，涉及TU,RE,IM
+     * @param serialNumber 序列码
+     * @param tableName 表名
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void reWriteSerialNumber(String serialNumber,String tableName) {
@@ -112,6 +122,12 @@ public class CL_StationServiceImpl implements CL_StationService {
         }
     }
 
+    /**
+     * 覆盖单个表的业务
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 根据表名无法反射到
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void setSerialNumber(String serialNumber,String tableName) throws ClassNotFoundException {
@@ -125,9 +141,6 @@ public class CL_StationServiceImpl implements CL_StationService {
                 JSONObject jsonObject=JSONObject.parseObject(jsonString);
                 jsonObject.put("SerialNumber",serialNumber);
                 jsonObject.put("state",1);
-                //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                //sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-                //jsonObject.put("CREATE_DATE",sdf.format(jsonObject.get("cREATE_DATE")));
                 Class<?> classEntity=Class.forName
                         ("com.smartflow.model."+tableName);
                 hibernateTemplate.merge
@@ -143,6 +156,87 @@ public class CL_StationServiceImpl implements CL_StationService {
         }
     }
 
+    /**
+     * 遇到ng的情况且ng工站属于产生虚拟码的工站
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 根据表名无法找到类的情况
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void writeNg(String serialNumber, String tableName){
+        try {
+            if (res.contains(tableName)) {
+                ngWriteRes(serialNumber, tableName);
+            }
+            if (tus.contains(tableName)) {
+                ngWriteTus(serialNumber, tableName);
+            }
+            if (ims.contains(tableName)) {
+                ngWriteIms(serialNumber, tableName);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * RE岛区的虚拟工站遇到ng情况，根据ng的工站去覆盖前边的表
+     * @param serialNumber 序列码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 反射无法找到类
+     */
+    private void ngWriteRes(String serialNumber,String tableName) throws ClassNotFoundException {
+
+            int number=res.indexOf(tableName);
+            List<String> reWriteTable=res.subList(0,number);
+            for (String table:reWriteTable)
+            {
+                setSerialNumber(serialNumber,table);
+            }
+
+    }
+
+
+    /**
+     * TU虚拟岛区遇到ng的情况，覆盖前边的条码
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 无法找到类
+     */
+    private void ngWriteTus(String serialNumber,String tableName) throws ClassNotFoundException {
+        int number=tus.indexOf(tableName);
+        List<String> tuWriteTable=tus.subList(0,number);
+        for (String table:tuWriteTable)
+        {
+            setSerialNumber(serialNumber,table);
+        }
+    }
+
+    /**
+     * IM虚拟岛区遇到ng情况，覆盖前边的条码
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 通过反射无法找到类
+     */
+    private void ngWriteIms(String serialNumber,String tableName) throws ClassNotFoundException {
+        int number=ims.indexOf(tableName);
+        List<String> imWriteTable=ims.subList(0,number);
+        for (String table:imWriteTable)
+        {
+            setSerialNumber(serialNumber,table);
+        }
+    }
+
+    /**
+     * Re岛区的特殊处理 reop10A和reop10B只会有一个工站有工件
+     * 根据时间去判断
+     * @return 返回应该覆盖的工站名
+     */
     @SuppressWarnings("unchecked")
     private String getReWriteTable()
     {
@@ -161,6 +255,12 @@ public class CL_StationServiceImpl implements CL_StationService {
 
     }
 
+    /**
+     * 返回REOP10A,REOP10B的时间最晚的表
+     * @param doosan005 REOP10A
+     * @param doosan006 REOP10B
+     * @return 返回表
+     */
     private String getLinkTableByCreateTime(CL_REOP10A doosan005, CL_REOP10B doosan006 )
     {
         if (doosan005.getCREATE_DATE().after(doosan006.getCREATE_DATE()))

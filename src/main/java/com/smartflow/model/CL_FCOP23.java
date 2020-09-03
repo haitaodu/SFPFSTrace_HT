@@ -21,6 +21,7 @@ public class CL_FCOP23 {
     private Date CREATE_DATE;
     private String IS_SYNCH;
     private String IS_OK;
+    private String SerialNumber;
     private String DB126_DBX10_0;
     private String DB126_DBX10_1;
     private String DB126_DBX10_2;
@@ -242,6 +243,41 @@ public class CL_FCOP23 {
     private String DB2000_DBX1100_5;
     private String DB2000_DBX1100_6;
     private String DB2000_DBX1100_7;
+    private String DB2000_DBD40;
+    private String DB2000_DBD44;
+    private String DB2000_DBD48;
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public String getDB2000_DBD40() {
+        return DB2000_DBD40;
+    }
+
+    public void setDB2000_DBD40(String DB2000_DBD40) {
+        this.DB2000_DBD40 = DB2000_DBD40;
+    }
+
+    public String getDB2000_DBD44() {
+        return DB2000_DBD44;
+    }
+
+    public void setDB2000_DBD44(String DB2000_DBD44) {
+        this.DB2000_DBD44 = DB2000_DBD44;
+    }
+
+    public String getDB2000_DBD48() {
+        return DB2000_DBD48;
+    }
+
+    public void setDB2000_DBD48(String DB2000_DBD48) {
+        this.DB2000_DBD48 = DB2000_DBD48;
+    }
 
     public String getDB2000_DB552() {
         return DB2000_DB552;
