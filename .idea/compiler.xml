@@ -13,4 +13,9 @@
       <module name="SFPFSTrace_HT" target="1.8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SFPFSTrace_HT" options="-verbose -extdirs E:\IdeaProjects\CommonLib -bootclasspath &quot;C:/Program Files/Java/jdk1.8.0_161/jre/lib/rt.jar;C:/Program Files/Java/jdk1.8.0_161/jre/lib/jce.jar&quot;" />
+    </option>
+  </component>
 </project>

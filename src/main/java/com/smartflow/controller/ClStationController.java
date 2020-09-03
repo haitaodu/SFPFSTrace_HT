@@ -116,6 +116,11 @@ public class ClStationController extends BaseController{
             Date date = new Date();
             serialNumber=date.toString();
         }
+        if (StationEnumUtil.isNgWriteTable(linkTableName))
+        {
+            jsonObject.put("state",1);
+            clStationService.writeNg(serialNumber,linkTableName);
+        }
         /*
          * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
          * 包含工站组Tu,Re,Im
