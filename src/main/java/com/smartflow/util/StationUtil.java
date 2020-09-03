@@ -1,5 +1,6 @@
 package com.smartflow.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -54,6 +55,42 @@ public class StationUtil {
             }
         });
         return stringList;
+    }
+
+    public static List<String> getFilterStartsWithCondition(){
+        List<String> list = new ArrayList<>();
+        list.add("M1");
+        list.add("M2");
+        list.add("M3");
+        list.add("M5");
+        list.add("M6");
+        list.add("M7");
+        list.add("MES_EM16");
+        list.add("Q8");
+        list.add("DB7.DBX");
+        list.add("DB12_DBX580_");
+        list.add("DB13_DBX944_");
+        list.add("DB167_DBX");
+        list.add("DB1670.DBX5");
+        list.add("DB100_DBX5");
+        list.add("DB10_DBX1828");
+        list.add("DB180_DBX");
+        list.add("DB17_DBX778");
+        list.add("DB200_DBX5");
+        list.add("DB20_DBX");
+        list.add("DB407_DBX6");
+        list.add("DB9_DBX1590_");
+        list.add("DB56_DBX378");
+        return list;
+    }
+    public static List<String> getFilterEqualsCondition(){
+        List<String> list = new ArrayList<>();
+        list.add("MD200");
+        list.add("M620.3");
+        list.add("IB404");
+        list.add("DB167_DBW378");
+        list.add("DB167_DBW380");
+        return list;
     }
 
     public static void main(String[] args) {

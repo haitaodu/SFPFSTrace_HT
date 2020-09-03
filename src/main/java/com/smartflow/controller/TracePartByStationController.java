@@ -1,5 +1,6 @@
 package com.smartflow.controller;
 
+import com.smartflow.common.stationenum.FilterModeEnum;
 import com.smartflow.dto.TableHeaderDTO;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.dto.VMTracePartByStationOutput;
@@ -112,7 +113,8 @@ public class TracePartByStationController extends BaseController{
 
 					Collections.sort(filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList()), new ComparatorUtil());
 
-
+                    filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterStartsWithCondition(), FilterModeEnum.startsWith);
+					filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), FilterModeEnum.equals);
 					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
 					vmTracePartByStationOutput.setTotal(rowCount);
