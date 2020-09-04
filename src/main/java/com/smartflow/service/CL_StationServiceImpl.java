@@ -2,6 +2,7 @@ package com.smartflow.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.smartflow.common.stationenum.ParseToArray;
 import com.smartflow.common.stationenum.StationNameIm;
 import com.smartflow.dao.CL_StationDao;
 import com.smartflow.dto.TableHeaderDTO;
@@ -14,7 +15,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +26,9 @@ public class CL_StationServiceImpl implements CL_StationService {
     private final
     CL_StationDao cl_stationDao;
 
-    private final static List<String> tus=new ArrayList<>();
-    private final static List<String> ims=new ArrayList<>();
-    private final static List<String> res=new ArrayList<>();
+    private final static List<String> tus= ParseToArray.parseTuStation();
+    private final static List<String> ims=ParseToArray.parseImStation();
+    private final static List<String> res=ParseToArray.parseReStation();
 
 
     @Autowired
@@ -168,12 +168,15 @@ public class CL_StationServiceImpl implements CL_StationService {
         try {
             if (res.contains(tableName)) {
                 ngWriteRes(serialNumber, tableName);
+                return;
             }
             if (tus.contains(tableName)) {
                 ngWriteTus(serialNumber, tableName);
+                return;
             }
             if (ims.contains(tableName)) {
                 ngWriteIms(serialNumber, tableName);
+                return;
             }
         }
         catch (Exception e)

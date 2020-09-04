@@ -31,7 +31,7 @@ public class StationEnumUtil {
      * @param name 参数
      * @return 返回是否是Tu的工站覆盖
      */
-    public static boolean isTu(String name)
+    private static boolean isTu(String name)
     {
         for (StationNameTu stationNameTu:StationNameTu.values())
         {
@@ -48,7 +48,7 @@ public class StationEnumUtil {
      * @param name 参数
      * @return 返回是否是Re的工站覆盖
      */
-    public static boolean isRe(String name)
+    private static boolean isRe(String name)
     {
         for (StationNameRe stationNameRe:StationNameRe.values())
         {
@@ -65,7 +65,7 @@ public class StationEnumUtil {
      * @param name 参数
      * @return 返回是否是Im的工站覆盖
      */
-    public static boolean isIm(String name)
+    private static boolean isIm(String name)
     {
         for (StationNameIm stationNameIm:StationNameIm.values())
         {
@@ -91,9 +91,12 @@ public class StationEnumUtil {
     {
         for (StationNgWrite stationNgWrite:StationNgWrite.values())
         {
-            return name.equals(stationNgWrite.getName());
+            if (name.equals(stationNgWrite.getName()))
+            {
+                return true;
+            }
         }
-        return false;
+       return false;
     }
 
 }

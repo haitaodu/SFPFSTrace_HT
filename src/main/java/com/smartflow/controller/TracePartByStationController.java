@@ -104,15 +104,7 @@ public class TracePartByStationController extends BaseController{
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
 					List<TableHeaderDTO> filterList = headerList.stream().filter(h -> !h.getDataIndex().startsWith("M5")).filter(h -> !h.getDataIndex().equals("DB48_DBW364")).collect(Collectors.toList());
-//					String[] dataIndexList = filterList.stream().map(h -> h.getDataIndex()).toArray(String[] :: new);//.collect(Collectors.toList());
-//					Arrays.sort(StationUtil.getTargetSortString(dataIndexList), StationUtil.ChsLogicCmp);
-//					filterList.stream().forEach(System.out::println);
-//					System.out.println("==============================================");
-//					filterList.stream().skip(1).skip(2).forEach(System.out::println);
-
-
 					Collections.sort(filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList()), new ComparatorUtil());
-
                     filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterStartsWithCondition(), FilterModeEnum.startsWith);
 					filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), FilterModeEnum.equals);
 					vmTracePartByStationOutput.setHeaderList(filterList);
