@@ -81,7 +81,19 @@ public class StationUtil {
         list.add("DB407_DBX6");
         list.add("DB9_DBX1590_");
         list.add("DB56_DBX378");
-        return list;
+
+        list.add("M49");
+        list.add("M9");
+        list.add("DB100_DBX10");
+        list.add("DB100_DBX360");
+        list.add("DB110_DBX");
+        list.add("DB126_DBX");
+        list.add("DB127_DBX");
+        list.add("DB14_DBX18");
+        list.add("DB2_DBW3");
+        list.add("DB400_DBX3");
+        list.add("ALARM");
+      return list;
     }
     public static List<String> getFilterEqualsCondition(){
         List<String> list = new ArrayList<>();
@@ -91,6 +103,13 @@ public class StationUtil {
         list.add("IB404");
         list.add("DB167_DBW378");
         list.add("DB167_DBW380");
+
+        list.add("DB100_DBX0_0");
+        list.add("DB100_DBX580_0");
+        list.add("DB14_DBX178_0");
+        list.add("M100_3");
+        list.add("M10_0");
+        list.add("IS_ALARM");
         return list;
     }
 
