@@ -3,37 +3,34 @@ package com.smartflow.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
  * @author ：tao
- * @date ：Created in 2020/8/6 11:28
+ * @date ：Created in 2020/9/5 9:58
  */
 
 @Entity
-@Table(name = "CL_PDOP75", schema = "core", catalog = "MESDB_SXHTDL")
-public class CL_PDOP75 {
+@Table(name = "CL_TCOP35", schema = "core", catalog = "MESDB_SXHTDL")
+public class CL_TCOP35 {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String UUID;
-    private java.util.Date CREATE_DATE;
+    private Date CREATE_DATE;
     private String IS_SYNCH;
     private String SerialNumber;
-    private Integer WorkOrderId;
-    private String IS_OK;
+    private Long WorkOrderId;
     private String DB126_DBX10_0;
     private String DB126_DBX10_1;
     private String DB126_DBX10_2;
     private String DB126_DBX10_3;
     private String DB126_DBX10_4;
     private String DB126_DBX10_5;
-    private String DB126_DBX10_6;
     private String DB126_DBX130_0;
     private String DB126_DBX20_0;
     private String DB126_DBX20_1;
-    private String DB126_DBX20_2;
     private String DB126_DBX20_3;
     private String DB126_DBX20_4;
     private String DB126_DBX20_5;
@@ -50,7 +47,6 @@ public class CL_PDOP75 {
     private String DB126_DBX2_4;
     private String DB126_DBX2_5;
     private String DB126_DBX2_6;
-    private String DB126_DBX2_7;
     private String DB126_DBX33_0;
     private String DB126_DBX33_1;
     private String DB126_DBX33_2;
@@ -62,7 +58,6 @@ public class CL_PDOP75 {
     private String DB126_DBX40_1;
     private String DB126_DBX40_2;
     private String DB126_DBX40_3;
-    private String DB126_DBX40_6;
     private String DB126_DBX41_0;
     private String DB126_DBX41_1;
     private String DB126_DBX41_2;
@@ -73,8 +68,6 @@ public class CL_PDOP75 {
     private String DB126_DBX43_0;
     private String DB126_DBX43_1;
     private String DB126_DBX43_2;
-    private String DB126_DBX43_3;
-    private String DB126_DBX43_4;
     private String DB126_DBX4_0;
     private String DB126_DBX4_1;
     private String DB126_DBX5_0;
@@ -82,25 +75,24 @@ public class CL_PDOP75 {
     private String DB126_DBX6_0;
     private String DB126_DBX6_1;
     private String DB126_DBX7_0;
-    private String DB126_DBX7_1;
-    private String DB127_DBX14_0;
-    private String DB127_DBX14_1;
-    private String DB127_DBX14_2;
-    private String DB127_DBX14_3;
-    private String DB127_DBX14_4;
-    private String DB127_DBX14_5;
-    private String DB127_DBX14_6;
-    private String DB127_DBX14_7;
-    private String DB127_DBX15_0;
-    private String DB127_DBX16_0;
-    private String DB127_DBX16_1;
-    private String DB127_DBX16_2;
-    private String DB127_DBX16_3;
-    private String DB127_DBX16_4;
-    private String DB127_DBX16_5;
-    private String DB127_DBX16_6;
-    private String DB127_DBX16_7;
-    private String DB127_DBX17_0;
+    private String DB127_DBX10_0;
+    private String DB127_DBX10_1;
+    private String DB127_DBX10_2;
+    private String DB127_DBX10_3;
+    private String DB127_DBX10_4;
+    private String DB127_DBX10_5;
+    private String DB127_DBX10_6;
+    private String DB127_DBX10_7;
+    private String DB127_DBX11_0;
+    private String DB127_DBX12_0;
+    private String DB127_DBX12_1;
+    private String DB127_DBX12_2;
+    private String DB127_DBX12_3;
+    private String DB127_DBX12_4;
+    private String DB127_DBX12_5;
+    private String DB127_DBX12_6;
+    private String DB127_DBX12_7;
+    private String DB127_DBX13_0;
     private String DB127_DBX18_0;
     private String DB127_DBX18_1;
     private String DB127_DBX18_2;
@@ -110,15 +102,24 @@ public class CL_PDOP75 {
     private String DB127_DBX18_6;
     private String DB127_DBX18_7;
     private String DB127_DBX19_0;
-    private String DB127_DBX26_0;
-    private String DB127_DBX26_1;
-    private String DB127_DBX26_2;
-    private String DB127_DBX26_3;
-    private String DB127_DBX26_4;
-    private String DB127_DBX26_5;
-    private String DB127_DBX26_6;
-    private String DB127_DBX26_7;
-    private String DB127_DBX27_0;
+    private String DB127_DBX20_0;
+    private String DB127_DBX20_1;
+    private String DB127_DBX20_2;
+    private String DB127_DBX20_3;
+    private String DB127_DBX20_4;
+    private String DB127_DBX20_5;
+    private String DB127_DBX20_6;
+    private String DB127_DBX20_7;
+    private String DB127_DBX21_0;
+    private String DB127_DBX22_0;
+    private String DB127_DBX22_1;
+    private String DB127_DBX22_2;
+    private String DB127_DBX22_3;
+    private String DB127_DBX22_4;
+    private String DB127_DBX22_5;
+    private String DB127_DBX22_6;
+    private String DB127_DBX22_7;
+    private String DB127_DBX23_0;
     private String DB127_DBX2_0;
     private String DB127_DBX2_1;
     private String DB127_DBX2_2;
@@ -137,15 +138,6 @@ public class CL_PDOP75 {
     private String DB127_DBX38_7;
     private String DB127_DBX39_0;
     private String DB127_DBX3_0;
-    private String DB127_DBX40_0;
-    private String DB127_DBX40_1;
-    private String DB127_DBX40_2;
-    private String DB127_DBX40_3;
-    private String DB127_DBX40_4;
-    private String DB127_DBX40_5;
-    private String DB127_DBX40_6;
-    private String DB127_DBX40_7;
-    private String DB127_DBX41_0;
     private String DB127_DBX42_0;
     private String DB127_DBX42_1;
     private String DB127_DBX42_2;
@@ -155,6 +147,24 @@ public class CL_PDOP75 {
     private String DB127_DBX42_6;
     private String DB127_DBX42_7;
     private String DB127_DBX43_0;
+    private String DB127_DBX44_0;
+    private String DB127_DBX44_1;
+    private String DB127_DBX44_2;
+    private String DB127_DBX44_3;
+    private String DB127_DBX44_4;
+    private String DB127_DBX44_5;
+    private String DB127_DBX44_6;
+    private String DB127_DBX44_7;
+    private String DB127_DBX45_0;
+    private String DB127_DBX46_0;
+    private String DB127_DBX46_1;
+    private String DB127_DBX46_2;
+    private String DB127_DBX46_3;
+    private String DB127_DBX46_4;
+    private String DB127_DBX46_5;
+    private String DB127_DBX46_6;
+    private String DB127_DBX46_7;
+    private String DB127_DBX47_0;
     private String DB127_DBX4_0;
     private String DB127_DBX4_1;
     private String DB127_DBX4_2;
@@ -229,6 +239,7 @@ public class CL_PDOP75 {
     private String DB2000_DBX1100_5;
     private String DB2000_DBX1100_6;
     private String DB2000_DBX1100_7;
+    private String IS_OK;
 
     public String getUUID() {
         return UUID;
@@ -262,20 +273,12 @@ public class CL_PDOP75 {
         SerialNumber = serialNumber;
     }
 
-    public Integer getWorkOrderId() {
+    public Long getWorkOrderId() {
         return WorkOrderId;
     }
 
-    public void setWorkOrderId(Integer workOrderId) {
+    public void setWorkOrderId(Long workOrderId) {
         WorkOrderId = workOrderId;
-    }
-
-    public String getIS_OK() {
-        return IS_OK;
-    }
-
-    public void setIS_OK(String IS_OK) {
-        this.IS_OK = IS_OK;
     }
 
     public String getDB126_DBX10_0() {
@@ -326,14 +329,6 @@ public class CL_PDOP75 {
         this.DB126_DBX10_5 = DB126_DBX10_5;
     }
 
-    public String getDB126_DBX10_6() {
-        return DB126_DBX10_6;
-    }
-
-    public void setDB126_DBX10_6(String DB126_DBX10_6) {
-        this.DB126_DBX10_6 = DB126_DBX10_6;
-    }
-
     public String getDB126_DBX130_0() {
         return DB126_DBX130_0;
     }
@@ -356,14 +351,6 @@ public class CL_PDOP75 {
 
     public void setDB126_DBX20_1(String DB126_DBX20_1) {
         this.DB126_DBX20_1 = DB126_DBX20_1;
-    }
-
-    public String getDB126_DBX20_2() {
-        return DB126_DBX20_2;
-    }
-
-    public void setDB126_DBX20_2(String DB126_DBX20_2) {
-        this.DB126_DBX20_2 = DB126_DBX20_2;
     }
 
     public String getDB126_DBX20_3() {
@@ -494,14 +481,6 @@ public class CL_PDOP75 {
         this.DB126_DBX2_6 = DB126_DBX2_6;
     }
 
-    public String getDB126_DBX2_7() {
-        return DB126_DBX2_7;
-    }
-
-    public void setDB126_DBX2_7(String DB126_DBX2_7) {
-        this.DB126_DBX2_7 = DB126_DBX2_7;
-    }
-
     public String getDB126_DBX33_0() {
         return DB126_DBX33_0;
     }
@@ -590,14 +569,6 @@ public class CL_PDOP75 {
         this.DB126_DBX40_3 = DB126_DBX40_3;
     }
 
-    public String getDB126_DBX40_6() {
-        return DB126_DBX40_6;
-    }
-
-    public void setDB126_DBX40_6(String DB126_DBX40_6) {
-        this.DB126_DBX40_6 = DB126_DBX40_6;
-    }
-
     public String getDB126_DBX41_0() {
         return DB126_DBX41_0;
     }
@@ -678,22 +649,6 @@ public class CL_PDOP75 {
         this.DB126_DBX43_2 = DB126_DBX43_2;
     }
 
-    public String getDB126_DBX43_3() {
-        return DB126_DBX43_3;
-    }
-
-    public void setDB126_DBX43_3(String DB126_DBX43_3) {
-        this.DB126_DBX43_3 = DB126_DBX43_3;
-    }
-
-    public String getDB126_DBX43_4() {
-        return DB126_DBX43_4;
-    }
-
-    public void setDB126_DBX43_4(String DB126_DBX43_4) {
-        this.DB126_DBX43_4 = DB126_DBX43_4;
-    }
-
     public String getDB126_DBX4_0() {
         return DB126_DBX4_0;
     }
@@ -750,156 +705,148 @@ public class CL_PDOP75 {
         this.DB126_DBX7_0 = DB126_DBX7_0;
     }
 
-    public String getDB126_DBX7_1() {
-        return DB126_DBX7_1;
+    public String getDB127_DBX10_0() {
+        return DB127_DBX10_0;
     }
 
-    public void setDB126_DBX7_1(String DB126_DBX7_1) {
-        this.DB126_DBX7_1 = DB126_DBX7_1;
+    public void setDB127_DBX10_0(String DB127_DBX10_0) {
+        this.DB127_DBX10_0 = DB127_DBX10_0;
     }
 
-    public String getDB127_DBX14_0() {
-        return DB127_DBX14_0;
+    public String getDB127_DBX10_1() {
+        return DB127_DBX10_1;
     }
 
-    public void setDB127_DBX14_0(String DB127_DBX14_0) {
-        this.DB127_DBX14_0 = DB127_DBX14_0;
+    public void setDB127_DBX10_1(String DB127_DBX10_1) {
+        this.DB127_DBX10_1 = DB127_DBX10_1;
     }
 
-    public String getDB127_DBX14_1() {
-        return DB127_DBX14_1;
+    public String getDB127_DBX10_2() {
+        return DB127_DBX10_2;
     }
 
-    public void setDB127_DBX14_1(String DB127_DBX14_1) {
-        this.DB127_DBX14_1 = DB127_DBX14_1;
+    public void setDB127_DBX10_2(String DB127_DBX10_2) {
+        this.DB127_DBX10_2 = DB127_DBX10_2;
     }
 
-    public String getDB127_DBX14_2() {
-        return DB127_DBX14_2;
+    public String getDB127_DBX10_3() {
+        return DB127_DBX10_3;
     }
 
-    public void setDB127_DBX14_2(String DB127_DBX14_2) {
-        this.DB127_DBX14_2 = DB127_DBX14_2;
+    public void setDB127_DBX10_3(String DB127_DBX10_3) {
+        this.DB127_DBX10_3 = DB127_DBX10_3;
     }
 
-    public String getDB127_DBX14_3() {
-        return DB127_DBX14_3;
+    public String getDB127_DBX10_4() {
+        return DB127_DBX10_4;
     }
 
-    public void setDB127_DBX14_3(String DB127_DBX14_3) {
-        this.DB127_DBX14_3 = DB127_DBX14_3;
+    public void setDB127_DBX10_4(String DB127_DBX10_4) {
+        this.DB127_DBX10_4 = DB127_DBX10_4;
     }
 
-    public String getDB127_DBX14_4() {
-        return DB127_DBX14_4;
+    public String getDB127_DBX10_5() {
+        return DB127_DBX10_5;
     }
 
-    public void setDB127_DBX14_4(String DB127_DBX14_4) {
-        this.DB127_DBX14_4 = DB127_DBX14_4;
+    public void setDB127_DBX10_5(String DB127_DBX10_5) {
+        this.DB127_DBX10_5 = DB127_DBX10_5;
     }
 
-    public String getDB127_DBX14_5() {
-        return DB127_DBX14_5;
+    public String getDB127_DBX10_6() {
+        return DB127_DBX10_6;
     }
 
-    public void setDB127_DBX14_5(String DB127_DBX14_5) {
-        this.DB127_DBX14_5 = DB127_DBX14_5;
+    public void setDB127_DBX10_6(String DB127_DBX10_6) {
+        this.DB127_DBX10_6 = DB127_DBX10_6;
     }
 
-    public String getDB127_DBX14_6() {
-        return DB127_DBX14_6;
+    public String getDB127_DBX10_7() {
+        return DB127_DBX10_7;
     }
 
-    public void setDB127_DBX14_6(String DB127_DBX14_6) {
-        this.DB127_DBX14_6 = DB127_DBX14_6;
+    public void setDB127_DBX10_7(String DB127_DBX10_7) {
+        this.DB127_DBX10_7 = DB127_DBX10_7;
     }
 
-    public String getDB127_DBX14_7() {
-        return DB127_DBX14_7;
+    public String getDB127_DBX11_0() {
+        return DB127_DBX11_0;
     }
 
-    public void setDB127_DBX14_7(String DB127_DBX14_7) {
-        this.DB127_DBX14_7 = DB127_DBX14_7;
+    public void setDB127_DBX11_0(String DB127_DBX11_0) {
+        this.DB127_DBX11_0 = DB127_DBX11_0;
     }
 
-    public String getDB127_DBX15_0() {
-        return DB127_DBX15_0;
+    public String getDB127_DBX12_0() {
+        return DB127_DBX12_0;
     }
 
-    public void setDB127_DBX15_0(String DB127_DBX15_0) {
-        this.DB127_DBX15_0 = DB127_DBX15_0;
+    public void setDB127_DBX12_0(String DB127_DBX12_0) {
+        this.DB127_DBX12_0 = DB127_DBX12_0;
     }
 
-    public String getDB127_DBX16_0() {
-        return DB127_DBX16_0;
+    public String getDB127_DBX12_1() {
+        return DB127_DBX12_1;
     }
 
-    public void setDB127_DBX16_0(String DB127_DBX16_0) {
-        this.DB127_DBX16_0 = DB127_DBX16_0;
+    public void setDB127_DBX12_1(String DB127_DBX12_1) {
+        this.DB127_DBX12_1 = DB127_DBX12_1;
     }
 
-    public String getDB127_DBX16_1() {
-        return DB127_DBX16_1;
+    public String getDB127_DBX12_2() {
+        return DB127_DBX12_2;
     }
 
-    public void setDB127_DBX16_1(String DB127_DBX16_1) {
-        this.DB127_DBX16_1 = DB127_DBX16_1;
+    public void setDB127_DBX12_2(String DB127_DBX12_2) {
+        this.DB127_DBX12_2 = DB127_DBX12_2;
     }
 
-    public String getDB127_DBX16_2() {
-        return DB127_DBX16_2;
+    public String getDB127_DBX12_3() {
+        return DB127_DBX12_3;
     }
 
-    public void setDB127_DBX16_2(String DB127_DBX16_2) {
-        this.DB127_DBX16_2 = DB127_DBX16_2;
+    public void setDB127_DBX12_3(String DB127_DBX12_3) {
+        this.DB127_DBX12_3 = DB127_DBX12_3;
     }
 
-    public String getDB127_DBX16_3() {
-        return DB127_DBX16_3;
+    public String getDB127_DBX12_4() {
+        return DB127_DBX12_4;
     }
 
-    public void setDB127_DBX16_3(String DB127_DBX16_3) {
-        this.DB127_DBX16_3 = DB127_DBX16_3;
+    public void setDB127_DBX12_4(String DB127_DBX12_4) {
+        this.DB127_DBX12_4 = DB127_DBX12_4;
     }
 
-    public String getDB127_DBX16_4() {
-        return DB127_DBX16_4;
+    public String getDB127_DBX12_5() {
+        return DB127_DBX12_5;
     }
 
-    public void setDB127_DBX16_4(String DB127_DBX16_4) {
-        this.DB127_DBX16_4 = DB127_DBX16_4;
+    public void setDB127_DBX12_5(String DB127_DBX12_5) {
+        this.DB127_DBX12_5 = DB127_DBX12_5;
     }
 
-    public String getDB127_DBX16_5() {
-        return DB127_DBX16_5;
+    public String getDB127_DBX12_6() {
+        return DB127_DBX12_6;
     }
 
-    public void setDB127_DBX16_5(String DB127_DBX16_5) {
-        this.DB127_DBX16_5 = DB127_DBX16_5;
+    public void setDB127_DBX12_6(String DB127_DBX12_6) {
+        this.DB127_DBX12_6 = DB127_DBX12_6;
     }
 
-    public String getDB127_DBX16_6() {
-        return DB127_DBX16_6;
+    public String getDB127_DBX12_7() {
+        return DB127_DBX12_7;
     }
 
-    public void setDB127_DBX16_6(String DB127_DBX16_6) {
-        this.DB127_DBX16_6 = DB127_DBX16_6;
+    public void setDB127_DBX12_7(String DB127_DBX12_7) {
+        this.DB127_DBX12_7 = DB127_DBX12_7;
     }
 
-    public String getDB127_DBX16_7() {
-        return DB127_DBX16_7;
+    public String getDB127_DBX13_0() {
+        return DB127_DBX13_0;
     }
 
-    public void setDB127_DBX16_7(String DB127_DBX16_7) {
-        this.DB127_DBX16_7 = DB127_DBX16_7;
-    }
-
-    public String getDB127_DBX17_0() {
-        return DB127_DBX17_0;
-    }
-
-    public void setDB127_DBX17_0(String DB127_DBX17_0) {
-        this.DB127_DBX17_0 = DB127_DBX17_0;
+    public void setDB127_DBX13_0(String DB127_DBX13_0) {
+        this.DB127_DBX13_0 = DB127_DBX13_0;
     }
 
     public String getDB127_DBX18_0() {
@@ -974,76 +921,148 @@ public class CL_PDOP75 {
         this.DB127_DBX19_0 = DB127_DBX19_0;
     }
 
-    public String getDB127_DBX26_0() {
-        return DB127_DBX26_0;
+    public String getDB127_DBX20_0() {
+        return DB127_DBX20_0;
     }
 
-    public void setDB127_DBX26_0(String DB127_DBX26_0) {
-        this.DB127_DBX26_0 = DB127_DBX26_0;
+    public void setDB127_DBX20_0(String DB127_DBX20_0) {
+        this.DB127_DBX20_0 = DB127_DBX20_0;
     }
 
-    public String getDB127_DBX26_1() {
-        return DB127_DBX26_1;
+    public String getDB127_DBX20_1() {
+        return DB127_DBX20_1;
     }
 
-    public void setDB127_DBX26_1(String DB127_DBX26_1) {
-        this.DB127_DBX26_1 = DB127_DBX26_1;
+    public void setDB127_DBX20_1(String DB127_DBX20_1) {
+        this.DB127_DBX20_1 = DB127_DBX20_1;
     }
 
-    public String getDB127_DBX26_2() {
-        return DB127_DBX26_2;
+    public String getDB127_DBX20_2() {
+        return DB127_DBX20_2;
     }
 
-    public void setDB127_DBX26_2(String DB127_DBX26_2) {
-        this.DB127_DBX26_2 = DB127_DBX26_2;
+    public void setDB127_DBX20_2(String DB127_DBX20_2) {
+        this.DB127_DBX20_2 = DB127_DBX20_2;
     }
 
-    public String getDB127_DBX26_3() {
-        return DB127_DBX26_3;
+    public String getDB127_DBX20_3() {
+        return DB127_DBX20_3;
     }
 
-    public void setDB127_DBX26_3(String DB127_DBX26_3) {
-        this.DB127_DBX26_3 = DB127_DBX26_3;
+    public void setDB127_DBX20_3(String DB127_DBX20_3) {
+        this.DB127_DBX20_3 = DB127_DBX20_3;
     }
 
-    public String getDB127_DBX26_4() {
-        return DB127_DBX26_4;
+    public String getDB127_DBX20_4() {
+        return DB127_DBX20_4;
     }
 
-    public void setDB127_DBX26_4(String DB127_DBX26_4) {
-        this.DB127_DBX26_4 = DB127_DBX26_4;
+    public void setDB127_DBX20_4(String DB127_DBX20_4) {
+        this.DB127_DBX20_4 = DB127_DBX20_4;
     }
 
-    public String getDB127_DBX26_5() {
-        return DB127_DBX26_5;
+    public String getDB127_DBX20_5() {
+        return DB127_DBX20_5;
     }
 
-    public void setDB127_DBX26_5(String DB127_DBX26_5) {
-        this.DB127_DBX26_5 = DB127_DBX26_5;
+    public void setDB127_DBX20_5(String DB127_DBX20_5) {
+        this.DB127_DBX20_5 = DB127_DBX20_5;
     }
 
-    public String getDB127_DBX26_6() {
-        return DB127_DBX26_6;
+    public String getDB127_DBX20_6() {
+        return DB127_DBX20_6;
     }
 
-    public void setDB127_DBX26_6(String DB127_DBX26_6) {
-        this.DB127_DBX26_6 = DB127_DBX26_6;
+    public void setDB127_DBX20_6(String DB127_DBX20_6) {
+        this.DB127_DBX20_6 = DB127_DBX20_6;
     }
 
-    public String getDB127_DBX26_7() {
-        return DB127_DBX26_7;
+    public String getDB127_DBX20_7() {
+        return DB127_DBX20_7;
     }
 
-    public void setDB127_DBX26_7(String DB127_DBX26_7) {
-        this.DB127_DBX26_7 = DB127_DBX26_7;
+    public void setDB127_DBX20_7(String DB127_DBX20_7) {
+        this.DB127_DBX20_7 = DB127_DBX20_7;
     }
 
-    public String getDB127_DBX27_0() {
-        return DB127_DBX27_0;
+    public String getDB127_DBX21_0() {
+        return DB127_DBX21_0;
     }
 
-    public void setDB127_DBX27_0(String DB127_DBX27_0) {
-        this.DB127_DBX27_0 = DB127_DBX27_0;
+    public void setDB127_DBX21_0(String DB127_DBX21_0) {
+        this.DB127_DBX21_0 = DB127_DBX21_0;
+    }
+
+    public String getDB127_DBX22_0() {
+        return DB127_DBX22_0;
+    }
+
+    public void setDB127_DBX22_0(String DB127_DBX22_0) {
+        this.DB127_DBX22_0 = DB127_DBX22_0;
+    }
+
+    public String getDB127_DBX22_1() {
+        return DB127_DBX22_1;
+    }
+
+    public void setDB127_DBX22_1(String DB127_DBX22_1) {
+        this.DB127_DBX22_1 = DB127_DBX22_1;
+    }
+
+    public String getDB127_DBX22_2() {
+        return DB127_DBX22_2;
+    }
+
+    public void setDB127_DBX22_2(String DB127_DBX22_2) {
+        this.DB127_DBX22_2 = DB127_DBX22_2;
+    }
+
+    public String getDB127_DBX22_3() {
+        return DB127_DBX22_3;
+    }
+
+    public void setDB127_DBX22_3(String DB127_DBX22_3) {
+        this.DB127_DBX22_3 = DB127_DBX22_3;
+    }
+
+    public String getDB127_DBX22_4() {
+        return DB127_DBX22_4;
+    }
+
+    public void setDB127_DBX22_4(String DB127_DBX22_4) {
+        this.DB127_DBX22_4 = DB127_DBX22_4;
+    }
+
+    public String getDB127_DBX22_5() {
+        return DB127_DBX22_5;
+    }
+
+    public void setDB127_DBX22_5(String DB127_DBX22_5) {
+        this.DB127_DBX22_5 = DB127_DBX22_5;
+    }
+
+    public String getDB127_DBX22_6() {
+        return DB127_DBX22_6;
+    }
+
+    public void setDB127_DBX22_6(String DB127_DBX22_6) {
+        this.DB127_DBX22_6 = DB127_DBX22_6;
+    }
+
+    public String getDB127_DBX22_7() {
+        return DB127_DBX22_7;
+    }
+
+    public void setDB127_DBX22_7(String DB127_DBX22_7) {
+        this.DB127_DBX22_7 = DB127_DBX22_7;
+    }
+
+    public String getDB127_DBX23_0() {
+        return DB127_DBX23_0;
+    }
+
+    public void setDB127_DBX23_0(String DB127_DBX23_0) {
+        this.DB127_DBX23_0 = DB127_DBX23_0;
     }
 
     public String getDB127_DBX2_0() {
@@ -1190,78 +1209,6 @@ public class CL_PDOP75 {
         this.DB127_DBX3_0 = DB127_DBX3_0;
     }
 
-    public String getDB127_DBX40_0() {
-        return DB127_DBX40_0;
-    }
-
-    public void setDB127_DBX40_0(String DB127_DBX40_0) {
-        this.DB127_DBX40_0 = DB127_DBX40_0;
-    }
-
-    public String getDB127_DBX40_1() {
-        return DB127_DBX40_1;
-    }
-
-    public void setDB127_DBX40_1(String DB127_DBX40_1) {
-        this.DB127_DBX40_1 = DB127_DBX40_1;
-    }
-
-    public String getDB127_DBX40_2() {
-        return DB127_DBX40_2;
-    }
-
-    public void setDB127_DBX40_2(String DB127_DBX40_2) {
-        this.DB127_DBX40_2 = DB127_DBX40_2;
-    }
-
-    public String getDB127_DBX40_3() {
-        return DB127_DBX40_3;
-    }
-
-    public void setDB127_DBX40_3(String DB127_DBX40_3) {
-        this.DB127_DBX40_3 = DB127_DBX40_3;
-    }
-
-    public String getDB127_DBX40_4() {
-        return DB127_DBX40_4;
-    }
-
-    public void setDB127_DBX40_4(String DB127_DBX40_4) {
-        this.DB127_DBX40_4 = DB127_DBX40_4;
-    }
-
-    public String getDB127_DBX40_5() {
-        return DB127_DBX40_5;
-    }
-
-    public void setDB127_DBX40_5(String DB127_DBX40_5) {
-        this.DB127_DBX40_5 = DB127_DBX40_5;
-    }
-
-    public String getDB127_DBX40_6() {
-        return DB127_DBX40_6;
-    }
-
-    public void setDB127_DBX40_6(String DB127_DBX40_6) {
-        this.DB127_DBX40_6 = DB127_DBX40_6;
-    }
-
-    public String getDB127_DBX40_7() {
-        return DB127_DBX40_7;
-    }
-
-    public void setDB127_DBX40_7(String DB127_DBX40_7) {
-        this.DB127_DBX40_7 = DB127_DBX40_7;
-    }
-
-    public String getDB127_DBX41_0() {
-        return DB127_DBX41_0;
-    }
-
-    public void setDB127_DBX41_0(String DB127_DBX41_0) {
-        this.DB127_DBX41_0 = DB127_DBX41_0;
-    }
-
     public String getDB127_DBX42_0() {
         return DB127_DBX42_0;
     }
@@ -1332,6 +1279,150 @@ public class CL_PDOP75 {
 
     public void setDB127_DBX43_0(String DB127_DBX43_0) {
         this.DB127_DBX43_0 = DB127_DBX43_0;
+    }
+
+    public String getDB127_DBX44_0() {
+        return DB127_DBX44_0;
+    }
+
+    public void setDB127_DBX44_0(String DB127_DBX44_0) {
+        this.DB127_DBX44_0 = DB127_DBX44_0;
+    }
+
+    public String getDB127_DBX44_1() {
+        return DB127_DBX44_1;
+    }
+
+    public void setDB127_DBX44_1(String DB127_DBX44_1) {
+        this.DB127_DBX44_1 = DB127_DBX44_1;
+    }
+
+    public String getDB127_DBX44_2() {
+        return DB127_DBX44_2;
+    }
+
+    public void setDB127_DBX44_2(String DB127_DBX44_2) {
+        this.DB127_DBX44_2 = DB127_DBX44_2;
+    }
+
+    public String getDB127_DBX44_3() {
+        return DB127_DBX44_3;
+    }
+
+    public void setDB127_DBX44_3(String DB127_DBX44_3) {
+        this.DB127_DBX44_3 = DB127_DBX44_3;
+    }
+
+    public String getDB127_DBX44_4() {
+        return DB127_DBX44_4;
+    }
+
+    public void setDB127_DBX44_4(String DB127_DBX44_4) {
+        this.DB127_DBX44_4 = DB127_DBX44_4;
+    }
+
+    public String getDB127_DBX44_5() {
+        return DB127_DBX44_5;
+    }
+
+    public void setDB127_DBX44_5(String DB127_DBX44_5) {
+        this.DB127_DBX44_5 = DB127_DBX44_5;
+    }
+
+    public String getDB127_DBX44_6() {
+        return DB127_DBX44_6;
+    }
+
+    public void setDB127_DBX44_6(String DB127_DBX44_6) {
+        this.DB127_DBX44_6 = DB127_DBX44_6;
+    }
+
+    public String getDB127_DBX44_7() {
+        return DB127_DBX44_7;
+    }
+
+    public void setDB127_DBX44_7(String DB127_DBX44_7) {
+        this.DB127_DBX44_7 = DB127_DBX44_7;
+    }
+
+    public String getDB127_DBX45_0() {
+        return DB127_DBX45_0;
+    }
+
+    public void setDB127_DBX45_0(String DB127_DBX45_0) {
+        this.DB127_DBX45_0 = DB127_DBX45_0;
+    }
+
+    public String getDB127_DBX46_0() {
+        return DB127_DBX46_0;
+    }
+
+    public void setDB127_DBX46_0(String DB127_DBX46_0) {
+        this.DB127_DBX46_0 = DB127_DBX46_0;
+    }
+
+    public String getDB127_DBX46_1() {
+        return DB127_DBX46_1;
+    }
+
+    public void setDB127_DBX46_1(String DB127_DBX46_1) {
+        this.DB127_DBX46_1 = DB127_DBX46_1;
+    }
+
+    public String getDB127_DBX46_2() {
+        return DB127_DBX46_2;
+    }
+
+    public void setDB127_DBX46_2(String DB127_DBX46_2) {
+        this.DB127_DBX46_2 = DB127_DBX46_2;
+    }
+
+    public String getDB127_DBX46_3() {
+        return DB127_DBX46_3;
+    }
+
+    public void setDB127_DBX46_3(String DB127_DBX46_3) {
+        this.DB127_DBX46_3 = DB127_DBX46_3;
+    }
+
+    public String getDB127_DBX46_4() {
+        return DB127_DBX46_4;
+    }
+
+    public void setDB127_DBX46_4(String DB127_DBX46_4) {
+        this.DB127_DBX46_4 = DB127_DBX46_4;
+    }
+
+    public String getDB127_DBX46_5() {
+        return DB127_DBX46_5;
+    }
+
+    public void setDB127_DBX46_5(String DB127_DBX46_5) {
+        this.DB127_DBX46_5 = DB127_DBX46_5;
+    }
+
+    public String getDB127_DBX46_6() {
+        return DB127_DBX46_6;
+    }
+
+    public void setDB127_DBX46_6(String DB127_DBX46_6) {
+        this.DB127_DBX46_6 = DB127_DBX46_6;
+    }
+
+    public String getDB127_DBX46_7() {
+        return DB127_DBX46_7;
+    }
+
+    public void setDB127_DBX46_7(String DB127_DBX46_7) {
+        this.DB127_DBX46_7 = DB127_DBX46_7;
+    }
+
+    public String getDB127_DBX47_0() {
+        return DB127_DBX47_0;
+    }
+
+    public void setDB127_DBX47_0(String DB127_DBX47_0) {
+        this.DB127_DBX47_0 = DB127_DBX47_0;
     }
 
     public String getDB127_DBX4_0() {
@@ -1924,5 +2015,13 @@ public class CL_PDOP75 {
 
     public void setDB2000_DBX1100_7(String DB2000_DBX1100_7) {
         this.DB2000_DBX1100_7 = DB2000_DBX1100_7;
+    }
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
     }
 }

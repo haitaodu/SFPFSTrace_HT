@@ -33,9 +33,9 @@
 
 		<property name="maxIdleTime" value="60">
 		</property>
-		<property name="minPoolSize" value="10">
+		<property name="minPoolSize" value="60">
 		</property>
-		<property name="initialPoolSize" value="10"/>
+		<property name="initialPoolSize" value="80"/>
 		<property name="idleConnectionTestPeriod" value="100">
 		</property>
 		<property name="acquireIncrement" value="10">
