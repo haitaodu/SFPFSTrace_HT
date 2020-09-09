@@ -32,10 +32,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
     HibernateTemplate hibernateTemplate;
     private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
-    public CL_StationDaoImpl(HibernateTemplate hibernateTemplate) {
+    public CL_StationDaoImpl(HibernateTemplate hibernateTemplate, SessionFactory sessionFactory) {
         this.hibernateTemplate = hibernateTemplate;
+        this.sessionFactory = sessionFactory;
     }
-    @Autowired
+    final
     SessionFactory sessionFactory;
 
     @Override

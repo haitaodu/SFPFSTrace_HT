@@ -3,7 +3,7 @@ package com.smartflow.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -27,9 +27,17 @@ public class CL_FCOP45 {
     private Long WorkOrderId;
     private String IS_OK;
     private String CHECK_DATE;
-    private String QRCODE;
+    private String QR_CODE;
     private String STATUS;
     private String PRODUCT;
+
+    public String getQR_CODE() {
+        return QR_CODE;
+    }
+
+    public void setQR_CODE(String QR_CODE) {
+        this.QR_CODE = QR_CODE;
+    }
 
     public String getIS_OK() {
         return IS_OK;
@@ -87,13 +95,7 @@ public class CL_FCOP45 {
         this.CHECK_DATE = CHECK_DATE;
     }
 
-    public String getQRCODE() {
-        return QRCODE;
-    }
 
-    public void setQRCODE(String QRCODE) {
-        this.QRCODE = QRCODE;
-    }
 
     public String getSTATUS() {
         return STATUS;

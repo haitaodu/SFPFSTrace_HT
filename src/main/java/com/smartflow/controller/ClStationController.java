@@ -110,16 +110,23 @@ public class ClStationController extends BaseController{
      */
     private JSONObject reWrite(String serialNumber,JSONObject jsonObject,String linkTableName) {
 
-
+        /*
+         * 判断条形码是否是空，若为空的话，自己生成条形码
+         */
         if (serialNumber == null||"".equals(serialNumber))
         {
             Date date = new Date();
             serialNumber=date.toString();
         }
-        if (StationEnumUtil.isNgWriteTable(linkTableName))
+
+        /*
+         * 判断NG字段是否为报警状态且为TU,RE,IM的NG字段
+         */
+        if (jsonObject.get("IS_OK").equals("0")&&StationEnumUtil.isNgWriteTable(linkTableName))
         {
             jsonObject.put("state",1);
             clStationService.writeNg(serialNumber,linkTableName);
+            return jsonObject;
         }
         /*
          * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
@@ -138,7 +145,6 @@ public class ClStationController extends BaseController{
             {
                 jsonObject.put("SerialNumber", serialNumber);
             }
-        //System.out.println(serialNumber);
         logger.info(serialNumber);
         return jsonObject;
     }
