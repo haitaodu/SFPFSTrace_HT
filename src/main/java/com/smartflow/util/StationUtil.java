@@ -97,6 +97,7 @@ public class StationUtil {
     }
     public static List<String> getFilterEqualsCondition(){
         List<String> list = new ArrayList<>();
+        list.add("DB48_DBW364");
         list.add("MD200");
         //list.add("M620.3");
         list.add("M620_3");

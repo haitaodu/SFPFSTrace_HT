@@ -103,17 +103,25 @@ public class TracePartByStationController extends BaseController{
 					headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
-					List<TableHeaderDTO> filterList = headerList.stream().filter(h -> !h.getDataIndex().startsWith("M5")).filter(h -> !h.getDataIndex().equals("DB48_DBW364")).collect(Collectors.toList());
 //					String[] dataIndexList = filterList.stream().map(h -> h.getDataIndex()).toArray(String[] :: new);//.collect(Collectors.toList());
 //					Arrays.sort(StationUtil.getTargetSortString(dataIndexList), StationUtil.ChsLogicCmp);
 //					filterList.stream().forEach(System.out::println);
 //					System.out.println("==============================================");
 //					filterList.stream().skip(1).skip(2).forEach(System.out::println);
 
-                    filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
+					List<TableHeaderDTO> filterList = TableHeaderDTO.filterHeaders(headerList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
                     filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.equals);
 
-					Collections.sort(filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList()), new ComparatorUtil());
+                    //字段排序（忽略产品条码、工单、创建时间）
+                    filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
+
+					Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
+					TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
+					TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
+				    filterList.add(0, tableHeaderDTO1);
+					filterList.add(1, tableHeaderDTO2);
+					filterList.add(tableHeaderDTO3);
 
 					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
