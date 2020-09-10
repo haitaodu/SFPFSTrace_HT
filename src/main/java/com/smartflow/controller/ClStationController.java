@@ -27,7 +27,9 @@ public class ClStationController extends BaseController{
     private final
     CL_StationService clStationService;
 
+    private final  static String NG_CODE="0";
 
+    private final static String NG_KEY="IS_OK";
 
     private static final int ERROR_CODE=0;
     private static final int SUCEESS_CODE=200;
@@ -73,13 +75,11 @@ public class ClStationController extends BaseController{
                 clStationDeviceDTO.setObject(reWrite(serialNumber,jsonObject,linkTableName));
                 logger.info(clStationDeviceDTO);
                 clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
-                //System.out.println(clStationDeviceDTO);
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
             }
             catch (Exception e)
             {
-                logger.info(e.getCause());
-                e.printStackTrace();
+                logger.info(e.getStackTrace());
             }
         return json;
     }
@@ -94,7 +94,6 @@ public class ClStationController extends BaseController{
     @SuppressWarnings("unckecked")
     private  Object parseToEntity(String linkedName,AddCLStationDeviceDTO clStationDeviceDTO) throws ClassNotFoundException {
         Class<?> classEntity=Class.forName("com.smartflow.model."+linkedName);
-        //System.out.println(clStationDeviceDTO);
         return  JSON.parseObject
                 (JSON.toJSONString(clStationDeviceDTO.getObject()),
                         classEntity);
@@ -122,7 +121,7 @@ public class ClStationController extends BaseController{
         /*
          * 判断NG字段是否为报警状态且为TU,RE,IM的NG字段
          */
-        if (jsonObject.get("IS_OK").equals("0")&&StationEnumUtil.isNgWriteTable(linkTableName))
+        if (NG_CODE.equals(jsonObject.get(NG_KEY)) &&StationEnumUtil.isNgWriteTable(linkTableName))
         {
             jsonObject.put("state",1);
             clStationService.writeNg(serialNumber,linkTableName);
