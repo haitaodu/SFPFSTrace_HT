@@ -135,4 +135,60 @@ public class TracePartByStationController extends BaseController{
 		}		
 		return json;
 	}
+
+    /**
+     * 根据工站获取设备相关信息
+     * @param stationId
+     * @return
+     */
+    @CrossOrigin(origins="*",maxAge=3600)
+    @GetMapping(value="/GetStationInformationByStation/{stationId}")
+	public Map<String, Object> getStationInformationByStation(@PathVariable Integer stationId){
+	    Map<String,Object> json = new HashMap<>();
+        List<Map<String,Object>> dataMapList = new ArrayList<>();
+	    try {
+            String linkTableName = clstationService.getLinkTableNameByStationId(stationId);
+            if (linkTableName == null) {
+                json = this.setJson(FALL_CODE, "工站没有关联的表！", -1);
+                return json;
+            } else {
+                List<Map<String, Object>> dataList = clstationService.getCLStationDeviceListByLinkTableName(linkTableName);
+                Map<String, Object> map = new HashMap<>();
+                if (!CollectionUtils.isEmpty(dataList)) {
+                    map = dataList.get(0);
+                    Integer workOrderId = map.get("WorkOrderId") == null ? null : Integer.parseInt(map.get("WorkOrderId").toString());
+                    if (workOrderId != null) {
+                        String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
+                        map.put("WorkOrderId", workOrderNumber);
+                    }
+                }
+                List<TableHeaderDTO> headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
+                for (TableHeaderDTO tableHeaderDTO : headerList) {
+                    Map<String,Object> dataMap = new HashMap<>();
+                    dataMap.put("name", tableHeaderDTO.getTitle());
+                    dataMap.put("value", map.get(tableHeaderDTO.getDataIndex()));
+                    dataMapList.add(dataMap);
+                }
+
+    //        List<TableHeaderDTO> filterList = TableHeaderDTO.filterHeaders(headerList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
+    //        filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.equals);
+
+                //字段排序（忽略产品条码、工单、创建时间）
+    //        filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
+
+    //        Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+    //        TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
+    //        TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
+    //        TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
+    //        filterList.add(0, tableHeaderDTO1);
+    //        filterList.add(1, tableHeaderDTO2);
+    //        filterList.add(tableHeaderDTO3);
+                json = this.setJson(SUCESS_CODE, GET_SUCESS, dataMapList);
+            }
+        }catch(Exception e){
+            json = this.setJson(FALL_CODE, GET_FALL+e.getMessage(), -1);
+            logger.error(e.getCause());
+        }
+        return json;
+    }
 }

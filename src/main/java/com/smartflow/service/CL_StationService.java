@@ -94,4 +94,11 @@ public interface CL_StationService {
      * @param tableName 表名
      */
     public void writeNg(String serialNumber,String tableName);
+
+    /**
+     * 根据关联的表名查询工站设备相关信息
+     * @param linkTableName
+     * @return
+     */
+    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName);
 }

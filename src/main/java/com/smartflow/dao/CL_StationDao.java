@@ -74,4 +74,11 @@ public interface CL_StationDao {
      */
     public String getWorkOrderNumberByWorkOrderId(Integer workOrderId);
 
+    /**
+     * 根据关联的表名查询工站设备相关信息
+     * @param linkTableName
+     * @return
+     */
+    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName);
+
 }
