@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -122,10 +123,20 @@ public class ExportExcelUtil<T> {
             t = (T) it.next();
             // 利用反射，根据JavaBean属性的先后顺序，动态调用getXxx()方法得到属性值
             fields = t.getClass().getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
+            int a = 0;
+            Field[] tempFields = new Field[fields.length-1];
+            for(Field s:fields){
+                //匹配是否为静态常量
+                if( Modifier.isStatic(s.getModifiers())) {
+                    continue;
+                }
+                tempFields[a] = s;
+                a++;
+            }
+            for (int i = 0; i < tempFields.length; i++) {
                 cell = row.createCell(i);
                 cell.setCellStyle(style2);
-                field = fields[i];
+                field = tempFields[i];
                 fieldName = field.getName();
                 getMethodName = "get" + fieldName.substring(0, 1).toUpperCase()
                         + fieldName.substring(1);
@@ -277,15 +288,30 @@ public class ExportExcelUtil<T> {
             t = (T) it.next();
             // 利用反射，根据JavaBean属性的先后顺序，动态调用getXxx()方法得到属性值
             fields = t.getClass().getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
+            int a = 0;
+            Field[] tempFields = new Field[fields.length-1];
+            for(Field s:fields){
+                //匹配是否为静态常量
+                if( Modifier.isStatic(s.getModifiers())) {
+                    continue;
+                }
+                tempFields[a] = s;
+                a++;
+            }
+
+            for (int i = 0; i < tempFields.length; i++) {
                 cell = row.createCell(i);
                 cell.setCellStyle(style2);
-                field = fields[i];
+                field = tempFields[i];
                 fieldName = field.getName();
                 getMethodName = "get" + fieldName.substring(0, 1).toUpperCase()
                         + fieldName.substring(1);
                 try {
                     tCls = t.getClass();
+                    //匹配是否为静态常量 剔除serialVersionUID
+                    if(Modifier.isStatic(field.getModifiers())){
+                        break;
+                    }
                     getMethod = tCls.getMethod(getMethodName, new Class[] {});
                     value = getMethod.invoke(t, new Object[] {});
                     // 判断值的类型后进行强制类型转换
