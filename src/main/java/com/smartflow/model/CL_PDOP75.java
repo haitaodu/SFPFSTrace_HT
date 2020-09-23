@@ -229,6 +229,87 @@ public class CL_PDOP75 {
     private String DB2000_DBX1100_5;
     private String DB2000_DBX1100_6;
     private String DB2000_DBX1100_7;
+    private float DB2000_DBD40;
+    private float DB2000_DBD44;
+    private float DB2000_DBD48;
+    private float DB2000_DBD52;
+    private float DB2000_DBD56;
+    private float DB2000_DBD60;
+    private float DB2000_DBD64;
+    private float DB2000_DBD68;
+    private float DB2000_DBD72;
+
+    public float getDB2000_DBD40() {
+        return DB2000_DBD40;
+    }
+
+    public void setDB2000_DBD40(float DB2000_DBD40) {
+        this.DB2000_DBD40 = DB2000_DBD40;
+    }
+
+    public float getDB2000_DBD44() {
+        return DB2000_DBD44;
+    }
+
+    public void setDB2000_DBD44(float DB2000_DBD44) {
+        this.DB2000_DBD44 = DB2000_DBD44;
+    }
+
+    public float getDB2000_DBD48() {
+        return DB2000_DBD48;
+    }
+
+    public void setDB2000_DBD48(float DB2000_DBD48) {
+        this.DB2000_DBD48 = DB2000_DBD48;
+    }
+
+    public float getDB2000_DBD52() {
+        return DB2000_DBD52;
+    }
+
+    public void setDB2000_DBD52(float DB2000_DBD52) {
+        this.DB2000_DBD52 = DB2000_DBD52;
+    }
+
+    public float getDB2000_DBD56() {
+        return DB2000_DBD56;
+    }
+
+    public void setDB2000_DBD56(float DB2000_DBD56) {
+        this.DB2000_DBD56 = DB2000_DBD56;
+    }
+
+    public float getDB2000_DBD60() {
+        return DB2000_DBD60;
+    }
+
+    public void setDB2000_DBD60(float DB2000_DBD60) {
+        this.DB2000_DBD60 = DB2000_DBD60;
+    }
+
+    public float getDB2000_DBD64() {
+        return DB2000_DBD64;
+    }
+
+    public void setDB2000_DBD64(float DB2000_DBD64) {
+        this.DB2000_DBD64 = DB2000_DBD64;
+    }
+
+    public float getDB2000_DBD68() {
+        return DB2000_DBD68;
+    }
+
+    public void setDB2000_DBD68(float DB2000_DBD68) {
+        this.DB2000_DBD68 = DB2000_DBD68;
+    }
+
+    public float getDB2000_DBD72() {
+        return DB2000_DBD72;
+    }
+
+    public void setDB2000_DBD72(float DB2000_DBD72) {
+        this.DB2000_DBD72 = DB2000_DBD72;
+    }
 
     public String getUUID() {
         return UUID;

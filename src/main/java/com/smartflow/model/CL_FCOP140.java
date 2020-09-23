@@ -55,6 +55,15 @@ public class CL_FCOP140 {
     private String M245_3;
     private String M620_3;
     private String DB71_DBX44_0;
+    private String MD200;
+
+    public String getMD200() {
+        return MD200;
+    }
+
+    public void setMD200(String MD200) {
+        this.MD200 = MD200;
+    }
 
     public String getDB71_DBX44_0() {
         return DB71_DBX44_0;

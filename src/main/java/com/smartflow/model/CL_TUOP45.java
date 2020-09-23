@@ -34,6 +34,15 @@ public class CL_TUOP45 {
   private BigDecimal DB100_REAL82;
   private BigDecimal DB100_REAL86;
   private int state;
+  private String DB100_DB284;
+
+  public String getDB100_DB284() {
+    return DB100_DB284;
+  }
+
+  public void setDB100_DB284(String DB100_DB284) {
+    this.DB100_DB284 = DB100_DB284;
+  }
 
   public String getIS_OK() {
     return IS_OK;
