@@ -123,10 +123,10 @@ public class TracePartByStationController extends BaseController{
 					filterList.add(1, tableHeaderDTO2);
 					filterList.add(tableHeaderDTO3);
 
-					List<String> list = filterList.stream().map(f -> f.getDataIndex()).collect(Collectors.toList());
-					for (String s:list) {
-						dataList = dataList.stream().filter(x -> !x.containsKey(s)).collect(Collectors.toList());
-					}
+//					List<String> list = filterList.stream().map(f -> f.getDataIndex()).collect(Collectors.toList());
+//					for (String s:list) {
+//						dataList = dataList.stream().filter(x -> !x.containsKey(s)).collect(Collectors.toList());
+//					}
 					vmTracePartByStationOutput.setHeaderList(filterList);
 					vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
 					vmTracePartByStationOutput.setTotal(rowCount);
