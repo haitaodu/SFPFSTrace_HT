@@ -3,7 +3,13 @@
   <groupId>com.smartflow</groupId>
   <artifactId>SFPFSTrace_HT</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+	<repositories>
+		<repository>
+			<id>com.e-iceblue</id>
+			<url>http://repo.e-iceblue.cn/repository/maven-public/</url>
+		</repository>
+	</repositories>
+	<packaging>war</packaging>
   <properties>
 		<log4j.version>1.2.17</log4j.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
@@ -30,6 +36,17 @@
 			<groupId>se.jiderhamn.classloader-leak-prevention</groupId>
 			<artifactId>classloader-leak-prevention-servlet</artifactId>
 			<version>2.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>e-iceblue</groupId>
+			<artifactId>spire.xls</artifactId>
+			<version>3.4.8</version>
+		</dependency>
+		<dependency>
+			<groupId>e-iceblue</groupId>
+			<artifactId>spire.xls.free</artifactId>
+			<version>2.2.0</version>
 		</dependency>
 	</dependencies>
 

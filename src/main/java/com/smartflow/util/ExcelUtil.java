@@ -1,12 +1,17 @@
 package com.smartflow.util;
 
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.ComparisonOperator;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.util.CollectionUtils;
+import com.spire.xls.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 public class ExcelUtil {
     /**
@@ -29,7 +34,7 @@ public class ExcelUtil {
             cellStyle.setFont(font);
 
             //建立新的sheet对象（excel的表单）
-            HSSFSheet sheet = wb.createSheet("采购单");
+            HSSFSheet sheet = wb.createSheet("工站相关信息");
             //在sheet里创建第一行，参数为行索引(excel的行)，可以是0～65535之间的任何一个
             HSSFRow row1 = sheet.createRow(0);
             row1.setHeight((short)400);
@@ -102,7 +107,6 @@ public class ExcelUtil {
                     }
                 }
             }
-
             //输出Excel文件
             //File file = new File(filePath+"\\"+fileName+".xls");
             File file = new File(filePath + File.separator + fileName);
@@ -111,10 +115,12 @@ public class ExcelUtil {
                 file.getParentFile().mkdir();
                 file.createNewFile();
             }
+
             //File excelFile = File.createTempFile(fileName, ".xls", file);
             FileOutputStream os = new FileOutputStream(file);
             wb.write(os);
             os.close();
+            setConditionStyle(file);
 //			System.out.println(filePath+"文件成功导出"+fileName+"=========="+file.getName());
             return fileName;
         }catch(Exception e){
@@ -123,4 +129,21 @@ public class ExcelUtil {
         }
     }
 
+
+    public static void setConditionStyle(File file){
+        //创建Workbook对象
+        Workbook workbook = new Workbook();
+        //加载文档
+        workbook.loadFromFile(file.getPath());
+        //获取第一个工作表
+        Worksheet worksheet = workbook.getWorksheets().get(0);
+        //使用条件格式找出B3:E6区域中低于平均值得单元格，并设置红色背景
+        ConditionalFormatWrapper format1 = worksheet.getCellRange("AU1:AU20").getConditionalFormats().addCondition();
+        format1.setOperator(ComparisonOperatorType.Between);
+        format1.setFirstFormula("30");
+        format1.setSecondFormula("40");
+        format1.setBackColor(Color.red);
+        workbook.saveToFile(file.getPath(), ExcelVersion.Version2016);
+        workbook.dispose();
+    }
 }
