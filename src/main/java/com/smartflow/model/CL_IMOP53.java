@@ -20,6 +20,8 @@ public class CL_IMOP53 {
     private String UUID;
     private Date CREATE_DATE;
     private String IS_SYNCH;
+    private String SerialNumber;
+    private Integer WorkOrderId;
     private String DB2000_DBD40;
     private String DB2000_DBD44;
     private String DB2000_DBD48;
@@ -31,6 +33,22 @@ public class CL_IMOP53 {
 
     public void setUUID(String UUID) {
         this.UUID = UUID;
+    }
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public Date getCREATE_DATE() {

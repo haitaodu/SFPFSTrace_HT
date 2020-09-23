@@ -22,6 +22,7 @@ public class CL_FCOP23 {
     private String IS_SYNCH;
     private String IS_OK;
     private String SerialNumber;
+    private Integer WorkOrderId;
     private String DB126_DBX10_0;
     private String DB126_DBX10_1;
     private String DB126_DBX10_2;
@@ -253,6 +254,14 @@ public class CL_FCOP23 {
 
     public void setSerialNumber(String serialNumber) {
         SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public String getDB2000_DBD40() {
