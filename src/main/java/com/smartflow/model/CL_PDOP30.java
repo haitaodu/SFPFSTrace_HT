@@ -23,6 +23,7 @@ public class CL_PDOP30 {
     private String UUID;
     private Date CREATE_DATE;
     private String SerialNumber;
+    private Integer WorkOrderId;
     private String IS_SYNCH;
     private BigDecimal DB167_DBD0;
     private BigDecimal DB167_DBD12;
@@ -129,6 +130,14 @@ public class CL_PDOP30 {
 
     public void setSerialNumber(String serialNumber) {
         SerialNumber = serialNumber;
+    }
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
     }
 
     public String getIS_SYNCH() {
