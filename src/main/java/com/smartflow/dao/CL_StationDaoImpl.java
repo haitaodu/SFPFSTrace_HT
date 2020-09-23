@@ -239,4 +239,18 @@ public class CL_StationDaoImpl implements CL_StationDao {
         WorkOrder workOrder = hibernateTemplate.get(WorkOrder.class, workOrderId);
         return workOrder == null ? null : workOrder.getWorkOrderNumber();
     }
+
+    @Override
+    public List<Map<String, Object>> getCLStationDeviceListByLinkTableName(String linkTableName) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        try {
+            Query query = session.createSQLQuery("select top 1 * from core."+linkTableName+ " order by CREATE_DATE desc");
+            return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
 }

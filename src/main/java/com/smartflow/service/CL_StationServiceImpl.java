@@ -274,4 +274,9 @@ public class CL_StationServiceImpl implements CL_StationService {
             return "CL_REOP10A";
         }
     }
+
+    @Override
+    public List<Map<String, Object>> getCLStationDeviceListByLinkTableName(String linkTableName) {
+        return cl_stationDao.getCLStationDeviceListByLinkTableName(linkTableName);
+    }
 }
