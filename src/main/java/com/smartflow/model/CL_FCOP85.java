@@ -22,6 +22,7 @@ public class CL_FCOP85 {
     private Date CREATE_DATE;
     private String IS_SYNCH;
     private String IS_OK;
+    private Integer WorkOrderId;
     private String SerialNumber;
     private String DB2000_DB12;
     private String DB2000_DB552;
@@ -47,6 +48,15 @@ public class CL_FCOP85 {
     private BigDecimal DB2000_DBD92;
     private BigDecimal DB2000_DBD96;
     private Integer DB2000_DBW2;
+
+
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
+    }
 
     public String getUUID() {
         return UUID;
