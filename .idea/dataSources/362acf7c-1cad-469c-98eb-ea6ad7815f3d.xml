@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MESDB_SXHTDL@192.168.1.252">
-  <database-model serializer="dbm" rdbms="MSSQL" format-version="4.11">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.14">
     <root id="1">
       <ServerVersion>14.0.202</ServerVersion>
-      <ServerType>standalone</ServerType>
     </root>
     <database id="2" parent="1" name="C2M">
       <ObjectId>15</ObjectId>

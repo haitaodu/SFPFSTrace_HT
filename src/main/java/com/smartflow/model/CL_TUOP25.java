@@ -107,7 +107,7 @@ public class CL_TUOP25 {
   private String M248_4;
   private String M248_5;
   private String M620_3;
-  private BigDecimal MD200;
+  private String MD200;
   private String DB73_DBX44_0;
   private int state;
 
@@ -872,11 +872,11 @@ public class CL_TUOP25 {
     M620_3 = m620_3;
   }
 
-  public BigDecimal getMD200() {
+  public String getMD200() {
     return MD200;
   }
 
-  public void setMD200(BigDecimal MD200) {
+  public void setMD200(String MD200) {
     this.MD200 = MD200;
   }
 }

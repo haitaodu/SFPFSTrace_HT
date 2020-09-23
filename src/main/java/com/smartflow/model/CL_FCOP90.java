@@ -157,7 +157,7 @@ public class CL_FCOP90 {
     private String M248_9;
     private String M620_3;
     private String M620_4;
-    private BigDecimal MD200;
+    private String MD200;
     private BigDecimal MD201;
     private String IS_OK;
     private String DB9_DBX44_0;
@@ -1314,11 +1314,11 @@ public class CL_FCOP90 {
         M620_4 = m620_4;
     }
 
-    public BigDecimal getMD200() {
+    public String getMD200() {
         return MD200;
     }
 
-    public void setMD200(BigDecimal MD200) {
+    public void setMD200(String MD200) {
         this.MD200 = MD200;
     }
 
