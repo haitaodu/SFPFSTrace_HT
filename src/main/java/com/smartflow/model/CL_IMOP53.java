@@ -24,6 +24,16 @@ public class CL_IMOP53 {
     private String DB2000_DBD44;
     private String DB2000_DBD48;
     private String IS_OK;
+    private String SerialNumber;
+
+
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        SerialNumber = serialNumber;
+    }
 
     public String getUUID() {
         return UUID;
