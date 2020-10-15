@@ -52,11 +52,11 @@ public class CL_TQOP20 {
     private Integer DB197_DBD568;
     private Integer DB197_DBD580;
     private Integer DB197_DBD584;
-    private Integer IW_90;
-    private Integer IW_92;
-    private Integer IW_94;
-    private Integer IW_96;
-    private Integer IW_98;
+    private Integer IW90;
+    private Integer IW92;
+    private Integer IW94;
+    private Integer IW96;
+    private Integer IW98;
     private String MW2078;
     private Integer MW2112;
     private String MW254;
@@ -319,44 +319,44 @@ public class CL_TQOP20 {
         this.DB197_DBD584 = DB197_DBD584;
     }
 
-    public Integer getIW_90() {
-        return IW_90;
+    public Integer getIW90() {
+        return IW90;
     }
 
-    public void setIW_90(Integer IW_90) {
-        this.IW_90 = IW_90;
+    public void setIW90(Integer IW90) {
+        this.IW90 = IW90;
     }
 
-    public Integer getIW_92() {
-        return IW_92;
+    public Integer getIW92() {
+        return IW92;
     }
 
-    public void setIW_92(Integer IW_92) {
-        this.IW_92 = IW_92;
+    public void setIW92(Integer IW92) {
+        this.IW92 = IW92;
     }
 
-    public Integer getIW_94() {
-        return IW_94;
+    public Integer getIW94() {
+        return IW94;
     }
 
-    public void setIW_94(Integer IW_94) {
-        this.IW_94 = IW_94;
+    public void setIW94(Integer IW94) {
+        this.IW94 = IW94;
     }
 
-    public Integer getIW_96() {
-        return IW_96;
+    public Integer getIW96() {
+        return IW96;
     }
 
-    public void setIW_96(Integer IW_96) {
-        this.IW_96 = IW_96;
+    public void setIW96(Integer IW96) {
+        this.IW96 = IW96;
     }
 
-    public Integer getIW_98() {
-        return IW_98;
+    public Integer getIW98() {
+        return IW98;
     }
 
-    public void setIW_98(Integer IW_98) {
-        this.IW_98 = IW_98;
+    public void setIW98(Integer IW98) {
+        this.IW98 = IW98;
     }
 
     public String getMW2078() {

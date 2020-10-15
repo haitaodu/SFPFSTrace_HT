@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public class ParseToArray {
+    private ParseToArray(){}
     private final static List<String> IM_ARRAY =new ArrayList<>();
     private final static List<String> RE_ARRAY=new ArrayList<>();
     private final  static  List<String> TU_ARRAY=new ArrayList<>();

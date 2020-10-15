@@ -1,9 +1,6 @@
 package Test;
 
-import org.easymock.Mock;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author ：tao
