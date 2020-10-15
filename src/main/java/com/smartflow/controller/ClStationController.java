@@ -130,12 +130,15 @@ public class ClStationController extends BaseController{
         /*
          * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
          * 包含工站组Tu,Re,Im
+         * eg:TUOP20.25,30
          */
      if (StationEnumUtil.isReWriteStation(linkTableName)) {
          jsonObject.put("state", 0);
-         jsonObject.put("SerialNumber", serialNumber);
      }else
-        if (StationEnumUtil.isLastStation(linkTableName)) {
+      /*
+      * 判断是否是最后的打码表用于覆盖前边的表
+      */
+         if (StationEnumUtil.isLastStation(linkTableName)) {
                 jsonObject.put(SERIAL_ARG, serialNumber);
                 clStationService.reWriteSerialNumber
                         (serialNumber,linkTableName);

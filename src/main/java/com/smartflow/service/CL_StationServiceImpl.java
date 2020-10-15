@@ -104,7 +104,6 @@ public class CL_StationServiceImpl implements CL_StationService {
                 setSerialNumber(serialNumber, "CL_TUOP20");
                 setSerialNumber(serialNumber, "CL_TUOP25");
                 setSerialNumber(serialNumber, "CL_TUOP30");
-                setSerialNumber(serialNumber, "CL_TUOP45");
 
             }
             if ("CL_IMOP45".equals(tableName))
