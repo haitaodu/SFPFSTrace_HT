@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 数据采集通用接口
  * @author haita
  */
 
@@ -115,7 +116,7 @@ public class ClStationController extends BaseController{
         if (serialNumber == null||"".equals(serialNumber))
         {
             Date date = new Date();
-            serialNumber=date.toString();
+            serialNumber="NoSerial"+date.toString();
         }
 
         /*
@@ -134,6 +135,7 @@ public class ClStationController extends BaseController{
          */
      if (StationEnumUtil.isReWriteStation(linkTableName)) {
          jsonObject.put("state", 0);
+         jsonObject.put("SerialNumber", "Virtual"+new Date().toString());
      }else
       /*
       * 判断是否是最后的打码表用于覆盖前边的表
@@ -143,6 +145,9 @@ public class ClStationController extends BaseController{
                 clStationService.reWriteSerialNumber
                         (serialNumber,linkTableName);
         }
+         /*
+         剩下的就是普通的工站
+          */
         else
             {
                 jsonObject.put("SerialNumber", serialNumber);

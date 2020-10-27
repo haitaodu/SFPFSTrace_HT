@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+
 	   xmlns:task="http://www.springframework.org/schema/task"
 	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
 		http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        http://www.springframework.org/schema/cdubboontext http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 	<context:component-scan base-package="com.smartflow.*">
 	</context:component-scan>
 
@@ -20,13 +19,13 @@
 		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 
 		</property>
-	<!--<property name="jdbcUrl"-->
-              <!--value="${jdbc.jdbcUrl}">-->
-	<!--</property>-->
 		<!--<property name="jdbcUrl"-->
-				  <!--value="jdbc:sqlserver://192.168.1.6:1433;databaseName=MESDB_SXHTDL"></property>-->
+		<!--value="${jdbc.jdbcUrl}">-->
+		<!--</property>-->
+		<!--<property name="jdbcUrl"-->
+		<!--value="jdbc:sqlserver://192.168.1.6:1433;databaseName=MESDB_SXHTDL"></property>-->
 		<property name="jdbcUrl"
-		value="jdbc:sqlserver://192.168.1.252;databaseName=MESDB_SXHTDL3">
+				  value="jdbc:sqlserver://192.168.1.6;databaseName=MESDB_SXHTDL">
 		</property>
 
 		<property name="user" value="sa">
@@ -52,14 +51,14 @@
 		</property>
 		<property name="breakAfterAcquireFailure" value="false">
 		</property>
-		<property name="maxStatements" value="0" />
+		<property name="maxStatements" value="0"/>
 	</bean>
 
 	<!-- 提供方应用信息，用于计算依赖关系 -->
-	<dubbo:application name="dubbo-a-consumer" />
+	<dubbo:application name="dubbo-a-consumer"/>
 
 	<!-- 这里使用的注册中心是zookeeper -->
-	<dubbo:registry address="zookeeper://192.168.1.211:2181" client="zkclient"/>
+	<dubbo:registry address="zookeeper://192.168.1.6:2181" client="zkclient"/>
 
 	<!-- 从注册中心中查找服务 -->
 	<dubbo:reference id="CellService" interface="com.smartflow.service.CellService"/>
@@ -74,7 +73,7 @@
 				<prop key="hibernate.dialect">com.smartflow.util.MySQLServerDialect</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.show_sql">false</prop>
-				 <prop key="hibernate.c3p0.max_size">200</prop>
+				<prop key="hibernate.c3p0.max_size">200</prop>
 				<!-- <prop key="hibernate.c3p0.min_size">0</prop>
 				<prop key="hibernate.c3p0.timeout">5000</prop>
 				<prop key="hibernate.c3p0.max_statements">100</prop>
@@ -85,25 +84,25 @@
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
 				<prop key="hibernate.cache.configurationResourceName">ehcache.xml</prop>
-                <prop key="hibernate.connection.url">jdbc:sqlserver://192.168.1.6:1433</prop>
-                <prop key="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</prop>
-            </props>
+				<prop key="hibernate.connection.url">jdbc:sqlserver://192.168.1.6:1433</prop>
+				<prop key="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</prop>
+			</props>
 		</property>
 		<property name="packagesToScan" value="com.smartflow.model">
 		</property>
 		<!--<property name="annotatedClasses">-->
-			<!--<list>-->
-				<!--<value>com.smartflow.model.CL_TUOP10</value>-->
-			<!--</list>-->
+		<!--<list>-->
+		<!--<value>com.smartflow.model.CL_TUOP10</value>-->
+		<!--</list>-->
 		<!--</property>-->
 	</bean>
-	
+
 	<!-- 配置hibernateTemplate -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory">
 		</property>
 	</bean>
-	
+
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory">
@@ -116,7 +115,7 @@
 	<!-- 自动注入aop代理-->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
-	<task:annotation-driven />
+	<task:annotation-driven/>
 
 
 </beans>
