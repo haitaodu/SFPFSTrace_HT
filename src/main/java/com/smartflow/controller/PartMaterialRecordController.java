@@ -30,15 +30,15 @@ import com.smartflow.util.ReadDataUtil;
 @Controller
 @RequestMapping("/api/PartMaterialRecord")
 public class PartMaterialRecordController extends BaseController {
-    final
+    private final
     TracePartMaterialRecordService tracePartMaterialRecordService;
-    final
+    private final
     GetPartInformationByContainerNumberService getPartInformationByContainerNumberService;
-    final
+    private final
     GetPartMaterialRecordByPartSerialNumberService getPartMaterialRecordByPartSerialNumberService;
-    final
+    private final
     PartSerialNumberService partSerialNumberService;
-    final
+    private final
     PartSerialNumberDao partSerialNumberDao;
     private static Logger logger = Logger.getLogger(TracePartMaterialRecordController.class);
 

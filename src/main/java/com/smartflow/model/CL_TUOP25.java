@@ -47,11 +47,17 @@ public class CL_TUOP25 {
   private BigDecimal DB1_DBW114;
   private BigDecimal DB1_DBW168;
   private BigDecimal DB1_DBW170;
-  private BigDecimal DB1_DBW172;
   private BigDecimal DB1_DBW96;
   private String DB73_DBX44_0;
   private int state;
-
+  private BigDecimal MD448;
+  private BigDecimal MD452;
+  private BigDecimal MD456;
+  private BigDecimal MD460;
+  private BigDecimal MD464;
+  private BigDecimal MD468;
+  private BigDecimal MD472;
+  private BigDecimal MD476;
 
   public String getDB73_DBX44_0() {
     return DB73_DBX44_0;
@@ -340,13 +346,6 @@ public class CL_TUOP25 {
     this.DB1_DBW170 = DB1_DBW170;
   }
 
-  public BigDecimal getDB1_DBW172() {
-    return DB1_DBW172;
-  }
-
-  public void setDB1_DBW172(BigDecimal DB1_DBW172) {
-    this.DB1_DBW172 = DB1_DBW172;
-  }
 
 
   public BigDecimal getDB1_DBW96() {
@@ -357,4 +356,67 @@ public class CL_TUOP25 {
     this.DB1_DBW96 = DB1_DBW96;
   }
 
+  public BigDecimal getMD448() {
+    return MD448;
+  }
+
+  public void setMD448(BigDecimal MD448) {
+    this.MD448 = MD448;
+  }
+
+  public BigDecimal getMD452() {
+    return MD452;
+  }
+
+  public void setMD452(BigDecimal MD452) {
+    this.MD452 = MD452;
+  }
+
+  public BigDecimal getMD456() {
+    return MD456;
+  }
+
+  public void setMD456(BigDecimal MD456) {
+    this.MD456 = MD456;
+  }
+
+  public BigDecimal getMD460() {
+    return MD460;
+  }
+
+  public void setMD460(BigDecimal MD460) {
+    this.MD460 = MD460;
+  }
+
+  public BigDecimal getMD464() {
+    return MD464;
+  }
+
+  public void setMD464(BigDecimal MD464) {
+    this.MD464 = MD464;
+  }
+
+  public BigDecimal getMD468() {
+    return MD468;
+  }
+
+  public void setMD468(BigDecimal MD468) {
+    this.MD468 = MD468;
+  }
+
+  public BigDecimal getMD472() {
+    return MD472;
+  }
+
+  public void setMD472(BigDecimal MD472) {
+    this.MD472 = MD472;
+  }
+
+  public BigDecimal getMD476() {
+    return MD476;
+  }
+
+  public void setMD476(BigDecimal MD476) {
+    this.MD476 = MD476;
+  }
 }
