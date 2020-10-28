@@ -9,8 +9,7 @@ public enum StationNameTu {
      * TUOP描述
      */
     CL_TUOP25("CL_TUOP25"),
-    CL_TUOP20("CL_TUOP20"),CL_TUOP30("CL_TUOP30"),
-    CL_TUOP45("CL_TUOP45");
+    CL_TUOP20("CL_TUOP20"),CL_TUOP30("CL_TUOP30"),;
     public String getName() {
         return name;
     }

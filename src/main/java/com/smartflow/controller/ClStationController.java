@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 数据采集通用接口
  * @author haita
  */
 
@@ -115,7 +116,7 @@ public class ClStationController extends BaseController{
         if (serialNumber == null||"".equals(serialNumber))
         {
             Date date = new Date();
-            serialNumber=date.toString();
+            serialNumber="NoSerial"+date.toString();
         }
 
         /*
@@ -130,16 +131,23 @@ public class ClStationController extends BaseController{
         /*
          * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
          * 包含工站组Tu,Re,Im
+         * eg:TUOP20.25,30
          */
      if (StationEnumUtil.isReWriteStation(linkTableName)) {
          jsonObject.put("state", 0);
-         jsonObject.put("SerialNumber", serialNumber);
+         jsonObject.put("SerialNumber", "Virtual"+new Date().toString());
      }else
-        if (StationEnumUtil.isLastStation(linkTableName)) {
+      /*
+      * 判断是否是最后的打码表用于覆盖前边的表
+      */
+         if (StationEnumUtil.isLastStation(linkTableName)) {
                 jsonObject.put(SERIAL_ARG, serialNumber);
                 clStationService.reWriteSerialNumber
                         (serialNumber,linkTableName);
         }
+         /*
+         剩下的就是普通的工站
+          */
         else
             {
                 jsonObject.put("SerialNumber", serialNumber);

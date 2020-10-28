@@ -7,6 +7,9 @@ import com.smartflow.dto.VMTracePartByStationInput;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author haita
+ */
 public interface CL_StationService {
     /**
      * 根据工站id查询关联的表名
