@@ -100,6 +100,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                                 String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
                                 map.put("WorkOrderId", workOrderNumber);
                             }
+                            map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
                         }
                     }
                     headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
@@ -112,11 +113,16 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
 
                     Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+                    if(linkTableName.equals("CL_TUOP25") || linkTableName.equals("CL_TUOP80")){
+                        Collections.rotate(filterList, 8);//从list后面往前数，移动倒数第八个位置移到第一个
+                    }
                     TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
                     TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
+                    TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
                     TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
                     filterList.add(0, tableHeaderDTO1);
                     filterList.add(1, tableHeaderDTO2);
+                    filterList.add(2, tableHeaderDTO4);
                     filterList.add(tableHeaderDTO3);
                     vmTracePartByStationOutput.setHeaderList(filterList);
                     vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
@@ -159,6 +165,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                                 String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
                                 map.put("WorkOrderId", workOrderNumber);
                             }
+                            map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
                         }
                     }
                     headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
@@ -171,9 +178,11 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
                     TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
                     TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
+                    TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
                     TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
                     filterList.add(0, tableHeaderDTO1);
                     filterList.add(1, tableHeaderDTO2);
+                    filterList.add(2, tableHeaderDTO4);
                     filterList.add(tableHeaderDTO3);
 
                     List<Map<String,Object>> dataMapList = new ArrayList<>();
