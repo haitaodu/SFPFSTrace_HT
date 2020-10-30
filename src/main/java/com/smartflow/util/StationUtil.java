@@ -111,6 +111,7 @@ public class StationUtil {
         list.add("M100_3");
         list.add("M10_0");
         list.add("IS_ALARM");
+        list.add("DB48_DBD40");//TU_OP20不显示该字段（测试结果(1=OK,2=NG)）0=NG，1=OK
         return list;
     }
 

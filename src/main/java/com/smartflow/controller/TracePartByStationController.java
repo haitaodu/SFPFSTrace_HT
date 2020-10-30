@@ -10,12 +10,20 @@ import com.smartflow.service.VirtualSerialNumberService;
 import com.smartflow.service.WorkOrderService;
 import com.smartflow.util.ComparatorUtil;
 import com.smartflow.util.StationUtil;
+import lombok.val;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.NumberFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -98,6 +106,12 @@ public class TracePartByStationController extends BaseController{
 								String workOrderNumber = clstationService.getWorkOrderNumberByWorkOrderId(workOrderId);
 								map.put("WorkOrderId", workOrderNumber);
 							}
+							map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
+							DecimalFormat df = new DecimalFormat("##.####");//保留四位小数（默认四舍五入）
+							StringBuffer sb = new StringBuffer();
+							//df.setRoundingMode(RoundingMode.UP);// 向上取值设置
+//							df.format(value, sb, new FieldPosition(NumberFormat.FRACTION_FIELD));
+							//map.values().stream().map(value -> StringUtils.isEmpty(value) ? null : (!value.toString().contains(".") ? value : df.format(value, sb, new FieldPosition(NumberFormat.FRACTION_FIELD)))).collect(Collectors.toList());
 						}
 					}
 					headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
@@ -116,11 +130,32 @@ public class TracePartByStationController extends BaseController{
                     filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
 
 					Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+					if(linkTableName.equals("CL_TUOP25") || linkTableName.equals("CL_TUOP80")){
+						Collections.rotate(filterList, 8);//从list后面往前数，移动倒数第八个位置移到第一个
+//						TableHeaderDTO tableHeaderDTO5 = new TableHeaderDTO("清水液位", "MD448");
+//						filterList.set(3, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("污水液位", "MD452");
+//						filterList.set(4, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("气源压力", "MD456");
+//						filterList.set(5, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("喷淋压力", "MD460");
+//						filterList.set(6, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("循环压力", "MD464");
+//						filterList.set(7, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("清洁度", "MD468");
+//						filterList.set(8, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("水箱温度", "MD472");
+//						filterList.set(9, tableHeaderDTO5);
+//						tableHeaderDTO5 = new TableHeaderDTO("烘箱温度", "MD476");
+//						filterList.set(10, tableHeaderDTO5);
+					}
 					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
 					TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
+					TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
 					TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
 				    filterList.add(0, tableHeaderDTO1);
 					filterList.add(1, tableHeaderDTO2);
+					filterList.add(2, tableHeaderDTO4);
 					filterList.add(tableHeaderDTO3);
 
 //					List<String> list = filterList.stream().map(f -> f.getDataIndex()).collect(Collectors.toList());

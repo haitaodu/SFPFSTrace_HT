@@ -58,7 +58,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
     public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         try {
-            Query query = session.createSQLQuery("select * from core."+linkTableName+ " where CREATE_DATE between :StartDateTime and :EndDateTime");
+            Query query = session.createSQLQuery("select * from core."+linkTableName+ " where CREATE_DATE between :StartDateTime and :EndDateTime order by CREATE_DATE desc");
             query= parseToQuery(query,vmTracePartByStationInput);
             query.setFirstResult((vmTracePartByStationInput.getPageIndex() - 1) * vmTracePartByStationInput.getPageSize());
             query.setMaxResults(vmTracePartByStationInput.getPageSize());
@@ -105,6 +105,9 @@ public class CL_StationDaoImpl implements CL_StationDao {
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
             }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+                sql += " and IS_OK = :IS_OK ";
+            }
             Query query = session.createSQLQuery(sql);
             VMTracePartByStationInput vmTracePartByStationInput = new VMTracePartByStationInput();
             vmTracePartByStationInput.setStartDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime());
@@ -112,6 +115,14 @@ public class CL_StationDaoImpl implements CL_StationDao {
             query=parseToQuery(query,vmTracePartByStationInput);
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
                 query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+                String is_Ok = "";
+                if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("OK")){
+                    query.setParameter("IS_OK", "1");
+                }else if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("NG")){
+                    query.setParameter("IS_OK", "0");
+                }
             }
             return query.uniqueResult() == null ? 0 : Integer.parseInt(query.uniqueResult().toString());
         }catch(Exception e){
@@ -139,6 +150,10 @@ public class CL_StationDaoImpl implements CL_StationDao {
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
             }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+                sql += " and IS_OK = :IS_OK ";
+            }
+            sql += " order by CREATE_DATE desc";
             Query query = session.createSQLQuery(sql);
             VMTracePartByStationInput vmTracePartByStationInput = new VMTracePartByStationInput();
             vmTracePartByStationInput.setStartDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getStartDateTime());
@@ -146,6 +161,15 @@ public class CL_StationDaoImpl implements CL_StationDao {
             query = parseToQuery(query, vmTracePartByStationInput);
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
                 query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+            }
+            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+                String is_Ok = "";
+                if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("OK")){
+                    is_Ok = "1";
+                }else if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("NG")){
+                    is_Ok = "0";
+                }
+                query.setParameter("IS_OK", is_Ok);
             }
             query.setFirstResult((vmTracePartBySerialNumberOrWorkOrderInput.getPageIndex() - 1) * vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());
             query.setMaxResults(vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());
