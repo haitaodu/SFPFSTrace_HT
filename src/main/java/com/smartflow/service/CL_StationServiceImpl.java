@@ -10,6 +10,7 @@ import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CL_REOP10A;
 import com.smartflow.model.CL_REOP10B;
+import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
@@ -93,26 +94,28 @@ public class CL_StationServiceImpl implements CL_StationService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void reWriteSerialNumber(String serialNumber,String tableName) {
+    public void reWriteSerialNumber(String serialNumber
+            ,String tableName,List<String> stationList
+               ,String printStation) {
         try {
 
             if ("CL_REOP15".equals(tableName)) {
-               setSerialNumber(serialNumber,getReWriteTable());
+               setSerialNumber(serialNumber,getReWriteTable(),1);
             }
-            if ("CL_TUOP50".equals(tableName))
-            {
-                setSerialNumber(serialNumber, "CL_TUOP20");
-                setSerialNumber(serialNumber, "CL_TUOP25");
-                setSerialNumber(serialNumber, "CL_TUOP30");
-
-            }
-            if ("CL_IMOP45".equals(tableName))
-            {
-                for (StationNameIm stationNameIm:StationNameIm.values())
-                {
-                    setSerialNumber(serialNumber, stationNameIm.getName());
+        else
+            if (tableName.equals(printStation)) {
+                for (String station : stationList
+                ) {
+                    setSerialNumber(serialNumber, station,1);
                 }
             }
+            else {
+                for (String station : stationList
+                ) {
+                    setSerialNumber(serialNumber, station,0);
+                }
+            }
+
 
         }
         catch (Exception e)
@@ -129,7 +132,7 @@ public class CL_StationServiceImpl implements CL_StationService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void setSerialNumber(String serialNumber,String tableName) throws ClassNotFoundException {
+    public void setSerialNumber(String serialNumber,String tableName,int state) throws ClassNotFoundException {
         try {
             List<?> stationList = hibernateTemplate.find
                     ("from "+tableName +
@@ -139,7 +142,7 @@ public class CL_StationServiceImpl implements CL_StationService {
                 String jsonString=JSONObject.toJSONString(station);
                 JSONObject jsonObject=JSONObject.parseObject(jsonString);
                 jsonObject.put("SerialNumber",serialNumber);
-                jsonObject.put("state",1);
+                jsonObject.put("state",state);
                 Class<?> classEntity=Class.forName
                         ("com.smartflow.model."+tableName);
                 hibernateTemplate.merge
@@ -198,7 +201,7 @@ public class CL_StationServiceImpl implements CL_StationService {
             List<String> reWriteTable=res.subList(0,number);
             for (String table:reWriteTable)
             {
-                setSerialNumber(serialNumber,table);
+                setSerialNumber(serialNumber,table,1);
             }
 
     }
@@ -215,7 +218,7 @@ public class CL_StationServiceImpl implements CL_StationService {
         List<String> tuWriteTable=tus.subList(0,number);
         for (String table:tuWriteTable)
         {
-            setSerialNumber(serialNumber,table);
+            setSerialNumber(serialNumber,table,1);
         }
     }
 
@@ -230,7 +233,7 @@ public class CL_StationServiceImpl implements CL_StationService {
         List<String> imWriteTable=ims.subList(0,number);
         for (String table:imWriteTable)
         {
-            setSerialNumber(serialNumber,table);
+            setSerialNumber(serialNumber,table,1);
         }
     }
 
@@ -277,5 +280,10 @@ public class CL_StationServiceImpl implements CL_StationService {
     @Override
     public List<Map<String, Object>> getCLStationDeviceListByLinkTableName(String linkTableName) {
         return cl_stationDao.getCLStationDeviceListByLinkTableName(linkTableName);
+    }
+
+    @Override
+    public List<String> getStaionListByLinkName(String linkName, int workOrder) {
+        return null;
     }
 }

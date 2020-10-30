@@ -81,14 +81,18 @@ public interface CL_StationService {
 
 
 
-    public void reWriteSerialNumber(String serialNumber, String tableName);
+    public void reWriteSerialNumber(String serialNumber,
+                                    String tableName,
+                                    List<String> stationList
+            ,String printStation);
 
     /**
      *
+     * @param state 状态
      * @param serialNumber 条形码
      * @param tableName 表名
      */
-    public void setSerialNumber(String serialNumber,String tableName)
+    public void setSerialNumber(String serialNumber,String tableName,int state)
             throws ClassNotFoundException;
 
     /**
@@ -104,4 +108,14 @@ public interface CL_StationService {
      * @return
      */
     public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName);
+
+
+    /**
+     * 根据linkName获取打印机以前的数据
+     * @param linkName 给出的linkName
+     * @param workOrder 工单Id方便找出相应的工艺->工站
+     * @return 列表
+     */
+    public List<String> getStaionListByLinkName(String linkName,int workOrder);
+
 }

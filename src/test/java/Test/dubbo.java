@@ -1,7 +1,9 @@
 package Test;
 
+import com.smartflow.dao.StationDaoImpl;
 import com.smartflow.service.CL_StationService;
 import com.smartflow.service.CellService;
+import com.smartflow.service.StationServiceImpl;
 import org.junit.Test;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,6 +27,16 @@ public class dubbo {
     {
         CellService cellService=(CellService) applicationContext.getBean("CellService");
         System.out.println(cellService.getCellListInit());
+    }
+
+    @Test
+    public void test1()
+    {
+        StationServiceImpl stationService=(StationServiceImpl) applicationContext.getBean("stationServiceImpl");
+        System.out.println(stationService.getStationList
+                ("CL_TUOP25",10449).get("PrintStation").toString());
+        System.out.println(stationService.getStationList
+                ("CL_TUOP25",10449).get("List").toString());
     }
 
 }
