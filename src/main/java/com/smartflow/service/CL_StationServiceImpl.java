@@ -3,14 +3,12 @@ package com.smartflow.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.smartflow.common.stationenum.ParseToArray;
-import com.smartflow.common.stationenum.StationNameIm;
 import com.smartflow.dao.CL_StationDao;
 import com.smartflow.dto.TableHeaderDTO;
 import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CL_REOP10A;
 import com.smartflow.model.CL_REOP10B;
-import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
@@ -98,25 +96,36 @@ public class CL_StationServiceImpl implements CL_StationService {
             ,String tableName,List<String> stationList
                ,String printStation) {
         try {
-
             if ("CL_REOP15".equals(tableName)) {
                setSerialNumber(serialNumber,getReWriteTable(),1);
             }
         else
             if (tableName.equals(printStation)) {
+                String firstNumber=getSerialNumber
+                        (stationList.get(stationList.size()-1));
                 for (String station : stationList
                 ) {
-                    setSerialNumber(serialNumber, station,1);
+                    setSerialNumberForSearch(serialNumber,
+                            station, 1, firstNumber);
                 }
             }
             else {
+                if (stationList.isEmpty())
+                {
+                    return;
+                }
+                if (stationList.size()==1)
+                {
+                    setSerialNumber(serialNumber,stationList.get(0),1);
+                }else {
+                String firstNumber=getSerialNumber(stationList.get(stationList.size()-1));
                 for (String station : stationList
                 ) {
-                    setSerialNumber(serialNumber, station,0);
+                    setSerialNumberForSearch(serialNumber,
+                            station, 1, firstNumber);
+                }
                 }
             }
-
-
         }
         catch (Exception e)
         {
@@ -132,24 +141,14 @@ public class CL_StationServiceImpl implements CL_StationService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void setSerialNumber(String serialNumber,String tableName,int state) throws ClassNotFoundException {
+    public void setSerialNumber(String serialNumber,String tableName,int state)
+            throws ClassNotFoundException {
         try {
             List<?> stationList = hibernateTemplate.find
                     ("from "+tableName +
                             " where state=0 order by CREATE_DATE ");
             if (!stationList.isEmpty()) {
-                Object station = stationList.get(0);
-                String jsonString=JSONObject.toJSONString(station);
-                JSONObject jsonObject=JSONObject.parseObject(jsonString);
-                jsonObject.put("SerialNumber",serialNumber);
-                jsonObject.put("state",state);
-                Class<?> classEntity=Class.forName
-                        ("com.smartflow.model."+tableName);
-                hibernateTemplate.merge
-                        (JSON.parseObject(jsonObject.toString(),
-                                classEntity));
-                System.out.println("覆盖后时间"+JSON.parseObject(jsonObject.toString(),
-                        classEntity));
+                saveEntity(serialNumber,tableName,state,stationList);
             }
         }catch (Exception e)
         {
@@ -158,84 +157,7 @@ public class CL_StationServiceImpl implements CL_StationService {
         }
     }
 
-    /**
-     * 遇到ng的情况且ng工站属于产生虚拟码的工站
-     * @param serialNumber 条形码
-     * @param tableName 表名
-     * @throws ClassNotFoundException 根据表名无法找到类的情况
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void writeNg(String serialNumber, String tableName){
-        try {
-            if (res.contains(tableName)) {
-                ngWriteRes(serialNumber, tableName);
-                return;
-            }
-            if (tus.contains(tableName)) {
-                ngWriteTus(serialNumber, tableName);
-                return;
-            }
-            if (ims.contains(tableName)) {
-                ngWriteIms(serialNumber, tableName);
-                return;
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
-    }
-
-
-    /**
-     * RE岛区的虚拟工站遇到ng情况，根据ng的工站去覆盖前边的表
-     * @param serialNumber 序列码
-     * @param tableName 表名
-     * @throws ClassNotFoundException 反射无法找到类
-     */
-    private void ngWriteRes(String serialNumber,String tableName) throws ClassNotFoundException {
-
-            int number=res.indexOf(tableName);
-            List<String> reWriteTable=res.subList(0,number);
-            for (String table:reWriteTable)
-            {
-                setSerialNumber(serialNumber,table,1);
-            }
-
-    }
-
-
-    /**
-     * TU虚拟岛区遇到ng的情况，覆盖前边的条码
-     * @param serialNumber 条形码
-     * @param tableName 表名
-     * @throws ClassNotFoundException 无法找到类
-     */
-    private void ngWriteTus(String serialNumber,String tableName) throws ClassNotFoundException {
-        int number=tus.indexOf(tableName);
-        List<String> tuWriteTable=tus.subList(0,number);
-        for (String table:tuWriteTable)
-        {
-            setSerialNumber(serialNumber,table,1);
-        }
-    }
-
-    /**
-     * IM虚拟岛区遇到ng情况，覆盖前边的条码
-     * @param serialNumber 条形码
-     * @param tableName 表名
-     * @throws ClassNotFoundException 通过反射无法找到类
-     */
-    private void ngWriteIms(String serialNumber,String tableName) throws ClassNotFoundException {
-        int number=ims.indexOf(tableName);
-        List<String> imWriteTable=ims.subList(0,number);
-        for (String table:imWriteTable)
-        {
-            setSerialNumber(serialNumber,table,1);
-        }
-    }
 
     /**
      * Re岛区的特殊处理 reop10A和reop10B只会有一个工站有工件
@@ -285,5 +207,74 @@ public class CL_StationServiceImpl implements CL_StationService {
     @Override
     public List<String> getStaionListByLinkName(String linkName, int workOrder) {
         return null;
+    }
+
+    /**
+     * 覆盖单个表的业务
+     * @param serialNumber 条形码
+     * @param tableName 表名
+     * @throws ClassNotFoundException 根据表名无法反射到
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void setSerialNumberForSearch(String serialNumber,
+                                String tableName,
+                                int state,
+                                String serialNumeberForSearch) throws ClassNotFoundException {
+        try {
+            List<?> stationList = hibernateTemplate.findByNamedParam
+                    ("from "+tableName +
+                            " where SerialNumber =:serialNumber",
+                            "serialNumber",
+                            serialNumeberForSearch);
+            if (!stationList.isEmpty()) {
+                saveEntity(serialNumber,tableName,state,stationList);
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            throw  e;
+        }
+    }
+
+    @Override
+    public String getSerialNumber(String tableName)
+    {
+        try {
+            List<?> stationList = hibernateTemplate.find
+                    ("from "+tableName +
+                            " where state=0 order by CREATE_DATE ");
+            if (!stationList.isEmpty()) {
+                Object station = stationList.get(0);
+                String jsonString=JSONObject.toJSONString(station);
+                JSONObject jsonObject=JSONObject.parseObject(jsonString);
+                System.out.println(jsonString);
+                return jsonObject.get("serialNumber").toString();
+            }
+            else {
+                return "NoSerialNumber";
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            throw  e;
+        }
+    }
+
+    public void saveEntity(String serialNumber,
+                            String tableName,
+                            int state,
+                            List<?> stationList) throws ClassNotFoundException {
+        Object station = stationList.get(0);
+        String jsonString=JSONObject.toJSONString(station);
+        JSONObject jsonObject=JSONObject.parseObject(jsonString);
+        jsonObject.put("SerialNumber",serialNumber);
+        jsonObject.put("state",state);
+        Class<?> classEntity=Class.forName
+                ("com.smartflow.model."+tableName);
+        hibernateTemplate.merge
+                (JSON.parseObject(jsonObject.toString(),
+                        classEntity));
+        System.out.println("覆盖后时间"+JSON.parseObject(jsonObject.toString(),
+                classEntity));
     }
 }

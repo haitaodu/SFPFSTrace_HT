@@ -128,21 +128,17 @@ public class ClStationController extends BaseController{
         /*
          * 判断条形码是否是空，若为空的话，自己生成条形码
          */
-        if (serialNumber == null||"".equals(serialNumber)&&stationList.contains(linkTableName))
+        if (serialNumber == null||"".equals(serialNumber))
         {
-            Date date = new Date();
-            serialNumber="NoSerial"+date.toString();
+            if (!stationList.contains(linkTableName))
+            {
+                Date date = new Date();
+                serialNumber="NoSerial"+date.toString();
+            }
+
         }
 
-        /*
-         * 判断NG字段是否为报警状态且为TU,RE,IM的NG字段
-         */
-        //if (NG_CODE.equals(jsonObject.get(NG_KEY)) &&stationList.contains(linkTableName))
-        //{
-        //    jsonObject.put("state",1);
-        //    clStationService.writeNg(serialNumber,linkTableName);
-        //    return jsonObject;
-        //}
+
         /*
          * 判断是否是需要覆盖的表，覆盖的表有state，且初始的时候置0
          * 包含工站组Tu,Re,Im
@@ -153,7 +149,9 @@ public class ClStationController extends BaseController{
          {
              jsonObject.put("state", 1);
          }
-         jsonObject.put("state", 0);
+         else {
+             jsonObject.put("state", 0);
+         }
          jsonObject.put("SerialNumber", "Virtual"+new Date().toString());
          clStationService.reWriteSerialNumber
                  ("Virtual"+new Date().toString(),linkTableName,

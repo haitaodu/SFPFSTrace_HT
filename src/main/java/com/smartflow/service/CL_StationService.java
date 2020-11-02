@@ -95,12 +95,7 @@ public interface CL_StationService {
     public void setSerialNumber(String serialNumber,String tableName,int state)
             throws ClassNotFoundException;
 
-    /**
-     *
-     * @param serialNumber 条形码
-     * @param tableName 表名
-     */
-    public void writeNg(String serialNumber,String tableName);
+
 
     /**
      * 根据关联的表名查询工站设备相关信息
@@ -117,5 +112,8 @@ public interface CL_StationService {
      * @return 列表
      */
     public List<String> getStaionListByLinkName(String linkName,int workOrder);
+
+
+    String getSerialNumber(String tableName);
 
 }

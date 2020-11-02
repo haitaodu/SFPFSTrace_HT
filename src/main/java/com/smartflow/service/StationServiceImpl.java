@@ -16,7 +16,7 @@ import com.smartflow.dao.StationDao;
 @Service
 public class StationServiceImpl implements StationService {
 
-	private final static int  printStation=12;
+	private final static int  printStation=13;
 	private final
 	StationDao stationDao;
 
@@ -49,6 +49,7 @@ public class StationServiceImpl implements StationService {
 			stationNames.add("CL_"+arg);
 
 		}
+		stationNames.remove("CL_TUOP40");
 		map.put("List",stationNames);
 		return map;
 	}
