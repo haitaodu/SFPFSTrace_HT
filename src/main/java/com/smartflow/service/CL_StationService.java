@@ -84,7 +84,7 @@ public interface CL_StationService {
     public void reWriteSerialNumber(String serialNumber,
                                     String tableName,
                                     List<String> stationList
-            ,String printStation);
+            ,String printStation,long workOrderId);
 
     /**
      *
@@ -92,7 +92,7 @@ public interface CL_StationService {
      * @param serialNumber 条形码
      * @param tableName 表名
      */
-    public void setSerialNumber(String serialNumber,String tableName,int state)
+    public void setSerialNumber(String serialNumber,String tableName,int state,long workOrderId)
             throws ClassNotFoundException;
 
 
@@ -102,7 +102,8 @@ public interface CL_StationService {
      * @param linkTableName
      * @return
      */
-    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName);
+    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName
+    (String linkTableName);
 
 
     /**
@@ -114,6 +115,6 @@ public interface CL_StationService {
     public List<String> getStaionListByLinkName(String linkName,int workOrder);
 
 
-    String getSerialNumber(String tableName);
+    String getSerialNumber(String tableName,long workOrderId);
 
 }

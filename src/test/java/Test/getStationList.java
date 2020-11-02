@@ -9,5 +9,5 @@ package Test;
  */
 
 public class getStationList {
-    Object
+
 }

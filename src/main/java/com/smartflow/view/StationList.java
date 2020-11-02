@@ -6,9 +6,6 @@ import java.util.Objects;
 /**
  * @author ：tao
  * @date ：Created in 2020/10/29 15:46
- * @description：${description}
- * @modified By：
- * @version: version
  */
 
 @Entity
