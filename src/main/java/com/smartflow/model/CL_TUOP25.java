@@ -1,8 +1,6 @@
 package com.smartflow.model;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.smartflow.util.BigDecimalSerialize;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -55,7 +53,6 @@ public class CL_TUOP25 {
   private String DB73_DBX44_0;
   private int state;
   private BigDecimal MD448;
-  @JsonSerialize(using = BigDecimalSerialize.class)
   private BigDecimal MD452;
   private BigDecimal MD456;
   private BigDecimal MD460;
@@ -399,6 +396,7 @@ public class CL_TUOP25 {
     this.MD464 = MD464;
   }
 
+  @JsonFormat(pattern = "##.##")
   public BigDecimal getMD468() {
     return MD468;
   }
