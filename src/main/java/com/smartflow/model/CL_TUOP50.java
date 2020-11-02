@@ -60,8 +60,8 @@ public class CL_TUOP50 {
     private String DB20_DBX60_1;
     private String DB20_DBX60_2;
     private int state;
-    private String DB10_DBX1155_0;
-    private String DB10_DBX1155_1;
+//    private String DB10_DBX1155_0;
+//    private String DB10_DBX1155_1;
     private String M53_5;
     private String M15_6;
 
@@ -81,21 +81,21 @@ public class CL_TUOP50 {
         SerialNumber = serialNumber;
     }
 
-    public String getDB10_DBX1155_0() {
-        return DB10_DBX1155_0;
-    }
-
-    public void setDB10_DBX1155_0(String DB10_DBX1155_0) {
-        this.DB10_DBX1155_0 = DB10_DBX1155_0;
-    }
-
-    public String getDB10_DBX1155_1() {
-        return DB10_DBX1155_1;
-    }
-
-    public void setDB10_DBX1155_1(String DB10_DBX1155_1) {
-        this.DB10_DBX1155_1 = DB10_DBX1155_1;
-    }
+//    public String getDB10_DBX1155_0() {
+//        return DB10_DBX1155_0;
+//    }
+//
+//    public void setDB10_DBX1155_0(String DB10_DBX1155_0) {
+//        this.DB10_DBX1155_0 = DB10_DBX1155_0;
+//    }
+//
+//    public String getDB10_DBX1155_1() {
+//        return DB10_DBX1155_1;
+//    }
+//
+//    public void setDB10_DBX1155_1(String DB10_DBX1155_1) {
+//        this.DB10_DBX1155_1 = DB10_DBX1155_1;
+//    }
 
     public String getM53_5() {
         return M53_5;
@@ -508,8 +508,8 @@ public class CL_TUOP50 {
                 ", DB20_DBX60_1='" + DB20_DBX60_1 + '\'' +
                 ", DB20_DBX60_2='" + DB20_DBX60_2 + '\'' +
                 ", state=" + state +
-                ", DB10_DBX1155_0='" + DB10_DBX1155_0 + '\'' +
-                ", DB10_DBX1155_1='" + DB10_DBX1155_1 + '\'' +
+//                ", DB10_DBX1155_0='" + DB10_DBX1155_0 + '\'' +
+//                ", DB10_DBX1155_1='" + DB10_DBX1155_1 + '\'' +
                 ", M53_5='" + M53_5 + '\'' +
                 ", M15_6='" + M15_6 + '\'' +
                 '}';
