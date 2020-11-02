@@ -9,4 +9,12 @@ public interface StationService {
 	 * @return
 	 */
 	public List<Map<String, Object>> getStation();
+
+	/**
+	 * 查询打标机前几站的列表
+	 * @param stationNumer 工站名
+	 * @param workOrderId 工单id
+	 * @return 返回工站列表
+	 */
+	public Map<String,Object> getStationList(String stationNumer,long workOrderId);
 }

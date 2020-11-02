@@ -20,13 +20,14 @@
 		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 
 		</property>
-		<!--<property name="jdbcUrl"-->
-		<!--value="${jdbc.jdbcUrl}">-->
+		<!--<property name="jdbcjdbcUrlUrl"-->
+		<!--value="${jdbc.}">-->
 		<!--</property>-->
 		<!--<property name="jdbcUrl"-->
 		<!--value="jdbc:sqlserver://192.168.1.6:1433;databaseName=MESDB_SXHTDL"></property>-->
 		<property name="jdbcUrl"
-				  value="jdbc:sqlserver://192.168.1.6;databaseName=MESDB_SXHTDL">
+				  value="jdbc:sqlserver://192.168.1.6;
+				  databaseName=MESDB_SXHTDL">
 		</property>
 
 		<property name="user" value="sa">
@@ -59,7 +60,8 @@
 	<dubbo:application name="dubbo-a-consumer"/>
 
 	<!-- 这里使用的注册中心是zookeeper -->
-	<dubbo:registry address="zookeeper://192.168.1.6:2181" client="zkclient"/>
+	<dubbo:registry address="zookeeper://192.168.1.6:2181"
+					client="zkclient"/>
 
 	<!-- 从注册中心中查找服务 -->
 	<dubbo:reference id="CellService" interface="com.smartflow.service.CellService"/>
@@ -85,13 +87,18 @@
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
 				<prop key="hibernate.cache.configurationResourceName">ehcache.xml</prop>
-				<prop key="hibernate.connection.url">jdbc:sqlserver://192.168.1.6:1433</prop>
+				<prop key="hibernate.connection.url">jdbc:sqlserver://192.168.1.252\SQL2017DEV:1433;database=MESDB_SXHTDL</prop>
 				<prop key="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</prop>
-			</props>
+            </props>
 		</property>
 		<property name="packagesToScan" value="com.smartflow.model">
 		</property>
-		<!--<property name="annotatedClasses">-->
+        <property name="annotatedClasses">
+            <list>
+                <value>com.smartflow.view.StationList</value>
+            </list>
+        </property>
+        <!--<property name="annotatedClasses">-->
 		<!--<list>-->
 		<!--<value>com.smartflow.model.CL_TUOP10</value>-->
 		<!--</list>-->
