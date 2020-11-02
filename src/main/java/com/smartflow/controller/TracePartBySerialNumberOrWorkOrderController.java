@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -103,6 +106,13 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                             map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
                         }
                     }
+                    DecimalFormat df = new DecimalFormat("##.####");//保留四位小数（默认四舍五入）
+                    dataList.stream().filter(map ->{
+                        for (Map.Entry<String,Object> entry: map.entrySet()){
+                            map.put(entry.getKey(),StringUtils.isEmpty(entry.getValue()) ? null : (entry.getValue() instanceof Double ? df.format(entry.getValue(), new StringBuffer(), new FieldPosition(NumberFormat.FRACTION_FIELD)) : entry.getValue()));
+                        }
+                        return true;
+                    }).collect(Collectors.toList());
                     headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
                     Integer rowCount = clstationService.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
 

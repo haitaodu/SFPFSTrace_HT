@@ -107,13 +107,20 @@ public class TracePartByStationController extends BaseController{
 								map.put("WorkOrderId", workOrderNumber);
 							}
 							map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
-							DecimalFormat df = new DecimalFormat("##.####");//保留四位小数（默认四舍五入）
-							StringBuffer sb = new StringBuffer();
-							//df.setRoundingMode(RoundingMode.UP);// 向上取值设置
-//							df.format(value, sb, new FieldPosition(NumberFormat.FRACTION_FIELD));
-							//map.values().stream().map(value -> StringUtils.isEmpty(value) ? null : (!value.toString().contains(".") ? value : df.format(value, sb, new FieldPosition(NumberFormat.FRACTION_FIELD)))).collect(Collectors.toList());
+
+							//map.values().stream().map(value -> StringUtils.isEmpty(value) ? null : (value instanceof Double ? df.format(value, new StringBuffer(), new FieldPosition(NumberFormat.FRACTION_FIELD)) : value)).collect(Collectors.toList());
 						}
 					}
+					DecimalFormat df = new DecimalFormat("##.####");//保留四位小数（默认四舍五入）
+					//StringBuffer sb = new StringBuffer();
+					//df.setRoundingMode(RoundingMode.UP);// 向上取值设置
+					//df.format(value, sb, new FieldPosition(NumberFormat.FRACTION_FIELD));
+					dataList.stream().filter(map ->{
+						for (Map.Entry<String,Object> entry: map.entrySet()){
+							map.put(entry.getKey(),StringUtils.isEmpty(entry.getValue()) ? null : (entry.getValue() instanceof Double ? df.format(entry.getValue(), new StringBuffer(), new FieldPosition(NumberFormat.FRACTION_FIELD)) : entry.getValue()));
+						}
+						return true;
+					}).collect(Collectors.toList());
 					headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
