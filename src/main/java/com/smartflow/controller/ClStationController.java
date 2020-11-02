@@ -80,9 +80,12 @@ public class ClStationController extends BaseController{
                 String serialNumber = jsonObject.get
                         (SERIAL_ARG) == null ? null :
                         jsonObject.get(SERIAL_ARG).toString();
-                clStationDeviceDTO.setObject(reWrite(serialNumber,jsonObject,linkTableName,workOrderId));
+                clStationDeviceDTO.setObject(reWrite(serialNumber,
+                        jsonObject,linkTableName,
+                        workOrderId));
                 logger.info(clStationDeviceDTO);
-                clStationService.addCLStationDevice(className, parseToEntity(linkTableName, clStationDeviceDTO));
+                clStationService.addCLStationDevice(className,
+                        parseToEntity(linkTableName, clStationDeviceDTO));
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
             }
             catch (Exception e)
@@ -118,8 +121,6 @@ public class ClStationController extends BaseController{
     @SuppressWarnings("unchecked")
     private JSONObject reWrite(String serialNumber,JSONObject jsonObject,
                                String linkTableName,long workOrderId) {
-
-
         List<String> stationList=(List<String>)stationService.getStationList
                 (linkTableName,workOrderId).get("List");
 
@@ -156,7 +157,7 @@ public class ClStationController extends BaseController{
          clStationService.reWriteSerialNumber
                  ("Virtual"+new Date().toString(),linkTableName,
                          getList(stationList,linkTableName),
-                         printStation);
+                         printStation,workOrderId);
      }else
       /*
       * 判断是否是最后的打码表用于覆盖前边的表
@@ -164,7 +165,7 @@ public class ClStationController extends BaseController{
          if (printStation.equals(linkTableName)) {
                 jsonObject.put(SERIAL_ARG, serialNumber);
                 clStationService.reWriteSerialNumber
-                        (serialNumber,linkTableName,stationList,printStation);
+                        (serialNumber,linkTableName,stationList,printStation,workOrderId);
         }
          /*
          剩下的就是普通的工站
@@ -182,8 +183,8 @@ public class ClStationController extends BaseController{
         List<String> listForReWrite=new ArrayList<>();
         for (String arg:list
              ) {
-            if (!linkName.equals(arg)) {
-                listForReWrite.add(arg);
+                if (!linkName.equals(arg)) {
+                    listForReWrite.add(arg);
             }
             else
             {

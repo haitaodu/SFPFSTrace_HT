@@ -25,13 +25,10 @@ public class CL_StationServiceImpl implements CL_StationService {
     private final
     CL_StationDao cl_stationDao;
 
-    private final static List<String> tus= ParseToArray.parseTuStation();
-    private final static List<String> ims=ParseToArray.parseImStation();
-    private final static List<String> res=ParseToArray.parseReStation();
-
 
     @Autowired
-    public CL_StationServiceImpl(CL_StationDao cl_stationDao, HibernateTemplate hibernateTemplate) {
+    public CL_StationServiceImpl(CL_StationDao cl_stationDao,
+                                 HibernateTemplate hibernateTemplate) {
         this.cl_stationDao = cl_stationDao;
         this.hibernateTemplate = hibernateTemplate;
     }
@@ -43,17 +40,25 @@ public class CL_StationServiceImpl implements CL_StationService {
     }
 
     @Override
-    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput) {
-        return cl_stationDao.getCLStationDeviceListByLinkTableName(linkTableName, vmTracePartByStationInput);
+    public List<Map<String,Object>> getCLStationDeviceListByLinkTableName
+            (String linkTableName,
+             VMTracePartByStationInput vmTracePartByStationInput) {
+        return cl_stationDao.getCLStationDeviceListByLinkTableName
+                (linkTableName, vmTracePartByStationInput);
     }
 
     @Override
-    public Integer getTotalCountCLStationDeviceListByLinkTableName(String linkTableName, VMTracePartByStationInput vmTracePartByStationInput) {
-        return cl_stationDao.getTotalCountCLStationDeviceListByLinkTableName(linkTableName, vmTracePartByStationInput);
+    public Integer getTotalCountCLStationDeviceListByLinkTableName
+            (String linkTableName,
+             VMTracePartByStationInput vmTracePartByStationInput) {
+        return cl_stationDao.getTotalCountCLStationDeviceListByLinkTableName
+                (linkTableName, vmTracePartByStationInput);
     }
 
     @Override
-    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+    public Integer getTotalCountCLStationDeviceListByCondition
+            (String linkTableName,
+             VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
         return cl_stationDao.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
     }
 
@@ -94,19 +99,21 @@ public class CL_StationServiceImpl implements CL_StationService {
     @Override
     public void reWriteSerialNumber(String serialNumber
             ,String tableName,List<String> stationList
-               ,String printStation) {
+               ,String printStation,long workOrderId) {
         try {
             if ("CL_REOP15".equals(tableName)) {
-               setSerialNumber(serialNumber,getReWriteTable(),1);
+               setSerialNumber(serialNumber,
+                               getReWriteTable(),
+                                1,workOrderId);
             }
         else
             if (tableName.equals(printStation)) {
                 String firstNumber=getSerialNumber
-                        (stationList.get(stationList.size()-1));
+                        (stationList.get(stationList.size()-1),workOrderId);
                 for (String station : stationList
                 ) {
                     setSerialNumberForSearch(serialNumber,
-                            station, 1, firstNumber);
+                            station, 1, firstNumber,workOrderId);
                 }
             }
             else {
@@ -116,13 +123,14 @@ public class CL_StationServiceImpl implements CL_StationService {
                 }
                 if (stationList.size()==1)
                 {
-                    setSerialNumber(serialNumber,stationList.get(0),1);
+                    setSerialNumber(serialNumber,stationList.get(0),1,workOrderId);
                 }else {
-                String firstNumber=getSerialNumber(stationList.get(stationList.size()-1));
+                String firstNumber=getSerialNumber
+                        (stationList.get(stationList.size()-1),workOrderId);
                 for (String station : stationList
                 ) {
                     setSerialNumberForSearch(serialNumber,
-                            station, 1, firstNumber);
+                            station, 1, firstNumber,workOrderId);
                 }
                 }
             }
@@ -141,12 +149,13 @@ public class CL_StationServiceImpl implements CL_StationService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void setSerialNumber(String serialNumber,String tableName,int state)
+    public void setSerialNumber(String serialNumber,String tableName,int state,long workOrderId)
             throws ClassNotFoundException {
         try {
-            List<?> stationList = hibernateTemplate.find
+            List<?> stationList = hibernateTemplate.findByNamedParam
                     ("from "+tableName +
-                            " where state=0 order by CREATE_DATE ");
+                            " where state=0 and workOrderId=:workOrderId  order by CREATE_DATE ",
+                            "workOrderId",workOrderId);
             if (!stationList.isEmpty()) {
                 saveEntity(serialNumber,tableName,state,stationList);
             }
@@ -200,12 +209,15 @@ public class CL_StationServiceImpl implements CL_StationService {
     }
 
     @Override
-    public List<Map<String, Object>> getCLStationDeviceListByLinkTableName(String linkTableName) {
+    public List<Map<String, Object>>
+    getCLStationDeviceListByLinkTableName
+            (String linkTableName) {
         return cl_stationDao.getCLStationDeviceListByLinkTableName(linkTableName);
     }
 
     @Override
-    public List<String> getStaionListByLinkName(String linkName, int workOrder) {
+    public List<String> getStaionListByLinkName(String linkName, int workOrder)
+    {
         return null;
     }
 
@@ -219,13 +231,14 @@ public class CL_StationServiceImpl implements CL_StationService {
     public void setSerialNumberForSearch(String serialNumber,
                                 String tableName,
                                 int state,
-                                String serialNumeberForSearch) throws ClassNotFoundException {
+                                String serialNumeberForSearch,long workOrderId)
+            throws ClassNotFoundException {
         try {
-            List<?> stationList = hibernateTemplate.findByNamedParam
-                    ("from "+tableName +
-                            " where SerialNumber =:serialNumber",
-                            "serialNumber",
-                            serialNumeberForSearch);
+            String hql="from "+tableName+" where SerialNumber=:serialNumber and" +
+                    " workOrderId=:workOrderId";
+            String[] paramName=new String[]{"serialNumber","workOrderId"};
+            Object[] value=new Object[]{serialNumeberForSearch,workOrderId};
+            List<?> stationList =hibernateTemplate.findByNamedParam(hql,paramName,value);
             if (!stationList.isEmpty()) {
                 saveEntity(serialNumber,tableName,state,stationList);
             }
@@ -237,12 +250,13 @@ public class CL_StationServiceImpl implements CL_StationService {
     }
 
     @Override
-    public String getSerialNumber(String tableName)
+    public String getSerialNumber(String tableName,long workOrderId)
     {
         try {
-            List<?> stationList = hibernateTemplate.find
+            List<?> stationList = hibernateTemplate.findByNamedParam
                     ("from "+tableName +
-                            " where state=0 order by CREATE_DATE ");
+                            " where state=0 and workOrderId=:workOrderId order by CREATE_DATE ",
+                            "workOrderId",workOrderId);
             if (!stationList.isEmpty()) {
                 Object station = stationList.get(0);
                 String jsonString=JSONObject.toJSONString(station);

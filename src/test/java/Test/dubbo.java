@@ -47,15 +47,10 @@ public class dubbo {
     @Test
     public void test2()
     {
-        //StationServiceImpl stationService=(StationServiceImpl) applicationContext.getBean("stationServiceImpl");
-        //System.out.println(stationService.getStationList
-        //        ("CL_TUOP25",10449).get("PrintStation").toString());
-        //System.out.println(stationService.getStationList
-        //        ("CL_TUOP25",10449).get("List").toString());
-
         CL_StationServiceImpl cl_stationService=(CL_StationServiceImpl)
                 applicationContext.getBean("CL_StationServiceImpl");
-        System.out.println(cl_stationService.getSerialNumber("CL_TUOP20"));
+        System.out.println(cl_stationService.getSerialNumber
+                ("CL_TUOP20",10449));
     }
 
 }
