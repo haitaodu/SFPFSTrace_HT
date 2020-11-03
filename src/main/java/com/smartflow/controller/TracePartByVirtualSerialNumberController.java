@@ -49,7 +49,7 @@ public class TracePartByVirtualSerialNumberController extends BaseController{
         Map<String,Object> json = new HashMap<>();
         try{
             Map<String,Object> map = new HashMap<>();
-            List<Map<String, Object>> stationList = stationService.getStation();
+            List<Map<String, Object>> stationList = stationService.getStationListInFrontOfMarkingMachine();
             List<Map<String,Object>> workOrderList = workOrderService.getWorkOrderInit();
             map.put("StationList", stationList);
             map.put("WorkOrderList", workOrderList);
@@ -136,6 +136,11 @@ public class TracePartByVirtualSerialNumberController extends BaseController{
         return json;
     }
 
+    /**
+     * 状态一键置0或1
+     * @param updateStateByUUIDListInputDTO
+     * @return
+     */
     @CrossOrigin(origins="*",maxAge=3600)
     @PostMapping(value="/UpdateStateByUUIDList")
     public Map<String, Object> updateStateByUUIDList(@RequestBody UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO){

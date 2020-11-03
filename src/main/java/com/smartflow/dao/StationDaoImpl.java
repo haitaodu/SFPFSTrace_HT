@@ -35,6 +35,42 @@ public class StationDaoImpl implements StationDao{
 		}
 	}
 
+	@Override
+	public List<Map<String, Object>> getMarkingMachineIdAndCellId() {
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		String sql = "select distinct s.Id,s.StationNumber,s.Name,s.StationType,g.CellId from core.Station s inner join core.Station_StationGroup sg on s.Id = sg.StationtId inner join core.StationGroup g on g.Id = sg.StationGroupId where s.StationType = 11";
+		try{
+			Query query = session.createSQLQuery(sql);
+			return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+	}
+
+
+
+	@Override
+	public List<Map<String, Object>> getStationListInFrontOfMarkingMachineByStationIdAndCellId(Integer stationId, Integer cellId){
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		String sql = "select s.Id [key],CONCAT(s.StationNumber,'|'+s.Name) label from core.Station s inner join core.Station_StationGroup sg on s.Id = sg.StationtId inner join core.StationGroup g on g.Id = sg.StationGroupId where s.State <> 5 and s.State = 1 and g.State = 1 and s.Id <= :stationId and g.CellId = :cellId";
+		try{
+			Query query = session.createSQLQuery(sql);
+			query.setParameter("stationId", stationId);
+			query.setParameter("cellId", cellId);
+			return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StationList> getStationList(long workOrderId, int cellId) {
