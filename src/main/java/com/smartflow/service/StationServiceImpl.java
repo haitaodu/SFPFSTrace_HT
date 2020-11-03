@@ -9,6 +9,7 @@ import com.smartflow.view.StationList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smartflow.dao.StationDao;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author haita
@@ -52,5 +53,20 @@ public class StationServiceImpl implements StationService {
 		stationNames.remove("CL_TUOP40");
 		map.put("List",stationNames);
 		return map;
+	}
+
+	@Override
+	public List<Map<String, Object>> getStationListInFrontOfMarkingMachine() {
+		List<Map<String,Object>> stationList = new ArrayList<>();
+		List<Map<String,Object>> markingMachineList = stationDao.getMarkingMachineIdAndCellId();
+		if(!CollectionUtils.isEmpty(markingMachineList)){
+			for (Map<String,Object> map: markingMachineList) {
+				Integer stationId = Integer.parseInt(map.get("Id").toString());
+				Integer cellId = Integer.parseInt(map.get("CellId").toString());
+				List<Map<String,Object>> markingMachineStationList = stationDao.getStationListInFrontOfMarkingMachineByStationIdAndCellId(stationId, cellId);
+				stationList.addAll(markingMachineStationList);
+			}
+		}
+		return stationList;
 	}
 }

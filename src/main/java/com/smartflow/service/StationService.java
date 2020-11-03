@@ -17,4 +17,10 @@ public interface StationService {
 	 * @return 返回工站列表
 	 */
 	public Map<String,Object> getStationList(String stationNumer,long workOrderId);
+
+	/**
+	 * 查询打标机前的所有工站
+	 * @return
+	 */
+	public List<Map<String, Object>> getStationListInFrontOfMarkingMachine();
 }

@@ -7,11 +7,24 @@ import java.util.Map;
 
 public interface StationDao {
 
+
 	/**
 	 * 查询工站下拉列表
 	 * @return
 	 */
 	public List<Map<String, Object>> getStation();
+
+	/**
+	 * 获取打标机所在的工站id和岛区id
+	 * @return
+	 */
+	public List<Map<String,Object>> getMarkingMachineIdAndCellId();
+
+	/**
+	 * 根据工站Id和线体Id查询打标机前的所有工站
+	 * @return
+	 */
+	public List<Map<String, Object>> getStationListInFrontOfMarkingMachineByStationIdAndCellId(Integer stationId, Integer cellId);
 
 	/**
 	 *
