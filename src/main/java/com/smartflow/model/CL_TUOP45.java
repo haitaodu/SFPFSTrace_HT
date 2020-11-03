@@ -25,16 +25,17 @@ public class CL_TUOP45 {
   private String DB100_DBD0_40;
   private String DB100_DBD40_40;
   private String DB100_DBX80_0;
-  private String DB100_DBX80_1;
+//  private String DB100_DBX80_1;
   private String DB100_DBX80_2;
   private String DB100_DBX80_3;
   private String DB100_DBX80_4;
   private String DB100_DBX80_5;
   private String DB100_DBX80_6;
-  private BigDecimal DB100_REAL82;
-  private BigDecimal DB100_REAL86;
+//  private BigDecimal DB100_REAL82;
+//  private BigDecimal DB100_REAL86;
   private int state;
   private String DB100_DB284;
+  private String DB100_DBX328_0;
 
   public String getDB100_DB284() {
     return DB100_DB284;
@@ -124,13 +125,13 @@ public class CL_TUOP45 {
     this.DB100_DBX80_0 = DB100_DBX80_0;
   }
 
-  public String getDB100_DBX80_1() {
-    return DB100_DBX80_1;
-  }
-
-  public void setDB100_DBX80_1(String DB100_DBX80_1) {
-    this.DB100_DBX80_1 = DB100_DBX80_1;
-  }
+//  public String getDB100_DBX80_1() {
+//    return DB100_DBX80_1;
+//  }
+//
+//  public void setDB100_DBX80_1(String DB100_DBX80_1) {
+//    this.DB100_DBX80_1 = DB100_DBX80_1;
+//  }
 
   public String getDB100_DBX80_2() {
     return DB100_DBX80_2;
@@ -172,19 +173,28 @@ public class CL_TUOP45 {
     this.DB100_DBX80_6 = DB100_DBX80_6;
   }
 
-  public BigDecimal getDB100_REAL82() {
-    return DB100_REAL82;
+//  public BigDecimal getDB100_REAL82() {
+//    return DB100_REAL82;
+//  }
+//
+//  public void setDB100_REAL82(BigDecimal DB100_REAL82) {
+//    this.DB100_REAL82 = DB100_REAL82;
+//  }
+//
+//  public BigDecimal getDB100_REAL86() {
+//    return DB100_REAL86;
+//  }
+//
+//  public void setDB100_REAL86(BigDecimal DB100_REAL86) {
+//    this.DB100_REAL86 = DB100_REAL86;
+//  }
+
+
+  public String getDB100_DBX328_0() {
+    return DB100_DBX328_0;
   }
 
-  public void setDB100_REAL82(BigDecimal DB100_REAL82) {
-    this.DB100_REAL82 = DB100_REAL82;
-  }
-
-  public BigDecimal getDB100_REAL86() {
-    return DB100_REAL86;
-  }
-
-  public void setDB100_REAL86(BigDecimal DB100_REAL86) {
-    this.DB100_REAL86 = DB100_REAL86;
+  public void setDB100_DBX328_0(String DB100_DBX328_0) {
+    this.DB100_DBX328_0 = DB100_DBX328_0;
   }
 }

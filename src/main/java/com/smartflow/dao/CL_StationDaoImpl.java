@@ -1,6 +1,7 @@
 package com.smartflow.dao;
 
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
 import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CurrentActivedWorkOrderInformation;
@@ -88,7 +89,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
     }
 
     @Override
-    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String sql = "select count(*) from core."+linkTableName+ " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
@@ -100,7 +101,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 sql += " and CREATE_DATE <= :EndDateTime";
             }
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())){
-                sql += " and SerialNumber = :SerialNumber ";
+                if(flag.equals("like")){
+                    sql += " and SerialNumber like :SerialNumber ";
+                }else if(flag.equals("=")){
+                    sql += " and SerialNumber = :SerialNumber ";
+                }
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
@@ -114,7 +119,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
             vmTracePartByStationInput.setEndDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime());
             query=parseToQuery(query,vmTracePartByStationInput);
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
+                if(flag.equals("like")){
+                query.setParameter("SerialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
+            }else if(flag.equals("=")){
                 query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+            }
             }
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
                 String is_Ok = "";
@@ -134,7 +143,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
     }
 
     @Override
-    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
+    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         String sql = "select * from core."+linkTableName+ " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
         try {
@@ -145,7 +154,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 sql += " and CREATE_DATE <= :EndDateTime";
             }
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())){
-                sql += " and SerialNumber = :SerialNumber ";
+                if(flag.equals("like")){
+                    sql += " and SerialNumber like :SerialNumber ";
+                }else if(flag.equals("=")){
+                    sql += " and SerialNumber = :SerialNumber ";
+                }
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
@@ -160,7 +173,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
             vmTracePartByStationInput.setEndDateTime(vmTracePartBySerialNumberOrWorkOrderInput.getEndDateTime());
             query = parseToQuery(query, vmTracePartByStationInput);
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber())) {
-                query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                if(flag.equals("like")){
+                    query.setParameter("SerialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
+                }else if(flag.equals("=")){
+                    query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                }
             }
             if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
                 String is_Ok = "";
@@ -275,6 +292,19 @@ public class CL_StationDaoImpl implements CL_StationDao {
             return null;
         }finally {
             session.close();
+        }
+    }
+
+    @Override
+    public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO, String linkTableName) {
+        Session session = sessionFactory.openSession();
+        try{
+            Query query = session.createSQLQuery("update core."+ linkTableName + " set state = :state where UUID in :UUIDList");
+            query.setParameter("state", updateStateByUUIDListInputDTO.getButtonValue());
+            query.setParameterList("UUIDList", updateStateByUUIDListInputDTO.getUUIDList());
+            query.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

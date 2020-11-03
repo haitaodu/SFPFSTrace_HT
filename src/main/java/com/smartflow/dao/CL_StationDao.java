@@ -1,6 +1,7 @@
 package com.smartflow.dao;
 
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
 import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 
@@ -35,17 +36,19 @@ public interface CL_StationDao {
      * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息总条
      * @param linkTableName
      * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @param flag equals/like
      * @return
      */
-    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag);
 
     /**
      * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息数
      * @param linkTableName
      * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @param flag equals/like
      * @return
      */
-    public List<Map<String,Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+    public List<Map<String,Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag);
 
     /**
      * 添加工站设备生产信息
@@ -80,5 +83,12 @@ public interface CL_StationDao {
      * @return
      */
     public List<Map<String,Object>> getCLStationDeviceListByLinkTableName(String linkTableName);
+
+    /**
+     * 根据UUID修改状态（将状态一键置1或者0）
+     * @param updateStateByUUIDListInputDTO
+     * @param linkTableName
+     */
+    public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO, String linkTableName);
 
 }

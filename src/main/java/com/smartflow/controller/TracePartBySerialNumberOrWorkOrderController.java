@@ -93,7 +93,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     json = this.setJson(0, "工站没有关联的表！", -1);
                     return json;
                 } else {
-                    List<Map<String, Object>> dataList = clstationService.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+                    List<Map<String, Object>> dataList = clstationService.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput, "=");
                     if (!CollectionUtils.isEmpty(dataList)) {
                         for (Map<String, Object> map : dataList) {
 //                            String serialNumber = map.get("SerialNumber") == null ? null : virtualSerialNumberService.getSerialNumberById(Integer.parseInt(map.get("SerialNumber").toString()));
@@ -114,7 +114,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                         return true;
                     }).collect(Collectors.toList());
                     headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
-                    Integer rowCount = clstationService.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+                    Integer rowCount = clstationService.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput, "=");
 
                     List<TableHeaderDTO> filterList = TableHeaderDTO.filterHeaders(headerList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
                     filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.equals);
@@ -167,7 +167,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     json = this.setJson(0, "工站没有关联的表！", -1);
                     return json;
                 } else {
-                    List<Map<String, Object>> dataList = clstationService.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+                    List<Map<String, Object>> dataList = clstationService.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput, "=");
                     if (!CollectionUtils.isEmpty(dataList)) {
                         for (Map<String, Object> map : dataList) {
                             Integer workOrderId = map.get("WorkOrderId") == null ? null : Integer.parseInt(map.get("WorkOrderId").toString());

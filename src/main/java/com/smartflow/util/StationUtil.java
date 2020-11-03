@@ -84,7 +84,7 @@ public class StationUtil {
 
         list.add("M49");
         list.add("M9");
-        list.add("DB100_DBX10");
+        //list.add("DB100_DBX10");//DB100_DBX10_0：相机检测结果
         list.add("DB100_DBX360");
         list.add("DB110_DBX");
         list.add("DB126_DBX");
