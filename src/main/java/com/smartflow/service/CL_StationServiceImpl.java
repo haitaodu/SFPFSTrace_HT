@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.smartflow.common.stationenum.ParseToArray;
 import com.smartflow.dao.CL_StationDao;
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
 import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.model.CL_REOP10A;
@@ -58,13 +59,13 @@ public class CL_StationServiceImpl implements CL_StationService {
     @Override
     public Integer getTotalCountCLStationDeviceListByCondition
             (String linkTableName,
-             VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
-        return cl_stationDao.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+             VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag) {
+        return cl_stationDao.getTotalCountCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput, flag);
     }
 
     @Override
-    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput) {
-        return cl_stationDao.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput);
+    public List<Map<String, Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag) {
+        return cl_stationDao.getCLStationDeviceListByCondition(linkTableName, vmTracePartBySerialNumberOrWorkOrderInput, flag);
     }
 
     @Transactional
@@ -290,5 +291,12 @@ public class CL_StationServiceImpl implements CL_StationService {
                         classEntity));
         System.out.println("覆盖后时间"+JSON.parseObject(jsonObject.toString(),
                 classEntity));
+    }
+
+    @Transactional
+    @Override
+    public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO) {
+        String linkTableName = cl_stationDao.getLinkTableNameByStationId(updateStateByUUIDListInputDTO.getStationId());
+        cl_stationDao.updateStateByUUIDList(updateStateByUUIDListInputDTO, linkTableName);
     }
 }

@@ -1,6 +1,7 @@
 package com.smartflow.service;
 
 import com.smartflow.dto.TableHeaderDTO;
+import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
 import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
 import com.smartflow.dto.VMTracePartByStationInput;
 
@@ -39,17 +40,19 @@ public interface CL_StationService {
      * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息总条
      * @param linkTableName
      * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @param flag equals/like
      * @return
      */
-    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+    public Integer getTotalCountCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag);
 
     /**
      * 根据工站、序列号（工单）、开始时间、结束时间查询设备相关信息数
      * @param linkTableName
      * @param vmTracePartBySerialNumberOrWorkOrderInput
+     * @param flag equals/like
      * @return
      */
-    public List<Map<String,Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput);
+    public List<Map<String,Object>> getCLStationDeviceListByCondition(String linkTableName, VMTracePartBySerialNumberOrWorkOrderInput vmTracePartBySerialNumberOrWorkOrderInput, String flag);
 
 
     /**
@@ -116,5 +119,11 @@ public interface CL_StationService {
 
 
     String getSerialNumber(String tableName,long workOrderId);
+
+    /**
+     * 根据UUID修改状态（将状态一键置1或者0）
+     * @param updateStateByUUIDListInputDTO
+     */
+    public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO);
 
 }

@@ -107,7 +107,9 @@ public class TracePartByStationController extends BaseController{
 								map.put("WorkOrderId", workOrderNumber);
 							}
 							map.put("IS_OK", map.get("IS_OK") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "NG" : "OK");//(1=OK,2=NG) 0NG，1OK
-
+							if(map.containsKey("DB100_DBX10_0")){
+								map.put("DB100_DBX10_0", map.get("DB100_DBX10_0") == null ? null : Integer.parseInt(map.get("IS_OK").toString().trim()) == 0 ? "OK" : "NG");//0:OK，1:NG
+							}
 							//map.values().stream().map(value -> StringUtils.isEmpty(value) ? null : (value instanceof Double ? df.format(value, new StringBuffer(), new FieldPosition(NumberFormat.FRACTION_FIELD)) : value)).collect(Collectors.toList());
 						}
 					}
