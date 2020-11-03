@@ -26,8 +26,8 @@
         <!--<property name="jdbcUrl"-->
         <!--value="jdbc:sqlserver://192.168.1.6:1433;databaseName=MESDB_SXHTDL"></property>-->
         <property name="jdbcUrl"
-                  value="jdbc:sqlserver://192.168.1.252;
-				  databaseName=MESDB_SXHTDL3">
+                  value="jdbc:sqlserver://192.168.1.6;
+				  databaseName=MESDB_SXHTDL">
         </property>
 
         <property name="user" value="sa">
@@ -60,7 +60,7 @@
     <dubbo:application name="dubbo-a-consumer"/>
 
     <!-- 这里使用的注册中心是zookeeper -->
-    <dubbo:registry address="zookeeper://192.168.1.211:2181"
+    <dubbo:registry address="zookeeper://192.168.1.6:2181"
                     client="zkclient"/>
 
     <!-- 从注册中心中查找服务 -->

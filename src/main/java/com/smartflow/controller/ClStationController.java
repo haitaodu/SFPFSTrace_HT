@@ -78,9 +78,12 @@ public class ClStationController extends BaseController{
                 String serialNumber = jsonObject.get
                         (SERIAL_ARG) == null ? null :
                         jsonObject.get(SERIAL_ARG).toString();
-                clStationDeviceDTO.setObject(reWrite(serialNumber,
-                        jsonObject,linkTableName,
-                        workOrderId));
+                /**
+                 * 直接剔除相关覆盖表相关的业务
+                 */
+                //clStationDeviceDTO.setObject(reWrite(serialNumber,
+                //       jsonObject,linkTableName,
+                //        workOrderId));
                 logger.info(clStationDeviceDTO);
                 clStationService.addCLStationDevice(className,
                         parseToEntity(linkTableName, clStationDeviceDTO));
