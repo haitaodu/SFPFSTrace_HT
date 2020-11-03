@@ -15,8 +15,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StationDaoImpl implements StationDao{
 
-	@Autowired
+	private final
 	HibernateTemplate hibernateTemplate;
+
+	@Autowired
+	public StationDaoImpl(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
