@@ -2,7 +2,6 @@ package com.smartflow.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.smartflow.common.stationenum.StationEnumUtil;
 import com.smartflow.dto.AddCLStationDeviceDTO;
 import com.smartflow.service.CL_StationService;
 import com.smartflow.service.StationService;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.AbstractDocument;
 import java.util.*;
 
 /**

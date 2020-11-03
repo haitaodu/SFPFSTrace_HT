@@ -16,7 +16,7 @@ import com.smartflow.dao.StationDao;
 @Service
 public class StationServiceImpl implements StationService {
 
-	private final static int  printStation=13;
+	private final static int  printStation=11;
 	private final
 	StationDao stationDao;
 
