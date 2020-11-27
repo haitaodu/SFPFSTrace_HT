@@ -93,6 +93,21 @@ public class StationUtil {
         list.add("DB2_DBW3");
         list.add("DB400_DBX3");
         list.add("ALARM");
+
+        list.add("DB2000_DBW");
+        list.add("DB2000_DBX1");
+        list.add("DB500_DBX");
+        list.add("DB100_DBX80");
+        list.add("DB14_DBW");
+//        list.add("DB1670.DBX5");
+//        list.add("DB7.DBX");
+//        list.add("DB167_DBX3");
+        list.add("MES_STATUS");
+        list.add("DB64_DBX");
+        list.add("IW4");
+        list.add("DB182_DBX");
+        list.add("DB37_DBX1_2");
+        list.add("DB37_DBX3_2");
       return list;
     }
     public static List<String> getFilterEqualsCondition(){
@@ -102,6 +117,7 @@ public class StationUtil {
         //list.add("M620.3");
         list.add("M620_3");
         list.add("IB404");
+        list.add("IB504");
         list.add("DB167_DBW378");
         list.add("DB167_DBW380");
 
@@ -112,6 +128,18 @@ public class StationUtil {
         list.add("M10_0");
         list.add("IS_ALARM");
         list.add("DB48_DBD40");//TU_OP20不显示该字段（测试结果(1=OK,2=NG)）0=NG，1=OK
+
+        list.add("DB14_DBD28");
+        list.add("DB100_DB284");
+
+        list.add("MES_ERR");
+        list.add("MES_MODE");
+        list.add("MES_READ");
+        list.add("MES_RESULT");//? 平衡加工结果 1超量/2合格/3不合
+        list.add("IB404");
+        list.add("DB167_DBD368");
+        list.add("DB167_DBD372");
+        list.add("DB167_DBD376");
         return list;
     }
 
