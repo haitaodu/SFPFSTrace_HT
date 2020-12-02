@@ -140,6 +140,12 @@ public class StationUtil {
         list.add("DB167_DBD368");
         list.add("DB167_DBD372");
         list.add("DB167_DBD376");
+        list.add("DB2000_DB12");
+
+        list.add("DB1_DBD8");
+        list.add("DB1_DBD12");
+        list.add("DB10_DBD1830");
+        list.add("DB10_DBD1834");
         return list;
     }
 
