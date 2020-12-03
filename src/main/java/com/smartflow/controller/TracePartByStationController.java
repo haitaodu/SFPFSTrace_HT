@@ -45,13 +45,14 @@ public class TracePartByStationController extends BaseController{
 	private final
 	CL_StationService clstationService;
 
-	@Autowired
+	private final
 	VirtualSerialNumberService virtualSerialNumberService;
 
 	@Autowired
-	public TracePartByStationController(CL_StationService clstationService,  StationService stationService) {
+	public TracePartByStationController(CL_StationService clstationService, StationService stationService, VirtualSerialNumberService virtualSerialNumberService) {
 		this.clstationService = clstationService;
 		this.stationService = stationService;
+		this.virtualSerialNumberService = virtualSerialNumberService;
 	}
 
 	/**
@@ -126,12 +127,6 @@ public class TracePartByStationController extends BaseController{
 					headerList = clstationService.getHeaderListByLinkTableName(linkTableName);
 					Integer rowCount = clstationService.getTotalCountCLStationDeviceListByLinkTableName
 							(linkTableName, vmTracePartByStationInput);
-//					String[] dataIndexList = filterList.stream().map(h -> h.getDataIndex()).toArray(String[] :: new);//.collect(Collectors.toList());
-//					Arrays.sort(StationUtil.getTargetSortString(dataIndexList), StationUtil.ChsLogicCmp);
-//					filterList.stream().forEach(System.out::println);
-//					System.out.println("==============================================");
-//					filterList.stream().skip(1).skip(2).forEach(System.out::println);
-
 					List<TableHeaderDTO> filterList = TableHeaderDTO.filterHeaders(headerList, StationUtil.getFilterStartsWithCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.startsWith);
                     filterList = TableHeaderDTO.filterHeaders(filterList, StationUtil.getFilterEqualsCondition(), TableHeaderDTO::getDataIndex, FilterModeEnum.equals);
 

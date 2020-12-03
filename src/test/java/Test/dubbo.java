@@ -6,8 +6,12 @@ import com.smartflow.service.CL_StationServiceImpl;
 import com.smartflow.service.CellService;
 import com.smartflow.service.StationServiceImpl;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author ：tao
@@ -18,6 +22,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "/spring-config.xml")
+@ActiveProfiles("development")
 public class dubbo {
     private ClassPathXmlApplicationContext applicationContext =
             new ClassPathXmlApplicationContext

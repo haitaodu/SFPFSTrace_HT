@@ -35,14 +35,14 @@ public class CL_REOP15 {
     private String DB100_DBX80_6;
     private BigDecimal DB100_REAL82;
     private BigDecimal DB100_REAL86;
-    private String DB100_DB284;
+    private String DB100_DB330;
 
-    public String getDB100_DB284() {
-        return DB100_DB284;
+    public String getDB100_DB330() {
+        return DB100_DB330;
     }
 
-    public void setDB100_DB284(String DB100_DB284) {
-        this.DB100_DB284 = DB100_DB284;
+    public void setDB100_DB330(String DB100_DB330) {
+        this.DB100_DB330 = DB100_DB330;
     }
 
     public String getIS_OK() {

@@ -23,7 +23,7 @@ public class CL_FCOP23 {
     private String IS_OK;
     private String SerialNumber;
     private Integer WorkOrderId;
-    private String DB2000_DB12;
+    private String DB2000_DB552;
     private Integer DB2000_DBW2;
     private String DB2000_DBD40;
     private String DB2000_DBD44;
@@ -77,12 +77,12 @@ public class CL_FCOP23 {
         WorkOrderId = workOrderId;
     }
 
-    public String getDB2000_DB12() {
-        return DB2000_DB12;
+    public String getDB2000_DB552() {
+        return DB2000_DB552;
     }
 
-    public void setDB2000_DB12(String DB2000_DB12) {
-        this.DB2000_DB12 = DB2000_DB12;
+    public void setDB2000_DB552(String DB2000_DB552) {
+        this.DB2000_DB552 = DB2000_DB552;
     }
 
     public Integer getDB2000_DBW2() {

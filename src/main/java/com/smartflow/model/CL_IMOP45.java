@@ -35,9 +35,18 @@ public class CL_IMOP45 {
     private String DB100_DBX80_4;
     private String DB100_DBX80_5;
     private String DB100_DBX80_6;
+    private String DB100_DB330;
     private BigDecimal DB100_REAL82;
     private BigDecimal DB100_REAL86;
     private String IS_OK;
+
+    public String getDB100_DB330() {
+        return DB100_DB330;
+    }
+
+    public void setDB100_DB330(String DB100_DB330) {
+        this.DB100_DB330 = DB100_DB330;
+    }
 
     public String getIS_OK() {
         return IS_OK;
