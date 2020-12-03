@@ -58,7 +58,11 @@
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="Maven: se.jiderhamn.classloader-leak-prevention:classloader-leak-prevention-servlet:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: se.jiderhamn.classloader-leak-prevention:classloader-leak-prevention-core:2.1.0" level="project" />
-    <orderEntry type="library" name="Maven: e-iceblue:spire.xls:3.4.8" level="project" />
-    <orderEntry type="library" name="Maven: e-iceblue:spire.xls.free:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.3.3" level="project" />
+    <orderEntry type="library" name="Maven: jline:jline:0.9.94" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.sgroschupf:zkclient:0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:dubbo:2.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.netty:netty:3.2.5.Final" level="project" />
   </component>
 </module>

@@ -9,7 +9,7 @@ public interface StationDao {
 
 
 	/**
-	 * 查询工站下拉列表
+	 * 查询工站下拉列表(只保留生产工站、测试工站、打标工站)
 	 * @return
 	 */
 	public List<Map<String, Object>> getStation();

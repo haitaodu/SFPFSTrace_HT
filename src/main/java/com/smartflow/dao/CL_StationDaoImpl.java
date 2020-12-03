@@ -110,7 +110,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
             }
-            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
                 sql += " and IS_OK = :IS_OK ";
             }
             Query query = session.createSQLQuery(sql);
@@ -125,13 +125,8 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
             }
             }
-            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
-                String is_Ok = "";
-                if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("OK")){
-                    query.setParameter("IS_OK", "1");
-                }else if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("NG")){
-                    query.setParameter("IS_OK", "0");
-                }
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
+                query.setParameter("IS_OK", vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK());
             }
             return query.uniqueResult() == null ? 0 : Integer.parseInt(query.uniqueResult().toString());
         }catch(Exception e){
@@ -163,7 +158,7 @@ public class CL_StationDaoImpl implements CL_StationDao {
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
             }
-            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
                 sql += " and IS_OK = :IS_OK ";
             }
             sql += " order by CREATE_DATE desc";
@@ -179,14 +174,8 @@ public class CL_StationDaoImpl implements CL_StationDao {
                     query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
                 }
             }
-            if(!StringUtils.isEmpty(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK())){
-                String is_Ok = "";
-                if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("OK")){
-                    is_Ok = "1";
-                }else if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK().equals("NG")){
-                    is_Ok = "0";
-                }
-                query.setParameter("IS_OK", is_Ok);
+            if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
+                query.setParameter("IS_OK", vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK());
             }
             query.setFirstResult((vmTracePartBySerialNumberOrWorkOrderInput.getPageIndex() - 1) * vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());
             query.setMaxResults(vmTracePartBySerialNumberOrWorkOrderInput.getPageSize());

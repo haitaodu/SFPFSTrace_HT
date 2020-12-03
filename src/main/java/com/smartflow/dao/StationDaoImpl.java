@@ -28,7 +28,7 @@ public class StationDaoImpl implements StationDao{
 	public List<Map<String, Object>> getStation() {
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		String sql = "select Id [key],CONCAT(StationNumber,'|'+Name) label from core.Station where State=1 Order By StationNumber";
+		String sql = "select Id [key],CONCAT(StationNumber,'|'+Name) label from core.Station where State=1 and StationType in (select Id from core.StationType Where StationTypeCode = 1 or StationTypeCode = 2 or StationTypeCode = 9)  Order By StationNumber";
 		try{
 			Query query = session.createSQLQuery(sql);
 			return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
@@ -44,7 +44,7 @@ public class StationDaoImpl implements StationDao{
 	public List<Map<String, Object>> getMarkingMachineIdAndCellId() {
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		String sql = "select distinct s.Id,s.StationNumber,s.Name,s.StationType,g.CellId from core.Station s inner join core.Station_StationGroup sg on s.Id = sg.StationtId inner join core.StationGroup g on g.Id = sg.StationGroupId where s.StationType = 11";
+		String sql = "select distinct s.Id,s.StationNumber,s.Name,s.StationType,g.CellId from core.Station s inner join core.Station_StationGroup sg on s.Id = sg.StationtId inner join core.StationGroup g on g.Id = sg.StationGroupId where s.StationType = (select Id from core.StationType where StationTypeCode = 9)";
 		try{
 			Query query = session.createSQLQuery(sql);
 			return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();

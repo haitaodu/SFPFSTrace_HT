@@ -119,10 +119,12 @@ public class TracePartByVirtualSerialNumberController extends BaseController{
                     TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
                     TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
                     TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
+                    TableHeaderDTO tableHeaderDTO5 = new TableHeaderDTO("状态", "state");
                     filterList.add(0, tableHeaderDTO1);
                     filterList.add(1, tableHeaderDTO2);
                     filterList.add(2, tableHeaderDTO4);
-                    filterList.add(tableHeaderDTO3);
+                    filterList.add(3,tableHeaderDTO3);
+                    filterList.add(tableHeaderDTO5);
                     vmTracePartByStationOutput.setHeaderList(filterList);
                     vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);
                     vmTracePartByStationOutput.setTotal(rowCount);

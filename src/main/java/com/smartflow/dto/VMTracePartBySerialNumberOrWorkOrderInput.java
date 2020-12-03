@@ -12,7 +12,7 @@ public class VMTracePartBySerialNumberOrWorkOrderInput {
     private Integer PageIndex;
     private Integer PageSize;
 
-    private String IS_OK;
+    private Integer IS_OK;
 
     public Integer getStationId() {
         return StationId;
@@ -70,11 +70,11 @@ public class VMTracePartBySerialNumberOrWorkOrderInput {
         PageSize = pageSize;
     }
 
-    public String getIS_OK() {
+    public Integer getIS_OK() {
         return IS_OK;
     }
 
-    public void setIS_OK(String IS_OK) {
+    public void setIS_OK(Integer IS_OK) {
         this.IS_OK = IS_OK;
     }
 }
