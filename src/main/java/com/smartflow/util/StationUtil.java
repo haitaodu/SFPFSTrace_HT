@@ -122,6 +122,11 @@ public class StationUtil {
         list.add("DB100_REAL");
         list.add("QW8");
         list.add("MD2");
+
+        //TUOP50 去掉相机检测
+        list.add("DB10_DBW8");
+        list.add("DB10_DBX6");
+        list.add("DB10_DBX7");
       return list;
     }
     public static List<String> getFilterEqualsCondition(){
@@ -157,15 +162,15 @@ public class StationUtil {
         list.add("DB2000_DB12");
 
         //TUOP50
-        list.add("DB1_DBD8");
-        list.add("DB1_DBD12");
+//        list.add("DB1_DBD8");
+//        list.add("DB1_DBD12");
         list.add("DB10_DBD1830");
         list.add("DB10_DBD1834");
-        list.add("DB10_DBX778_0");
-        list.add("DB10_DBX694_0");
-        list.add("DB10_DBX84_0");
-        list.add("DB10_DBX652_0");
-        list.add("DB10_DBX736_0");
+//        list.add("DB10_DBX778_0");
+//        list.add("DB10_DBX694_0");
+//        list.add("DB10_DBX84_0");
+//        list.add("DB10_DBX652_0");
+//        list.add("DB10_DBX736_0");
 
         list.add("DB100_DBD0_40");
         list.add("DB100_DBD40_40");
