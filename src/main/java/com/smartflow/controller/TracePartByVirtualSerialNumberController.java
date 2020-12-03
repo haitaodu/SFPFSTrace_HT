@@ -123,7 +123,7 @@ public class TracePartByVirtualSerialNumberController extends BaseController{
                     filterList.add(0, tableHeaderDTO1);
                     filterList.add(1, tableHeaderDTO2);
                     filterList.add(2, tableHeaderDTO4);
-                    filterList.add(tableHeaderDTO3);
+                    filterList.add(3,tableHeaderDTO3);
                     filterList.add(tableHeaderDTO5);
                     vmTracePartByStationOutput.setHeaderList(filterList);
                     vmTracePartByStationOutput.setDataList(dataList == null ? new ArrayList<>() : dataList);

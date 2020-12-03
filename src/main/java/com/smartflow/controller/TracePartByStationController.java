@@ -165,7 +165,7 @@ public class TracePartByStationController extends BaseController{
 				    filterList.add(0, tableHeaderDTO1);
 					filterList.add(1, tableHeaderDTO2);
 					filterList.add(2, tableHeaderDTO4);
-					filterList.add(tableHeaderDTO3);
+					filterList.add(3,tableHeaderDTO3);
 
 //					List<String> list = filterList.stream().map(f -> f.getDataIndex()).collect(Collectors.toList());
 //					for (String s:list) {

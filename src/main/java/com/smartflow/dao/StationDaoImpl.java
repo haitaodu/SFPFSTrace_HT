@@ -28,7 +28,7 @@ public class StationDaoImpl implements StationDao{
 	public List<Map<String, Object>> getStation() {
 		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		String sql = "select Id [key],CONCAT(StationNumber,'|'+Name) label from core.Station where State=1 Order By StationNumber";
+		String sql = "select Id [key],CONCAT(StationNumber,'|'+Name) label from core.Station where State=1 and StationType in (select Id from core.StationType Where StationTypeCode = 1 or StationTypeCode = 2 or StationTypeCode = 9)  Order By StationNumber";
 		try{
 			Query query = session.createSQLQuery(sql);
 			return query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
