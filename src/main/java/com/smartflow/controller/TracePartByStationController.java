@@ -4,6 +4,7 @@ import com.smartflow.common.stationenum.FilterModeEnum;
 import com.smartflow.dto.TableHeaderDTO;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.dto.VMTracePartByStationOutput;
+import com.smartflow.model.CL_TUOP50;
 import com.smartflow.service.CL_StationService;
 import com.smartflow.service.StationService;
 import com.smartflow.service.VirtualSerialNumberService;
@@ -152,6 +153,33 @@ public class TracePartByStationController extends BaseController{
 //						filterList.set(9, tableHeaderDTO5);
 //						tableHeaderDTO5 = new TableHeaderDTO("烘箱温度", "MD476");
 //						filterList.set(10, tableHeaderDTO5);
+					}else if(linkTableName.equals("CL_TUOP50")){
+						for (Map<String,Object> map:dataList) {
+							//整平工位:整平NG
+							String levelingStationNG = map.get("DB20_DBX57_1") == null ? null : map.get("DB20_DBX57_1").toString();
+							//墩铆检测
+							String pierRivetingInspection = map.get("DB20_DBX56_7") == null ? null : map.get("DB20_DBX56_7").toString();
+							//铆压相机检测:铆钉NG(总产品)
+							String rivetingCameraDetection = map.get("DB20_DBX60_2") == null ? null : map.get("DB20_DBX60_2").toString();
+							//select DB20_DBX57_0,DB20_DBX57_1,DB20_DBX56_6,DB20_DBX56_7,DB20_DBX60_1,DB20_DBX60_2 from core.CL_TUOP50 order by CREATE_DATE desc;
+							//如果六列都是空或者整平NG是空，墩铆NG是0，相机检测（总产品）NG是0  说明第一道工序整平就已经NG（只显示整平两列数据）
+							if((levelingStationNG != null && levelingStationNG.equals("1") || (levelingStationNG == null && (pierRivetingInspection == null || pierRivetingInspection.equals("0")) && (rivetingCameraDetection == null || rivetingCameraDetection.equals("0"))))){
+								//隐藏墩铆检测和下料保存
+								StationUtil.hidePierRivetingInspection(map);
+								StationUtil.hideBlankingPreservation(map);
+							}
+
+							if(pierRivetingInspection != null && pierRivetingInspection.equals("1")){
+								//隐藏整平工位和下料保存
+								StationUtil.hideLevelingStationNGData(map);
+								StationUtil.hideBlankingPreservation(map);
+							}
+							if(rivetingCameraDetection != null && rivetingCameraDetection.equals("1")){
+								//隐藏整平工位和墩铆检测
+								StationUtil.hideLevelingStationNGData(map);
+								StationUtil.hidePierRivetingInspection(map);
+							}
+						}
 					}
 					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
 					TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class StationUtil {
 
@@ -109,11 +110,8 @@ public class StationUtil {
         list.add("DB37_DBX1_2");
         list.add("DB37_DBX3_2");
 
-        list.add("DB10_DBW");
-        list.add("DB10_DBX6");
-        list.add("DB10_DBX7");
-        list.add("DB10_DBX8");
-        list.add("DB10_DBX9");
+//        list.add("DB10_DBW");
+
         list.add("MES_SCAN");
         list.add("MES_CUT");
         list.add("DB11_INT");
@@ -123,10 +121,12 @@ public class StationUtil {
         list.add("QW8");
         list.add("MD2");
 
+
         //TUOP50 去掉相机检测
         list.add("DB10_DBW8");
         list.add("DB10_DBX6");
         list.add("DB10_DBX7");
+//        list.add("DB10_DBX1");
       return list;
     }
     public static List<String> getFilterEqualsCondition(){
@@ -166,11 +166,11 @@ public class StationUtil {
 //        list.add("DB1_DBD12");
         list.add("DB10_DBD1830");
         list.add("DB10_DBD1834");
-//        list.add("DB10_DBX778_0");
-//        list.add("DB10_DBX694_0");
+        list.add("DB10_DBX778_0");
+        list.add("DB10_DBX694_0");
+        list.add("DB10_DBX652_0");
+        list.add("DB10_DBX736_0");
 //        list.add("DB10_DBX84_0");
-//        list.add("DB10_DBX652_0");
-//        list.add("DB10_DBX736_0");
 
         list.add("DB100_DBD0_40");
         list.add("DB100_DBD40_40");
@@ -179,6 +179,44 @@ public class StationUtil {
         list.add("DB15_SINT46");//二维码长度
         list.add("QR_CODE");
         return list;
+    }
+
+    /**
+     * 整平工位:整平NG=1只显示当前工序（整平工位:整平NG）
+     */
+    public static void hideLevelingStationNGData(Map<String,Object> map){
+        map.put("DB1_DBD0", null);//整平工位：整平压力
+        map.put("DB1_DBD4", null);//整平工位：整平位移
+        map.put("DB10_DBX84_0", null);//整平工位:涡轮体条码
+    }
+
+    /**
+     * 墩铆检测NG=1 只显示墩铆检测:
+     * @param map
+     */
+    public static void hidePierRivetingInspection(Map<String,Object> map){
+        map.put("DB1_DBD8", null);//墩铆检测:铆压位移
+        map.put("DB1_DBD12", null);//墩铆检测:铆压压力
+        map.put("DB10_DBW1006", null);//墩铆检测:铆钉螺钉批次号
+        map.put("DB10_DBW1008", null);//墩铆检测:铆钉箱体上层批次号
+        map.put("DB10_DBW1010", null);//墩铆检测:铆钉箱体下层批次号
+        map.put("DB10_DBX878_0", null);//墩铆检测:涡轮体条码
+        map.put("DB10_DBX962_0", null);//墩铆检测:轮毂条码
+    }
+
+    /**
+     * 隐藏下料保存数据
+     * @param map
+     */
+    public static void hideBlankingPreservation(Map<String,Object> map){
+        map.put("DB10_DBD1838", null);//下料保存:铆压压力
+        map.put("DB10_DBD1842", null);//下料保存:铆压位移
+        map.put("DB10_DBW1146", null);//下料保存:铆钉螺钉批次号
+        map.put("DB10_DBW1148", null);//下料保存:铆钉箱体上层批次号
+        map.put("DB10_DBW1150", null);//下料保存:铆钉箱体下层批次号
+        map.put("DB10_DBX1018_0", null);//下料保存:轮毂下料条码
+        map.put("DB10_DBX1062_0", null);//下料保存:涡轮体条码
+        map.put("DB10_DBX1104_0", null);//下料保存:轮毂条码
     }
 
     public static void main(String[] args) {
