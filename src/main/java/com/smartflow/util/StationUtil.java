@@ -126,7 +126,7 @@ public class StationUtil {
         list.add("DB10_DBW8");
         list.add("DB10_DBX6");
         list.add("DB10_DBX7");
-//        list.add("DB10_DBX1");
+        list.add("DB10_DBX");
       return list;
     }
     public static List<String> getFilterEqualsCondition(){
@@ -187,7 +187,7 @@ public class StationUtil {
     public static void hideLevelingStationNGData(Map<String,Object> map){
         map.put("DB1_DBD0", null);//整平工位：整平压力
         map.put("DB1_DBD4", null);//整平工位：整平位移
-        map.put("DB10_DBX84_0", null);//整平工位:涡轮体条码
+//        map.put("DB10_DBX84_0", null);//整平工位:涡轮体条码
     }
 
     /**
@@ -200,8 +200,8 @@ public class StationUtil {
         map.put("DB10_DBW1006", null);//墩铆检测:铆钉螺钉批次号
         map.put("DB10_DBW1008", null);//墩铆检测:铆钉箱体上层批次号
         map.put("DB10_DBW1010", null);//墩铆检测:铆钉箱体下层批次号
-        map.put("DB10_DBX878_0", null);//墩铆检测:涡轮体条码
-        map.put("DB10_DBX962_0", null);//墩铆检测:轮毂条码
+//        map.put("DB10_DBX878_0", null);//墩铆检测:涡轮体条码
+//        map.put("DB10_DBX962_0", null);//墩铆检测:轮毂条码
     }
 
     /**
@@ -214,9 +214,9 @@ public class StationUtil {
         map.put("DB10_DBW1146", null);//下料保存:铆钉螺钉批次号
         map.put("DB10_DBW1148", null);//下料保存:铆钉箱体上层批次号
         map.put("DB10_DBW1150", null);//下料保存:铆钉箱体下层批次号
-        map.put("DB10_DBX1018_0", null);//下料保存:轮毂下料条码
-        map.put("DB10_DBX1062_0", null);//下料保存:涡轮体条码
-        map.put("DB10_DBX1104_0", null);//下料保存:轮毂条码
+//        map.put("DB10_DBX1018_0", null);//下料保存:轮毂下料条码
+//        map.put("DB10_DBX1062_0", null);//下料保存:涡轮体条码
+//        map.put("DB10_DBX1104_0", null);//下料保存:轮毂条码
     }
 
     public static void main(String[] args) {
