@@ -1,17 +1,21 @@
 package Test;
 
-import com.smartflow.dao.StationDaoImpl;
-import com.smartflow.service.CL_StationService;
+import com.smartflow.model.CL_TUOP20;
 import com.smartflow.service.CL_StationServiceImpl;
 import com.smartflow.service.CellService;
 import com.smartflow.service.StationServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import sun.security.pkcs11.wrapper.CK_AES_CTR_PARAMS;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author ：tao
@@ -29,6 +33,9 @@ public class dubbo {
     private ClassPathXmlApplicationContext applicationContext =
             new ClassPathXmlApplicationContext
                     ("spring-config.xml");
+
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
 
 
@@ -59,5 +66,10 @@ public class dubbo {
         System.out.println(cl_stationService.getSerialNumber
                 ("CL_TUOP20",10449));
     }
+
+    @Test
+    public void test3()
+    {
+      }
 
 }

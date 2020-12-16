@@ -191,7 +191,13 @@ public class CL_StationDaoImpl implements CL_StationDao {
     @Transactional
     @Override
     public void addCLStationDevice(String entityName, Object entity) {
-        hibernateTemplate.save(entityName, entity);
+try {
+    hibernateTemplate.save(entityName, entity);
+}
+catch (Exception e)
+{
+    System.out.println(e.getStackTrace());
+}
     }
 
     @SuppressWarnings("unchecked")

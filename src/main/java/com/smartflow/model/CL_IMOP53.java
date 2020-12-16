@@ -22,10 +22,39 @@ public class CL_IMOP53 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Integer WorkOrderId;
+    private String DB2000_DB12;
+    private String DB2000_DB552;
+    private String DB2000_DBW2;
     private String DB2000_DBD40;
     private String DB2000_DBD44;
     private String DB2000_DBD48;
     private String IS_OK;
+
+
+    public String getDB2000_DB12() {
+        return DB2000_DB12;
+    }
+
+    public void setDB2000_DB12(String DB2000_DB12) {
+        this.DB2000_DB12 = DB2000_DB12;
+    }
+
+    public String getDB2000_DB552() {
+        return DB2000_DB552;
+    }
+
+    public void setDB2000_DB552(String DB2000_DB552) {
+        this.DB2000_DB552 = DB2000_DB552;
+    }
+
+    public String getDB2000_DBW2() {
+        return DB2000_DBW2;
+    }
+
+    public void setDB2000_DBW2(String DB2000_DBW2) {
+        this.DB2000_DBW2 = DB2000_DBW2;
+    }
+
     public String getUUID() {
         return UUID;
     }
