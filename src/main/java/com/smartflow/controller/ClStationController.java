@@ -94,6 +94,7 @@ public class ClStationController extends BaseController{
             }
             catch (Exception e)
             {
+                System.out.println(e.getStackTrace().toString());
                 logger.info(e.getStackTrace());
             }
         return json;
