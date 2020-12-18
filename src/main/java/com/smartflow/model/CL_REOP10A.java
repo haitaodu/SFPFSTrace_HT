@@ -45,11 +45,84 @@ public class CL_REOP10A {
     private String POSI_REL_;
     private String POSI_REL_U;
     private String POSI_REL_W;
-    private String TOOL_GROUP_NO;
+    private String TOOL_G_X;
     private String TOOL_NO;
+    private String TOOL_G_Z;
+    private String TOOL_W_X;
+    private String ODBPRO_NUM;
+    private String TOOL_W_Z;
+    private String RUN_TIME;
+    private String TOTAL_TIME;
+    private String TOTAL_PRODUCTION;
+    private String TOOL_GROUP_NO;
     private String TOOL_NUM;
     private String TOOL_USE_CT;
     private int state;
+
+
+    public String getTOOL_G_X() {
+        return TOOL_G_X;
+    }
+
+    public void setTOOL_G_X(String TOOL_G_X) {
+        this.TOOL_G_X = TOOL_G_X;
+    }
+
+    public String getTOOL_G_Z() {
+        return TOOL_G_Z;
+    }
+
+    public void setTOOL_G_Z(String TOOL_G_Z) {
+        this.TOOL_G_Z = TOOL_G_Z;
+    }
+
+    public String getTOOL_W_X() {
+        return TOOL_W_X;
+    }
+
+    public void setTOOL_W_X(String TOOL_W_X) {
+        this.TOOL_W_X = TOOL_W_X;
+    }
+
+    public String getODBPRO_NUM() {
+        return ODBPRO_NUM;
+    }
+
+    public void setODBPRO_NUM(String ODBPRO_NUM) {
+        this.ODBPRO_NUM = ODBPRO_NUM;
+    }
+
+    public String getTOOL_W_Z() {
+        return TOOL_W_Z;
+    }
+
+    public void setTOOL_W_Z(String TOOL_W_Z) {
+        this.TOOL_W_Z = TOOL_W_Z;
+    }
+
+    public String getRUN_TIME() {
+        return RUN_TIME;
+    }
+
+    public void setRUN_TIME(String RUN_TIME) {
+        this.RUN_TIME = RUN_TIME;
+    }
+
+    public String getTOTAL_TIME() {
+        return TOTAL_TIME;
+    }
+
+    public void setTOTAL_TIME(String TOTAL_TIME) {
+        this.TOTAL_TIME = TOTAL_TIME;
+    }
+
+    public String getTOTAL_PRODUCTION() {
+        return TOTAL_PRODUCTION;
+    }
+
+    public void setTOTAL_PRODUCTION(String TOTAL_PRODUCTION) {
+        this.TOTAL_PRODUCTION = TOTAL_PRODUCTION;
+    }
 
     public String getIS_OK() {
         return IS_OK;
