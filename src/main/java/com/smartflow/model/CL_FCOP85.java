@@ -26,12 +26,6 @@ public class CL_FCOP85 {
     private String SerialNumber;
     private String DB2000_DB12;
     private String DB2000_DB552;
-    private BigDecimal DB2000_DBD100;
-    private BigDecimal DB2000_DBD104;
-    private BigDecimal DB2000_DBD108;
-    private BigDecimal DB2000_DBD112;
-    private BigDecimal DB2000_DBD116;
-    private BigDecimal DB2000_DBD120;
     private BigDecimal DB2000_DBD40;
     private BigDecimal DB2000_DBD44;
     private BigDecimal DB2000_DBD48;
@@ -44,19 +38,8 @@ public class CL_FCOP85 {
     private BigDecimal DB2000_DBD76;
     private BigDecimal DB2000_DBD80;
     private BigDecimal DB2000_DBD84;
-    private BigDecimal DB2000_DBD88;
-    private BigDecimal DB2000_DBD92;
-    private BigDecimal DB2000_DBD96;
     private Integer DB2000_DBW2;
 
-
-    public Integer getWorkOrderId() {
-        return WorkOrderId;
-    }
-
-    public void setWorkOrderId(Integer workOrderId) {
-        WorkOrderId = workOrderId;
-    }
 
     public String getUUID() {
         return UUID;
@@ -90,6 +73,14 @@ public class CL_FCOP85 {
         this.IS_OK = IS_OK;
     }
 
+    public Integer getWorkOrderId() {
+        return WorkOrderId;
+    }
+
+    public void setWorkOrderId(Integer workOrderId) {
+        WorkOrderId = workOrderId;
+    }
+
     public String getSerialNumber() {
         return SerialNumber;
     }
@@ -112,54 +103,6 @@ public class CL_FCOP85 {
 
     public void setDB2000_DB552(String DB2000_DB552) {
         this.DB2000_DB552 = DB2000_DB552;
-    }
-
-    public BigDecimal getDB2000_DBD100() {
-        return DB2000_DBD100;
-    }
-
-    public void setDB2000_DBD100(BigDecimal DB2000_DBD100) {
-        this.DB2000_DBD100 = DB2000_DBD100;
-    }
-
-    public BigDecimal getDB2000_DBD104() {
-        return DB2000_DBD104;
-    }
-
-    public void setDB2000_DBD104(BigDecimal DB2000_DBD104) {
-        this.DB2000_DBD104 = DB2000_DBD104;
-    }
-
-    public BigDecimal getDB2000_DBD108() {
-        return DB2000_DBD108;
-    }
-
-    public void setDB2000_DBD108(BigDecimal DB2000_DBD108) {
-        this.DB2000_DBD108 = DB2000_DBD108;
-    }
-
-    public BigDecimal getDB2000_DBD112() {
-        return DB2000_DBD112;
-    }
-
-    public void setDB2000_DBD112(BigDecimal DB2000_DBD112) {
-        this.DB2000_DBD112 = DB2000_DBD112;
-    }
-
-    public BigDecimal getDB2000_DBD116() {
-        return DB2000_DBD116;
-    }
-
-    public void setDB2000_DBD116(BigDecimal DB2000_DBD116) {
-        this.DB2000_DBD116 = DB2000_DBD116;
-    }
-
-    public BigDecimal getDB2000_DBD120() {
-        return DB2000_DBD120;
-    }
-
-    public void setDB2000_DBD120(BigDecimal DB2000_DBD120) {
-        this.DB2000_DBD120 = DB2000_DBD120;
     }
 
     public BigDecimal getDB2000_DBD40() {
@@ -256,30 +199,6 @@ public class CL_FCOP85 {
 
     public void setDB2000_DBD84(BigDecimal DB2000_DBD84) {
         this.DB2000_DBD84 = DB2000_DBD84;
-    }
-
-    public BigDecimal getDB2000_DBD88() {
-        return DB2000_DBD88;
-    }
-
-    public void setDB2000_DBD88(BigDecimal DB2000_DBD88) {
-        this.DB2000_DBD88 = DB2000_DBD88;
-    }
-
-    public BigDecimal getDB2000_DBD92() {
-        return DB2000_DBD92;
-    }
-
-    public void setDB2000_DBD92(BigDecimal DB2000_DBD92) {
-        this.DB2000_DBD92 = DB2000_DBD92;
-    }
-
-    public BigDecimal getDB2000_DBD96() {
-        return DB2000_DBD96;
-    }
-
-    public void setDB2000_DBD96(BigDecimal DB2000_DBD96) {
-        this.DB2000_DBD96 = DB2000_DBD96;
     }
 
     public Integer getDB2000_DBW2() {

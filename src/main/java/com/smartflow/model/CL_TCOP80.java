@@ -21,13 +21,10 @@ public class CL_TCOP80 {
     private String IS_OK;
     private String SerialNumber;
     private Integer WorkOrderId;
-    private String DB2000_DB12;
     private String DB2000_DB552;
     private BigDecimal DB2000_DBD100;
     private BigDecimal DB2000_DBD104;
     private BigDecimal DB2000_DBD108;
-    private BigDecimal DB2000_DBD112;
-    private BigDecimal DB2000_DBD116;
     private BigDecimal DB2000_DBD120;
     private BigDecimal DB2000_DBD124;
     private BigDecimal DB2000_DBD128;
@@ -45,8 +42,6 @@ public class CL_TCOP80 {
     private BigDecimal DB2000_DBD68;
     private BigDecimal DB2000_DBD72;
     private BigDecimal DB2000_DBD76;
-    private BigDecimal DB2000_DBD80;
-    private BigDecimal DB2000_DBD84;
     private BigDecimal DB2000_DBD88;
     private BigDecimal DB2000_DBD92;
     private BigDecimal DB2000_DBD96;
@@ -100,13 +95,6 @@ public class CL_TCOP80 {
         WorkOrderId = workOrderId;
     }
 
-    public String getDB2000_DB12() {
-        return DB2000_DB12;
-    }
-
-    public void setDB2000_DB12(String DB2000_DB12) {
-        this.DB2000_DB12 = DB2000_DB12;
-    }
 
     public String getDB2000_DB552() {
         return DB2000_DB552;
@@ -140,21 +128,6 @@ public class CL_TCOP80 {
         this.DB2000_DBD108 = DB2000_DBD108;
     }
 
-    public BigDecimal getDB2000_DBD112() {
-        return DB2000_DBD112;
-    }
-
-    public void setDB2000_DBD112(BigDecimal DB2000_DBD112) {
-        this.DB2000_DBD112 = DB2000_DBD112;
-    }
-
-    public BigDecimal getDB2000_DBD116() {
-        return DB2000_DBD116;
-    }
-
-    public void setDB2000_DBD116(BigDecimal DB2000_DBD116) {
-        this.DB2000_DBD116 = DB2000_DBD116;
-    }
 
     public BigDecimal getDB2000_DBD120() {
         return DB2000_DBD120;
@@ -292,21 +265,6 @@ public class CL_TCOP80 {
         this.DB2000_DBD76 = DB2000_DBD76;
     }
 
-    public BigDecimal getDB2000_DBD80() {
-        return DB2000_DBD80;
-    }
-
-    public void setDB2000_DBD80(BigDecimal DB2000_DBD80) {
-        this.DB2000_DBD80 = DB2000_DBD80;
-    }
-
-    public BigDecimal getDB2000_DBD84() {
-        return DB2000_DBD84;
-    }
-
-    public void setDB2000_DBD84(BigDecimal DB2000_DBD84) {
-        this.DB2000_DBD84 = DB2000_DBD84;
-    }
 
     public BigDecimal getDB2000_DBD88() {
         return DB2000_DBD88;

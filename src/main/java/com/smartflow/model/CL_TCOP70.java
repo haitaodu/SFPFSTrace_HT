@@ -30,10 +30,7 @@ public class CL_TCOP70 {
     private BigDecimal DB14_DBD4;
     private String DB14_DBD40;
     private BigDecimal DB14_DBD8;
-    private BigDecimal DB14_DBW168;
-    private BigDecimal DB14_DBW170;
-    private String DB14_DBX0_0;
-    private String DB14_DBX0_1;
+
 
     public String getIS_OK() {
         return IS_OK;
@@ -155,35 +152,5 @@ public class CL_TCOP70 {
         this.DB14_DBD8 = DB14_DBD8;
     }
 
-    public BigDecimal getDB14_DBW168() {
-        return DB14_DBW168;
-    }
 
-    public void setDB14_DBW168(BigDecimal DB14_DBW168) {
-        this.DB14_DBW168 = DB14_DBW168;
-    }
-
-    public BigDecimal getDB14_DBW170() {
-        return DB14_DBW170;
-    }
-
-    public void setDB14_DBW170(BigDecimal DB14_DBW170) {
-        this.DB14_DBW170 = DB14_DBW170;
-    }
-
-    public String getDB14_DBX0_0() {
-        return DB14_DBX0_0;
-    }
-
-    public void setDB14_DBX0_0(String DB14_DBX0_0) {
-        this.DB14_DBX0_0 = DB14_DBX0_0;
-    }
-
-    public String getDB14_DBX0_1() {
-        return DB14_DBX0_1;
-    }
-
-    public void setDB14_DBX0_1(String DB14_DBX0_1) {
-        this.DB14_DBX0_1 = DB14_DBX0_1;
-    }
 }

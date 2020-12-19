@@ -45,18 +45,15 @@ public class CL_FCOP20 {
     private String POSI_REL_;
     private String POSI_REL_U;
     private String POSI_REL_W;
-    private String TOOL_GROUP_NO;
+    private String TOOL_G_X;
     private String TOOL_NO;
-    private String TOOL_NUM;
-    private String TOOL_USE_CT;
-
-    public String getIS_OK() {
-        return IS_OK;
-    }
-
-    public void setIS_OK(String IS_OK) {
-        this.IS_OK = IS_OK;
-    }
+    private String TOOL_G_Z;
+    private String TOOL_W_X;
+    private String TOOL_W_Z;
+    private String ODBPRO_NUM;
+    private String RUN_TIME;
+    private String TOTAL_TIME;
+    private String TOTAL_PRODUCTION;
 
     public String getUUID() {
         return UUID;
@@ -96,6 +93,14 @@ public class CL_FCOP20 {
 
     public void setWorkOrderId(Integer workOrderId) {
         WorkOrderId = workOrderId;
+    }
+
+    public String getIS_OK() {
+        return IS_OK;
+    }
+
+    public void setIS_OK(String IS_OK) {
+        this.IS_OK = IS_OK;
     }
 
     public String getALARM1() {
@@ -298,12 +303,12 @@ public class CL_FCOP20 {
         this.POSI_REL_W = POSI_REL_W;
     }
 
-    public String getTOOL_GROUP_NO() {
-        return TOOL_GROUP_NO;
+    public String getTOOL_G_X() {
+        return TOOL_G_X;
     }
 
-    public void setTOOL_GROUP_NO(String TOOL_GROUP_NO) {
-        this.TOOL_GROUP_NO = TOOL_GROUP_NO;
+    public void setTOOL_G_X(String TOOL_G_X) {
+        this.TOOL_G_X = TOOL_G_X;
     }
 
     public String getTOOL_NO() {
@@ -314,19 +319,59 @@ public class CL_FCOP20 {
         this.TOOL_NO = TOOL_NO;
     }
 
-    public String getTOOL_NUM() {
-        return TOOL_NUM;
+    public String getTOOL_G_Z() {
+        return TOOL_G_Z;
     }
 
-    public void setTOOL_NUM(String TOOL_NUM) {
-        this.TOOL_NUM = TOOL_NUM;
+    public void setTOOL_G_Z(String TOOL_G_Z) {
+        this.TOOL_G_Z = TOOL_G_Z;
     }
 
-    public String getTOOL_USE_CT() {
-        return TOOL_USE_CT;
+    public String getTOOL_W_X() {
+        return TOOL_W_X;
     }
 
-    public void setTOOL_USE_CT(String TOOL_USE_CT) {
-        this.TOOL_USE_CT = TOOL_USE_CT;
+    public void setTOOL_W_X(String TOOL_W_X) {
+        this.TOOL_W_X = TOOL_W_X;
+    }
+
+    public String getTOOL_W_Z() {
+        return TOOL_W_Z;
+    }
+
+    public void setTOOL_W_Z(String TOOL_W_Z) {
+        this.TOOL_W_Z = TOOL_W_Z;
+    }
+
+    public String getODBPRO_NUM() {
+        return ODBPRO_NUM;
+    }
+
+    public void setODBPRO_NUM(String ODBPRO_NUM) {
+        this.ODBPRO_NUM = ODBPRO_NUM;
+    }
+
+    public String getRUN_TIME() {
+        return RUN_TIME;
+    }
+
+    public void setRUN_TIME(String RUN_TIME) {
+        this.RUN_TIME = RUN_TIME;
+    }
+
+    public String getTOTAL_TIME() {
+        return TOTAL_TIME;
+    }
+
+    public void setTOTAL_TIME(String TOTAL_TIME) {
+        this.TOTAL_TIME = TOTAL_TIME;
+    }
+
+    public String getTOTAL_PRODUCTION() {
+        return TOTAL_PRODUCTION;
+    }
+
+    public void setTOTAL_PRODUCTION(String TOTAL_PRODUCTION) {
+        this.TOTAL_PRODUCTION = TOTAL_PRODUCTION;
     }
 }
