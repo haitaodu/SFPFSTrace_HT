@@ -155,35 +155,66 @@ public class TracePartByStationController extends BaseController{
 //						filterList.set(10, tableHeaderDTO5);
 					}else if(linkTableName.equals("CL_TUOP50")) {
 						for (Map<String, Object> map : dataList) {
-							String iS_OK = map.get("IS_OK") == null ? null : map.get("IS_OK").toString().trim();
+//							String iS_OK = map.get("IS_OK") == null ? null : map.get("IS_OK").toString().trim();
 							//整平工位:整平NG
-							String levelingStationNG = map.get("DB20_DBX57_1") == null ? null : map.get("DB20_DBX57_1").toString();
+//							String levelingStationNG = map.get("DB20_DBX57_1") == null ? null : map.get("DB20_DBX57_1").toString();
 							//墩铆检测
 							String pierRivetingInspection = map.get("DB20_DBX56_7") == null ? null : map.get("DB20_DBX56_7").toString();
 							//铆压相机检测:铆钉NG(总产品)
 							String rivetingCameraDetection = map.get("DB20_DBX60_2") == null ? null : map.get("DB20_DBX60_2").toString();
-							if (iS_OK.equals("OK")) {//0:OK，1:NG
-								//隐藏整平工位和墩铆检测
-								StationUtil.hideLevelingStationNGData(map);
-								StationUtil.hidePierRivetingInspection(map);
-							}else {
+//							if (iS_OK.equals("OK")) {//0:OK，1:NG
+//								//隐藏整平工位和墩铆检测
+//								StationUtil.hideLevelingStationNGData(map);
+//								StationUtil.hidePierRivetingInspection(map);
+//							}else {
 								//select DB20_DBX57_0,DB20_DBX57_1,DB20_DBX56_6,DB20_DBX56_7,DB20_DBX60_1,DB20_DBX60_2 from core.CL_TUOP50 order by CREATE_DATE desc;
 								//如果六列都是空或者整平NG是空，墩铆NG是0，相机检测（总产品）NG是0  说明第一道工序整平就已经NG（只显示整平两列数据） // || (levelingStationNG == null && (pierRivetingInspection == null || pierRivetingInspection.equals("0")) && (rivetingCameraDetection == null || rivetingCameraDetection.equals("0")))
-								if ((levelingStationNG != null && levelingStationNG.equals("1"))) {
-									//隐藏墩铆检测和下料保存
-									StationUtil.hidePierRivetingInspection(map);
-									StationUtil.hideBlankingPreservation(map);
-								}else if (pierRivetingInspection != null && pierRivetingInspection.equals("1")) {
+//								if ((levelingStationNG != null && levelingStationNG.equals("1"))) {
+//									//隐藏墩铆检测和下料保存
+//									StationUtil.hidePierRivetingInspection(map);
+//									StationUtil.hideBlankingPreservation(map);
+//								}else
+								if (pierRivetingInspection != null && pierRivetingInspection.equals("1")) {
 									//隐藏整平工位和下料保存
-									StationUtil.hideLevelingStationNGData(map);
-									StationUtil.hideBlankingPreservation(map);
+									//StationUtil.hideLevelingStationNGData(map);
+									//StationUtil.hideBlankingPreservation(map);
+									map.put("RivetingPressure", map.get("DB1_DBD8"));//墩铆检测:铆压位移
+									map.put("RivetingDisplacement", map.get("DB1_DBD12"));//墩铆检测:铆压压力
 								}else if (rivetingCameraDetection != null && rivetingCameraDetection.equals("1")) {
 									//隐藏整平工位和墩铆检测
-									StationUtil.hideLevelingStationNGData(map);
+//									StationUtil.hideLevelingStationNGData(map);
 									StationUtil.hidePierRivetingInspection(map);
+									map.put("RivetingPressure", map.get("DB10_DBD1838"));//下料保存:铆压位移
+									map.put("RivetingDisplacement", map.get("DB10_DBD1842"));//下料保存:铆压压力
 								}
-							}
+								map.put("LevelingTestResult", map.get("DB20_DBX57_1") == null ? null : (map.get("DB20_DBX57_1").equals("1") ? "NG" : "OK"));//整平工位:整平OK
+								map.put("RivetCamera", map.get("DB20_DBX57_4") == null ? null : (map.get("DB20_DBX57_4").equals("1") ? "NG" : "OK"));//铆钉相机检测:铆钉NG
+								map.put("PierRivetingResults", map.get("DB20_DBX56_7") == null ? null : (map.get("DB20_DBX56_7").equals("1") ? "NG" : "OK"));//墩铆检测:铆钉NG
+								map.put("RivetingCameraDetection", map.get("DB20_DBX60_2") == null ? null : (map.get("DB20_DBX60_2").equals("1") ? "NG" : "OK"));//铆压相机检测:铆钉NG
+								map.put("ReadResults", map.get("M15_6") == null ? null : (map.get("M15_6").equals("1") ? "NG" : "OK"));//铆压相机检测:铆钉NG
+//							}
 						}
+						TableHeaderDTO rivetingPressure  = new TableHeaderDTO("铆压压力", "RivetingPressure");
+						TableHeaderDTO rivetingDisplacement  = new TableHeaderDTO("铆压位移", "RivetingDisplacement");
+						TableHeaderDTO levelingStationNG  = new TableHeaderDTO("整平测试结果", "LevelingTestResult");
+						TableHeaderDTO rivetCamera  = new TableHeaderDTO("铆钉相机", "RivetCamera");
+						TableHeaderDTO pierRivetingResults  = new TableHeaderDTO("墩铆结果", "PierRivetingResults");
+						TableHeaderDTO rivetingCameraDetection  = new TableHeaderDTO("铆压相机检测", "RivetingCameraDetection");
+						TableHeaderDTO readResults  = new TableHeaderDTO("读取结果", "ReadResults");
+						filterList.add(rivetingPressure);
+						filterList.add(rivetingDisplacement);
+						filterList.add(levelingStationNG);
+						filterList.add(rivetCamera);
+						filterList.add(pierRivetingResults);
+						filterList.add(rivetingCameraDetection);
+						filterList.add(readResults);
+//						filterList.add(6,rivetingPressure);
+//						filterList.add(7,rivetingDisplacement);
+//						filterList.add(8,levelingStationNG);
+//						filterList.add(9,rivetCamera);
+//						filterList.add(10,pierRivetingResults);
+//						filterList.add(11,rivetingCameraDetection);
+//						filterList.add(12,readResults);
 					}
 					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
 					TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
