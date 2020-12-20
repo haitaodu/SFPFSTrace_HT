@@ -137,7 +137,12 @@ public class StationUtil {
         list.add("DB10_DBW11");
 
         list.add("DB10_DBD18");//铆压压力、铆压位移
-        list.add("DB9_DBW");//TCOP10
+        list.add("DB9_DBW");
+        //TCOP10
+        list.add("DB9_DBX5");
+        list.add("DB9_DBX6");
+        list.add("DB9_DBX7");
+        list.add("DB9_DBX8");
       return list;
     }
     public static List<String> getFilterEqualsCondition(){
