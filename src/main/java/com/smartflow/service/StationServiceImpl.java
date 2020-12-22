@@ -69,4 +69,9 @@ public class StationServiceImpl implements StationService {
 		}
 		return stationList;
 	}
+
+	@Override
+	public Integer getStationIdByStationNumber(String stationNumber) {
+		return stationDao.getStationIdByStationNumber(stationNumber);
+	}
 }

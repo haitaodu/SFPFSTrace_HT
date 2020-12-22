@@ -87,7 +87,22 @@ public class StationDaoImpl implements StationDao{
 				(hql, paramName,value);
 	}
 
-
+	@Override
+	public Integer getStationIdByStationNumber(String stationNumber) {
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		String hql = "select s.id from Station s where s.stationNumber = :stationNumber";
+		try{
+			Query query = session.createQuery(hql);
+			query.setParameter("stationNumber", stationNumber);
+			return query.uniqueResult() == null ? null : Integer.parseInt(query.uniqueResult().toString());
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -34,7 +34,12 @@ public interface StationDao {
 	 */
 	public List<StationList> getStationList(long workOrderId, int cellId);
 
-
+	/**
+	 * 根据工站编号查询工站id
+	 * @param stationNumber
+	 * @return
+	 */
+	public Integer getStationIdByStationNumber(String stationNumber);
 
 	public int getCellByWorkOrderId(long workOrderId,String stationNumber);
 } 
