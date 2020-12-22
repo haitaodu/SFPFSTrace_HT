@@ -28,7 +28,7 @@ public class CL_PDOP15 {
     private String IS_OK;
     private String DB2000_DB12;
     private String DB2000_DB552;
-    private BigDecimal DB2000_DB40;
+    private BigDecimal DB2000_DBD40;
     private BigDecimal DB2000_DBD44;
     private BigDecimal DB2000_DBD48;
     private BigDecimal DB2000_DBD52;
@@ -50,12 +50,12 @@ public class CL_PDOP15 {
         this.DB2000_DB12 = DB2000_DB12;
     }
 
-    public BigDecimal getDB2000_DB40() {
-        return DB2000_DB40;
+    public BigDecimal getDB2000_DBD40() {
+        return DB2000_DBD40;
     }
 
-    public void setDB2000_DB40(BigDecimal DB2000_DB40) {
-        this.DB2000_DB40 = DB2000_DB40;
+    public void setDB2000_DBD40(BigDecimal DB2000_DBD40) {
+        this.DB2000_DBD40 = DB2000_DBD40;
     }
 
     public String getDB2000_DB552() {

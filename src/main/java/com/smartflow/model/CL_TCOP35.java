@@ -23,7 +23,7 @@ public class CL_TCOP35 {
     private String IS_SYNCH;
     private String SerialNumber;
     private Long WorkOrderId;
-    private String DB2000_DB40;
+    private String DB2000_DBD40;
     private String DB2000_DB552;
     private Integer DB2000_DBW2;
     private BigDecimal DB2000_DBD44;
@@ -70,12 +70,12 @@ public class CL_TCOP35 {
         WorkOrderId = workOrderId;
     }
 
-    public String getDB2000_DB40() {
-        return DB2000_DB40;
+    public String getDB2000_DBD40() {
+        return DB2000_DBD40;
     }
 
-    public void setDB2000_DB40(String DB2000_DB40) {
-        this.DB2000_DB40 = DB2000_DB40;
+    public void setDB2000_DBD40(String DB2000_DBD40) {
+        this.DB2000_DBD40 = DB2000_DBD40;
     }
 
     public String getDB2000_DB552() {

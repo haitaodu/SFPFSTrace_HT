@@ -28,11 +28,10 @@ public class CL_FCOP50 {
     private String CTRAVEL;
     private String CUT_TIME;
     private String ESTOP;
-    private String EXECUTION;
+    private String ELECTRIC_COND;
     private BigDecimal FACT;
     private String FOVR;
     private String FRAPIDOVR;
-    private String FUNCTIONALMODE;
     private String HYDRA_COND;
     private String LINE;
     private String LOGIC_COND;
@@ -41,6 +40,9 @@ public class CL_FCOP50 {
     private String PALLET_NUM;
     private BigDecimal PART_COUNT_ACT;
     private String PROGRAM;
+    private BigDecimal SLOAD;
+    private BigDecimal SLOAD_COND;
+    private BigDecimal SOVR;
     private String SPINDLE_COND;
     private String SRPM;
     private BigDecimal STEMP;
@@ -81,6 +83,38 @@ public class CL_FCOP50 {
 
     public String getSerialNumber() {
         return SerialNumber;
+    }
+
+    public String getELECTRIC_COND() {
+        return ELECTRIC_COND;
+    }
+
+    public void setELECTRIC_COND(String ELECTRIC_COND) {
+        this.ELECTRIC_COND = ELECTRIC_COND;
+    }
+
+    public BigDecimal getSLOAD() {
+        return SLOAD;
+    }
+
+    public void setSLOAD(BigDecimal SLOAD) {
+        this.SLOAD = SLOAD;
+    }
+
+    public BigDecimal getSLOAD_COND() {
+        return SLOAD_COND;
+    }
+
+    public void setSLOAD_COND(BigDecimal SLOAD_COND) {
+        this.SLOAD_COND = SLOAD_COND;
+    }
+
+    public BigDecimal getSOVR() {
+        return SOVR;
+    }
+
+    public void setSOVR(BigDecimal SOVR) {
+        this.SOVR = SOVR;
     }
 
     public void setSerialNumber(String serialNumber) {
@@ -159,13 +193,7 @@ public class CL_FCOP50 {
         this.ESTOP = ESTOP;
     }
 
-    public String getEXECUTION() {
-        return EXECUTION;
-    }
 
-    public void setEXECUTION(String EXECUTION) {
-        this.EXECUTION = EXECUTION;
-    }
 
     public BigDecimal getFACT() {
         return FACT;
@@ -191,13 +219,7 @@ public class CL_FCOP50 {
         this.FRAPIDOVR = FRAPIDOVR;
     }
 
-    public String getFUNCTIONALMODE() {
-        return FUNCTIONALMODE;
-    }
 
-    public void setFUNCTIONALMODE(String FUNCTIONALMODE) {
-        this.FUNCTIONALMODE = FUNCTIONALMODE;
-    }
 
     public String getHYDRA_COND() {
         return HYDRA_COND;

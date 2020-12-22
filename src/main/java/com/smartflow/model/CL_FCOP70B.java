@@ -29,7 +29,6 @@ public class CL_FCOP70B {
     private String CUT_TIME;
     private String ELECTRIC_COND;
     private String ESTOP;
-    private String EXECUTION;
     private BigDecimal FACT;
     private String FOVR;
     private String FRAPIDOVR;
@@ -41,7 +40,6 @@ public class CL_FCOP70B {
     private String PALLET_NUM;
     private BigDecimal PART_COUNT_ACT;
     private String PROGRAM;
-    private String PROGRAM_CMT;
     private BigDecimal SLOAD;
     private String SLOAD_COND;
     private String SOVR;
@@ -171,13 +169,7 @@ public class CL_FCOP70B {
         this.ESTOP = ESTOP;
     }
 
-    public String getEXECUTION() {
-        return EXECUTION;
-    }
 
-    public void setEXECUTION(String EXECUTION) {
-        this.EXECUTION = EXECUTION;
-    }
 
     public BigDecimal getFACT() {
         return FACT;
@@ -267,13 +259,6 @@ public class CL_FCOP70B {
         this.PROGRAM = PROGRAM;
     }
 
-    public String getPROGRAM_CMT() {
-        return PROGRAM_CMT;
-    }
-
-    public void setPROGRAM_CMT(String PROGRAM_CMT) {
-        this.PROGRAM_CMT = PROGRAM_CMT;
-    }
 
     public BigDecimal getSLOAD() {
         return SLOAD;

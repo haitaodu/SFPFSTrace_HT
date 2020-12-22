@@ -47,8 +47,6 @@ public class CL_PDOP90 {
     private BigDecimal MES_CUT_NUM;
     protected BigDecimal MES_RESULT;
     private String MES_SCAN;
-    private BigDecimal MES_STATUS;
-
     private BigDecimal MES_UAMP_INI_VALUE;
     private BigDecimal MES_UAMP_RES_VALUE;
     private BigDecimal MES_UPHA_INI_DEGREE;
@@ -105,13 +103,6 @@ public class CL_PDOP90 {
         this.MES_SCAN = MES_SCAN;
     }
 
-    public BigDecimal getMES_STATUS() {
-        return MES_STATUS;
-    }
-
-    public void setMES_STATUS(BigDecimal MES_STATUS) {
-        this.MES_STATUS = MES_STATUS;
-    }
 
     public String getSerialNumber() {
         return SerialNumber;

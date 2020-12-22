@@ -23,7 +23,6 @@ public class CL_FCOP80A {
     private String IS_OK;
     private String AUTO_TIME;
     private String COMMS_COND;
-    private String CONCENTRATION;
     private String COOLANT_COND;
     private String CRFUNC;
     private String CTRAVEL;
@@ -122,13 +121,6 @@ public class CL_FCOP80A {
         this.COMMS_COND = COMMS_COND;
     }
 
-    public String getCONCENTRATION() {
-        return CONCENTRATION;
-    }
-
-    public void setCONCENTRATION(String CONCENTRATION) {
-        this.CONCENTRATION = CONCENTRATION;
-    }
 
     public String getCOOLANT_COND() {
         return COOLANT_COND;

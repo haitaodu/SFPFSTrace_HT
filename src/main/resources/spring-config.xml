@@ -35,9 +35,9 @@
 
         <property name="maxIdleTime" value="60">
         </property>
-        <property name="minPoolSize" value="60">
+        <property name="minPoolSize" value="20">
         </property>
-        <property name="initialPoolSize" value="80"/>
+        <property name="initialPoolSize" value="20"/>
         <property name="idleConnectionTestPeriod" value="100">
         </property>
         <property name="acquireIncrement" value="10">
@@ -72,7 +72,7 @@
                 <!--<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop> -->
                 <prop key="hibernate.dialect">com.smartflow.util.MySQLServerDialect</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.c3p0.max_size">200</prop>
                 <prop key="hibernate.cache.use_query_cache">true</prop>
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
