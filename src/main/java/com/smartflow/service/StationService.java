@@ -23,4 +23,11 @@ public interface StationService {
 	 * @return
 	 */
 	public List<Map<String, Object>> getStationListInFrontOfMarkingMachine();
+
+	/**
+	 * 根据工站编号查询工站id
+	 * @param stationNumber
+	 * @return
+	 */
+	public Integer getStationIdByStationNumber(String stationNumber);
 }

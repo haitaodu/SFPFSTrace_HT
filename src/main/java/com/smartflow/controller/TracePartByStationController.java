@@ -244,15 +244,16 @@ public class TracePartByStationController extends BaseController{
 
     /**
      * 根据工站获取设备相关信息
-     * @param stationId
+     * @param stationNumber
      * @return
      */
     @CrossOrigin(origins="*",maxAge=3600)
-    @GetMapping(value="/GetStationInformationByStation/{stationId}")
-	public Map<String, Object> getStationInformationByStation(@PathVariable Integer stationId){
+    @GetMapping(value="/GetStationInformationByStation/{stationNumber}")
+	public Map<String, Object> getStationInformationByStation(@PathVariable String stationNumber){
 	    Map<String,Object> json = new HashMap<>();
         List<Map<String,Object>> dataMapList = new ArrayList<>();
 	    try {
+	    	Integer stationId = stationService.getStationIdByStationNumber(stationNumber);
             String linkTableName = clstationService.getLinkTableNameByStationId(stationId);
             if (linkTableName == null) {
                 json = this.setJson(FALL_CODE, "工站没有关联的表！", -1);
