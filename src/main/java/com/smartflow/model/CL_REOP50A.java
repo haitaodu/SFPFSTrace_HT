@@ -45,7 +45,6 @@ public class CL_REOP50A {
     private String SPINDLE_COND;
     private String SRPM;
     private BigDecimal STEMP;
-    private String STEMP_COND;
     private String SYSTEM_COND;
     private String TOOL_NUMBER;
     private String TOTAL_AUTO_CUT_TIME;
@@ -295,14 +294,6 @@ public class CL_REOP50A {
 
     public void setSTEMP(BigDecimal STEMP) {
         this.STEMP = STEMP;
-    }
-
-    public String getSTEMP_COND() {
-        return STEMP_COND;
-    }
-
-    public void setSTEMP_COND(String STEMP_COND) {
-        this.STEMP_COND = STEMP_COND;
     }
 
     public String getSYSTEM_COND() {

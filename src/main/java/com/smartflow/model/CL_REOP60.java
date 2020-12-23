@@ -53,9 +53,19 @@ public class CL_REOP60 {
     private BigDecimal XABS;
     private BigDecimal XFRT;
     private BigDecimal XLOAD;
+    private BigDecimal XPOS;
     private String XTRAVEL;
     private String ZTRAVEL;
 
+
+
+    public BigDecimal getXPOS() {
+        return XPOS;
+    }
+
+    public void setXPOS(BigDecimal XPOS) {
+        this.XPOS = XPOS;
+    }
     public String getUUID() {
         return UUID;
     }

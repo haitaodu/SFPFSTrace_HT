@@ -48,7 +48,7 @@ public class CL_TCOP120 {
     private BigDecimal DB500_DBD946;
     private BigDecimal DB500_DBD950;
     private BigDecimal DB500_DBD954;
-    private BigDecimal DB500_DBW640;
+
     private BigDecimal DB500_DBW958;
     private BigDecimal DB500_DBW960;
     private BigDecimal DB500_DBW1028;
@@ -322,13 +322,6 @@ public class CL_TCOP120 {
         this.DB500_DBD954 = DB500_DBD954;
     }
 
-    public BigDecimal getDB500_DBW640() {
-        return DB500_DBW640;
-    }
-
-    public void setDB500_DBW640(BigDecimal DB500_DBW640) {
-        this.DB500_DBW640 = DB500_DBW640;
-    }
 
     public BigDecimal getDB500_DBW958() {
         return DB500_DBW958;
