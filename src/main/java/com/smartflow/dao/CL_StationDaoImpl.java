@@ -1,9 +1,6 @@
 package com.smartflow.dao;
 
-import com.smartflow.dto.TableHeaderDTO;
-import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
-import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
-import com.smartflow.dto.VMTracePartByStationInput;
+import com.smartflow.dto.*;
 import com.smartflow.model.CurrentActivedWorkOrderInformation;
 import com.smartflow.model.WorkOrder;
 import org.apache.poi.util.StringUtil;
@@ -300,6 +297,42 @@ catch (Exception e)
             query.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Integer getTotalCountCLStationListByCondition(String linkTableName, GetCompletedQuantityInputDTO getCompletedQuantityInputDTO) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        String sql = "select count(*) from core."+linkTableName+ " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
+        try {
+            if(!StringUtils.isEmpty(getCompletedQuantityInputDTO.getStartDateTime())){
+                sql += " and CREATE_DATE >= :StartDateTime";
+            }
+            if(!StringUtils.isEmpty(getCompletedQuantityInputDTO.getEndDateTime())){
+                sql += " and CREATE_DATE <= :EndDateTime";
+            }
+            Query query = session.createSQLQuery(sql);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date startDateTime = null;
+            if (!StringUtils.isEmpty(getCompletedQuantityInputDTO.getStartDateTime())) {
+               startDateTime = sdf.parse(getCompletedQuantityInputDTO.getStartDateTime());
+                query.setParameter("StartDateTime", startDateTime);
+            }
+//            String EndDateTime = getCompletedQuantityInputDTO.getEndDateTime();
+            if (!StringUtils.isEmpty(getCompletedQuantityInputDTO.getEndDateTime())) {
+                Date endDateTime = sdf.parse(getCompletedQuantityInputDTO.getEndDateTime());
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.setTime(endDateTime);
+//                calendar.add(Calendar.DAY_OF_MONTH, 1);
+//                System.out.println(calendar.getTime());
+                query.setParameter("EndDateTime", endDateTime);
+            }
+            return query.uniqueResult() == null ? 0 : Integer.parseInt(query.uniqueResult().toString());
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
         }
     }
 }

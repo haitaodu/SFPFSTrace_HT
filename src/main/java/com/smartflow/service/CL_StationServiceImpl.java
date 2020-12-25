@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.smartflow.common.stationenum.ParseToArray;
 import com.smartflow.dao.CL_StationDao;
-import com.smartflow.dto.TableHeaderDTO;
-import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
-import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
-import com.smartflow.dto.VMTracePartByStationInput;
+import com.smartflow.dto.*;
 import com.smartflow.model.CL_REOP10A;
 import com.smartflow.model.CL_REOP10B;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -298,5 +295,11 @@ public class CL_StationServiceImpl implements CL_StationService {
     public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO) {
         String linkTableName = cl_stationDao.getLinkTableNameByStationId(updateStateByUUIDListInputDTO.getStationId());
         cl_stationDao.updateStateByUUIDList(updateStateByUUIDListInputDTO, linkTableName);
+    }
+
+    @Override
+    public Integer getTotalCountCLStationListByCondition(String linkTableName, GetCompletedQuantityInputDTO getCompletedQuantityInputDTO) {
+        return cl_stationDao.getTotalCountCLStationListByCondition
+                (linkTableName, getCompletedQuantityInputDTO);
     }
 }
