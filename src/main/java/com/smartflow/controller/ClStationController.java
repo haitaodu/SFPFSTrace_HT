@@ -79,6 +79,13 @@ public class ClStationController extends BaseController{
                 String serialNumber = jsonObject.get
                         (SERIAL_ARG) == null ? null :
                         jsonObject.get(SERIAL_ARG).toString();
+                assert serialNumber != null;
+                logger.info(serialNumber);
+                serialNumber=serialNumber.replaceAll("\r","");
+                serialNumber=serialNumber.replaceAll("\n","");
+                serialNumber=serialNumber.replaceAll("\b","");
+                logger.info(serialNumber);
+                jsonObject.put(SERIAL_ARG,serialNumber);
                 clStationDeviceDTO.setObject(jsonObject);
 
                 /**
