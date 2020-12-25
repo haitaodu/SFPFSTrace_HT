@@ -1,9 +1,6 @@
 package com.smartflow.dao;
 
-import com.smartflow.dto.TableHeaderDTO;
-import com.smartflow.dto.UpdateStateByUUIDListInputDTO;
-import com.smartflow.dto.VMTracePartBySerialNumberOrWorkOrderInput;
-import com.smartflow.dto.VMTracePartByStationInput;
+import com.smartflow.dto.*;
 
 import java.util.List;
 import java.util.Map;
@@ -90,5 +87,13 @@ public interface CL_StationDao {
      * @param linkTableName
      */
     public void updateStateByUUIDList(UpdateStateByUUIDListInputDTO updateStateByUUIDListInputDTO, String linkTableName);
+
+    /**
+     * 根据工站id和开始时间、结束时间查询工件数量
+     * @param linkTableName
+     * @param getCompletedQuantityInputDTO
+     * @return
+     */
+    public Integer getTotalCountCLStationListByCondition(String linkTableName, GetCompletedQuantityInputDTO getCompletedQuantityInputDTO);
 
 }

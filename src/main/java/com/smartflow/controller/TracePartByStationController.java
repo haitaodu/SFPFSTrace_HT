@@ -1,6 +1,7 @@
 package com.smartflow.controller;
 
 import com.smartflow.common.stationenum.FilterModeEnum;
+import com.smartflow.dto.GetCompletedQuantityInputDTO;
 import com.smartflow.dto.TableHeaderDTO;
 import com.smartflow.dto.VMTracePartByStationInput;
 import com.smartflow.dto.VMTracePartByStationOutput;
@@ -297,4 +298,33 @@ public class TracePartByStationController extends BaseController{
         }
         return json;
     }
+
+	/**
+	 * 根据工站和时间查询过站工件数量
+	 * @param getCompletedQuantityInputDTO
+	 * @return
+	 */
+	@CrossOrigin(origins="*",maxAge=3600)
+	@PostMapping("/GetCompletedQuantityByCondition")
+    public Map<String, Object> getCompletedQuantityByCondition(@RequestBody GetCompletedQuantityInputDTO getCompletedQuantityInputDTO){
+		try {
+			Integer completedQuantity = 0;
+			if(!CollectionUtils.isEmpty(getCompletedQuantityInputDTO.getStationIdList())){
+				for (Integer stationId:getCompletedQuantityInputDTO.getStationIdList()) {
+					String linkTableName = clstationService.getLinkTableNameByStationId(stationId);
+					if (linkTableName == null) {//工站没有关联的表
+						completedQuantity += 0;
+					}else{
+						completedQuantity += clstationService.getTotalCountCLStationListByCondition(linkTableName, getCompletedQuantityInputDTO);
+
+					}
+				}
+			}
+			json = this.setJson(SUCESS_CODE, GET_SUCESS, completedQuantity);
+		}catch(Exception e){
+			json = this.setJson(FALL_CODE, GET_FALL+e.getMessage(), -1);
+			logger.error(e.getCause());
+		}
+		return json;
+	}
 }
