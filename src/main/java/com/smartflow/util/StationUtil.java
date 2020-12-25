@@ -202,6 +202,16 @@ public class StationUtil {
         list.add("DB2000_DB552");
         //REOP40
         list.add("DB15_CHAR48_40");
+        list.add("DB14_DBD36");
+        list.add("DB77_DBX44_0");
+        list.add("DB78_DBX44_0");
+        list.add("DB71_DBX44_0");
+        list.add("DB167_DBD284");
+        list.add("DB167_DBD326");
+        list.add("DB14_DBD40");
+        list.add("DB500_DB642");
+        list.add("DB500_DB986");
+        list.add("QRCODE");
         return list;
     }
 
