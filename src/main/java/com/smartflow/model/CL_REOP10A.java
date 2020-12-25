@@ -54,9 +54,6 @@ public class CL_REOP10A {
     private String RUN_TIME;
     private String TOTAL_TIME;
     private String TOTAL_PRODUCTION;
-    private String TOOL_GROUP_NO;
-    private String TOOL_NUM;
-    private String TOOL_USE_CT;
     private int state;
 
 
@@ -380,13 +377,7 @@ public class CL_REOP10A {
         this.POSI_REL_W = POSI_REL_W;
     }
 
-    public String getTOOL_GROUP_NO() {
-        return TOOL_GROUP_NO;
-    }
 
-    public void setTOOL_GROUP_NO(String TOOL_GROUP_NO) {
-        this.TOOL_GROUP_NO = TOOL_GROUP_NO;
-    }
 
     public String getTOOL_NO() {
         return TOOL_NO;
@@ -396,19 +387,5 @@ public class CL_REOP10A {
         this.TOOL_NO = TOOL_NO;
     }
 
-    public String getTOOL_NUM() {
-        return TOOL_NUM;
-    }
 
-    public void setTOOL_NUM(String TOOL_NUM) {
-        this.TOOL_NUM = TOOL_NUM;
-    }
-
-    public String getTOOL_USE_CT() {
-        return TOOL_USE_CT;
-    }
-
-    public void setTOOL_USE_CT(String TOOL_USE_CT) {
-        this.TOOL_USE_CT = TOOL_USE_CT;
-    }
 }
