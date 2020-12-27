@@ -137,7 +137,7 @@ public class StationUtil {
         list.add("DB10_DBW11");
 
         list.add("DB10_DBD18");//铆压压力、铆压位移
-        list.add("DB9_DBW");
+//        list.add("DB9_DBW");
         //TCOP10
         list.add("DB9_DBX5");
         list.add("DB9_DBX6");
@@ -212,6 +212,12 @@ public class StationUtil {
         list.add("DB500_DB642");
         list.add("DB500_DB986");
         list.add("QRCODE");
+        //TCOP10
+        list.add("DB9_DBW1560");
+        list.add("DB9_DBW1562");
+        list.add("DB9_DBW1564");
+        list.add("DB9_DBW1566");
+        list.add("DB9_DBX1006_0");//下料保存：泵轮变位条码
         return list;
     }
 

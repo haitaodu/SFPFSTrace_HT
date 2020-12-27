@@ -136,6 +136,7 @@ public class TracePartByStationController extends BaseController{
                     filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
 
 					Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+					String serailNumberHeader = "产品条码";
 					if(linkTableName.equals("CL_TUOP25") || linkTableName.equals("CL_TUOP80")){
 						Collections.rotate(filterList, 8);//从list后面往前数，移动倒数第八个位置移到第一个
 //						TableHeaderDTO tableHeaderDTO5 = new TableHeaderDTO("清水液位", "MD448");
@@ -216,8 +217,22 @@ public class TracePartByStationController extends BaseController{
 //						filterList.add(10,pierRivetingResults);
 //						filterList.add(11,rivetingCameraDetection);
 //						filterList.add(12,readResults);
+					}else if(linkTableName.equals("CL_TCOP10")){
+						serailNumberHeader = "泵轮条码";
+						filterList.clear();
+						TableHeaderDTO serialNumber1  = new TableHeaderDTO("涡闭条码", "DB9_DBX922_0");
+						TableHeaderDTO serialNumber2  = new TableHeaderDTO("导轮条码", "DB9_DBX964_0");
+						TableHeaderDTO serialNumber3  = new TableHeaderDTO("罩轮条码", "DB9_DBX1048_0");
+						TableHeaderDTO batch1 = new TableHeaderDTO("轴承1批次号", "DB9_DBW1568");
+						TableHeaderDTO batch2 = new TableHeaderDTO("轴承2批次号", "DB9_DBW1570");
+
+						filterList.add(serialNumber1);
+						filterList.add(serialNumber2);
+						filterList.add(serialNumber3);
+						filterList.add(batch1);
+						filterList.add(batch2);
 					}
-					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
+					TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO(serailNumberHeader, "SerialNumber");
 					TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
 					TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
 					TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
