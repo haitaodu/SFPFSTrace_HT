@@ -3,6 +3,7 @@ package com.smartflow.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.smartflow.dto.StationLinkTableNameDTO;
 import com.smartflow.view.StationList;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -126,5 +127,22 @@ public class StationDaoImpl implements StationDao{
 	String split=args.substring(0,2);
 	String staion=split+"_"+args.substring(2,args.length());
 	return staion;
+	}
+
+	@Override
+	public List<StationLinkTableNameDTO> getStationLinkTableNameByCell(String cellNumber) {
+		String sql = "select STATION_CODE StationNumber,LINK_TABLE_NAME LinkTableName from core.CL_STATION where STATION_CODE in(select StationNumber from core.Station where Id in (select StationtId from core.Station_StationGroup where StationGroupId in (select Id from core.StationGroup where State = 1 and CellId in (select Id from core.Cell where CellNumber like :cellNumber))))";
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		try{
+			Query query = session.createSQLQuery(sql);
+			query.setParameter("cellNumber", "%"+cellNumber+"%");
+			return query.setResultTransformer(Transformers.aliasToBean(StationLinkTableNameDTO.class)).list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
 	}
 }

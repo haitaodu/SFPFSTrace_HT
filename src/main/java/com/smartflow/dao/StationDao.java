@@ -1,5 +1,6 @@
 package com.smartflow.dao;
 
+import com.smartflow.dto.StationLinkTableNameDTO;
 import com.smartflow.view.StationList;
 
 import java.util.List;
@@ -42,4 +43,11 @@ public interface StationDao {
 	public Integer getStationIdByStationNumber(String stationNumber);
 
 	public int getCellByWorkOrderId(long workOrderId,String stationNumber);
-} 
+
+	/**
+	 * 根据岛区查询工站关联表
+	 * @param cellNumber
+	 * @return
+	 */
+	public List<StationLinkTableNameDTO> getStationLinkTableNameByCell(String cellNumber);
+}

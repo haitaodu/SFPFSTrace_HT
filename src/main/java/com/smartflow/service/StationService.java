@@ -1,5 +1,7 @@
 package com.smartflow.service;
 
+import com.smartflow.dto.StationLinkTableNameDTO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -30,4 +32,13 @@ public interface StationService {
 	 * @return
 	 */
 	public Integer getStationIdByStationNumber(String stationNumber);
+
+	/**
+	 * 根据岛区查询工站关联表
+	 * @param cellNumber
+	 * @return
+	 */
+	public List<StationLinkTableNameDTO> getStationLinkTableNameByCell(String cellNumber);
+
+
 }

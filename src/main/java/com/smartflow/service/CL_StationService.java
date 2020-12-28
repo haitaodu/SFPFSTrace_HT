@@ -130,4 +130,12 @@ public interface CL_StationService {
      * @return
      */
     public Integer getTotalCountCLStationListByCondition(String linkTableName, GetCompletedQuantityInputDTO getCompletedQuantityInputDTO);
+
+    /**
+     * 根据关联表和条码查询工站测试结果
+     * @param serialNumber
+     * @param linkTableNameList
+     * @return
+     */
+    public List<Map<String,Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList);
 }

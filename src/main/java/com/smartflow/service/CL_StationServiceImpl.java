@@ -302,4 +302,9 @@ public class CL_StationServiceImpl implements CL_StationService {
         return cl_stationDao.getTotalCountCLStationListByCondition
                 (linkTableName, getCompletedQuantityInputDTO);
     }
+
+    @Override
+    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
+        return cl_stationDao.getStationTestResultBySerialNumberAndLinkTableName(serialNumber, linkTableNameList);
+    }
 }

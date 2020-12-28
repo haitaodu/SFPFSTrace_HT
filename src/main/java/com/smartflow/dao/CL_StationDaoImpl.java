@@ -101,7 +101,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 if(flag.equals("like")){
                     sql += " and SerialNumber like :SerialNumber ";
                 }else if(flag.equals("=")){
-                    sql += " and SerialNumber = :SerialNumber ";
+                    if(!linkTableName.equals("CL_TCOP10")){
+                        sql += " and SerialNumber = :SerialNumber ";
+                    }else {
+                        sql += " and (DB9_DBX1006_0 like :serialNumber or  DB9_DBX922_0 like :serialNumber or DB9_DBX964_0 like :serialNumber or DB9_DBX1048_0 like :serialNumber)";
+                    }
                 }
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
@@ -119,7 +123,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 if(flag.equals("like")){
                 query.setParameter("SerialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
             }else if(flag.equals("=")){
-                query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                if(!linkTableName.equals("CL_TCOP10")) {
+                    query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                }else{
+                    query.setParameter("serialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
+                }
             }
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
@@ -149,8 +157,13 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 if(flag.equals("like")){
                     sql += " and SerialNumber like :SerialNumber ";
                 }else if(flag.equals("=")){
-                    sql += " and SerialNumber = :SerialNumber ";
+                    if(!linkTableName.equals("CL_TCOP10")){
+                        sql += " and SerialNumber = :SerialNumber ";
+                    }else {
+                        sql += " and (DB9_DBX1006_0 like :serialNumber or  DB9_DBX922_0 like :serialNumber or DB9_DBX964_0 like :serialNumber or DB9_DBX1048_0 like :serialNumber)";
+                    }
                 }
+
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId() != null){
                 sql += " and WorkOrderId = " + vmTracePartBySerialNumberOrWorkOrderInput.getWorkOrderId();
@@ -168,7 +181,11 @@ public class CL_StationDaoImpl implements CL_StationDao {
                 if(flag.equals("like")){
                     query.setParameter("SerialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
                 }else if(flag.equals("=")){
-                    query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                    if(!linkTableName.equals("CL_TCOP10")) {
+                        query.setParameter("SerialNumber", vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber());
+                    }else{
+                        query.setParameter("serialNumber", "%"+vmTracePartBySerialNumberOrWorkOrderInput.getSerialNumber()+"%");
+                    }
                 }
             }
             if(vmTracePartBySerialNumberOrWorkOrderInput.getIS_OK() != null){
@@ -334,5 +351,27 @@ catch (Exception e)
         }finally {
             session.close();
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        try {
+            for (StationLinkTableNameDTO stationLinkTableNameDTO:linkTableNameList) {
+                Map<String,Object> map = new HashMap<>();
+                String sql = "select top 1 IS_OK from core."+stationLinkTableNameDTO.getLinkTableName()+ " where 1=1 and SerialNumber = '"+serialNumber+"' order by CREATE_DATE desc";//CREATE_DATE between :StartDateTime and :EndDateTime
+                Query query = session.createSQLQuery(sql);
+                map.put("Station", stationLinkTableNameDTO.getStationNumber());
+                map.put("TestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
+                mapList.add(map);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+        return mapList;
     }
 }

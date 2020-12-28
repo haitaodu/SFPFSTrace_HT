@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.smartflow.dto.StationLinkTableNameDTO;
 import com.smartflow.view.StationList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,4 +75,10 @@ public class StationServiceImpl implements StationService {
 	public Integer getStationIdByStationNumber(String stationNumber) {
 		return stationDao.getStationIdByStationNumber(stationNumber);
 	}
+
+	@Override
+	public List<StationLinkTableNameDTO> getStationLinkTableNameByCell(String cellNumber) {
+		return stationDao.getStationLinkTableNameByCell(cellNumber);
+	}
+
 }
