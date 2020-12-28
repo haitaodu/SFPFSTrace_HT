@@ -222,7 +222,7 @@ public class TracePartByStationController extends BaseController{
 						serialNumberHeader = "泵轮条码";
 						serialNumberIndex = "DB9_DBX1006_0";
 						filterList.clear();
-						TableHeaderDTO serialNumber1  = new TableHeaderDTO("涡闭条码", "DB9_DBX922_0");
+						TableHeaderDTO serialNumber1  = new TableHeaderDTO("闭锁条码", "DB9_DBX922_0");
 						TableHeaderDTO serialNumber2  = new TableHeaderDTO("导轮条码", "DB9_DBX964_0");
 						TableHeaderDTO serialNumber3  = new TableHeaderDTO("罩轮条码", "DB9_DBX1048_0");
 						TableHeaderDTO batch1 = new TableHeaderDTO("轴承1批次号", "DB9_DBW1568");
