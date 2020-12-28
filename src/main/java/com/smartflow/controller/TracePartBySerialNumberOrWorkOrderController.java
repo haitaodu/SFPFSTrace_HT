@@ -123,10 +123,62 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     filterList = filterList.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).filter(h -> !h.getDataIndex().equals("CREATE_DATE")).collect(Collectors.toList());
 
                     Collections.sort(filterList, new ComparatorUtil());//.stream().filter(h -> !h.getDataIndex().equals("SerialNumber")).filter(h -> !h.getDataIndex().equals("WorkOrderId")).collect(Collectors.toList())
+                    String serialNumberHeader = "产品条码";
+                    String serialNumberIndex = "SerialNumber";
                     if(linkTableName.equals("CL_TUOP25") || linkTableName.equals("CL_TUOP80")){
                         Collections.rotate(filterList, 8);//从list后面往前数，移动倒数第八个位置移到第一个
+                    }else if(linkTableName.equals("CL_TUOP50")) {
+                        for (Map<String, Object> map : dataList) {
+                            String pierRivetingInspection = map.get("DB20_DBX56_7") == null ? null : map.get("DB20_DBX56_7").toString();
+                            //铆压相机检测:铆钉NG(总产品)
+                            String rivetingCameraDetection = map.get("DB20_DBX60_2") == null ? null : map.get("DB20_DBX60_2").toString();
+                            if (pierRivetingInspection != null && pierRivetingInspection.equals("1")) {
+                                //隐藏整平工位和下料保存
+                                map.put("RivetingPressure", map.get("DB1_DBD8"));//墩铆检测:铆压位移
+                                map.put("RivetingDisplacement", map.get("DB1_DBD12"));//墩铆检测:铆压压力
+                            }else if (rivetingCameraDetection != null && rivetingCameraDetection.equals("1")) {
+                                //隐藏整平工位和墩铆检测
+                                StationUtil.hidePierRivetingInspection(map);
+                                map.put("RivetingPressure", map.get("DB10_DBD1838"));//下料保存:铆压位移
+                                map.put("RivetingDisplacement", map.get("DB10_DBD1842"));//下料保存:铆压压力
+                            }
+                            map.put("LevelingTestResult", map.get("DB20_DBX57_1") == null ? null : (map.get("DB20_DBX57_1").equals("1") ? "NG" : "OK"));//整平工位:整平OK
+                            map.put("RivetCamera", map.get("DB20_DBX57_4") == null ? null : (map.get("DB20_DBX57_4").equals("1") ? "NG" : "OK"));//铆钉相机检测:铆钉NG
+                            map.put("PierRivetingResults", map.get("DB20_DBX56_7") == null ? null : (map.get("DB20_DBX56_7").equals("1") ? "NG" : "OK"));//墩铆检测:铆钉NG
+                            map.put("RivetingCameraDetection", map.get("DB20_DBX60_2") == null ? null : (map.get("DB20_DBX60_2").equals("1") ? "NG" : "OK"));//铆压相机检测:铆钉NG
+                            map.put("ReadResults", map.get("M15_6") == null ? null : (map.get("M15_6").equals("1") ? "NG" : "OK"));//铆压相机检测:铆钉NG
+//							}
+                        }
+                        TableHeaderDTO rivetingPressure  = new TableHeaderDTO("铆压压力", "RivetingPressure");
+                        TableHeaderDTO rivetingDisplacement  = new TableHeaderDTO("铆压位移", "RivetingDisplacement");
+                        TableHeaderDTO levelingStationNG  = new TableHeaderDTO("整平测试结果", "LevelingTestResult");
+                        TableHeaderDTO rivetCamera  = new TableHeaderDTO("铆钉相机", "RivetCamera");
+                        TableHeaderDTO pierRivetingResults  = new TableHeaderDTO("墩铆结果", "PierRivetingResults");
+                        TableHeaderDTO rivetingCameraDetection  = new TableHeaderDTO("铆压相机检测", "RivetingCameraDetection");
+                        TableHeaderDTO readResults  = new TableHeaderDTO("读取结果", "ReadResults");
+                        filterList.add(rivetingPressure);
+                        filterList.add(rivetingDisplacement);
+                        filterList.add(levelingStationNG);
+                        filterList.add(rivetCamera);
+                        filterList.add(pierRivetingResults);
+                        filterList.add(rivetingCameraDetection);
+                        filterList.add(readResults);
+                    }else if(linkTableName.equals("CL_TCOP10")){
+                        serialNumberHeader = "泵轮条码";
+                        serialNumberIndex = "DB9_DBX1006_0";
+                        filterList.clear();
+                        TableHeaderDTO serialNumber1  = new TableHeaderDTO("闭锁条码", "DB9_DBX922_0");
+                        TableHeaderDTO serialNumber2  = new TableHeaderDTO("导轮条码", "DB9_DBX964_0");
+                        TableHeaderDTO serialNumber3  = new TableHeaderDTO("罩轮条码", "DB9_DBX1048_0");
+                        TableHeaderDTO batch1 = new TableHeaderDTO("轴承1批次号", "DB9_DBW1568");
+                        TableHeaderDTO batch2 = new TableHeaderDTO("轴承2批次号", "DB9_DBW1570");
+                        filterList.add(serialNumber1);
+                        filterList.add(serialNumber2);
+                        filterList.add(serialNumber3);
+                        filterList.add(batch1);
+                        filterList.add(batch2);
                     }
-                    TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO("产品条码", "SerialNumber");
+                    TableHeaderDTO tableHeaderDTO1 = new TableHeaderDTO(serialNumberHeader, serialNumberIndex);
                     TableHeaderDTO tableHeaderDTO2 = new TableHeaderDTO("工单", "WorkOrderId");
                     TableHeaderDTO tableHeaderDTO4 = new TableHeaderDTO("测试结果", "IS_OK");
                     TableHeaderDTO tableHeaderDTO3 = new TableHeaderDTO("创建时间", "CREATE_DATE");
@@ -214,8 +266,8 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
                     String fileName = "工站相关信息.xls";
                     ExportExcelUtil exportExcelUtil = new ExportExcelUtil();
 
-                    File file = new File(webappPath+"\\"+fileName); //写文件
-
+//                    File file = new File(webappPath+"\\"+fileName); //写文件
+                    File file = new File(webappPath + File.separator + fileName); //写文件
                     //不存在则新增
                     if(!file.getParentFile().exists()){
                         file.getParentFile().mkdirs();
