@@ -217,7 +217,7 @@ public class StationUtil {
         list.add("DB9_DBW1562");
         list.add("DB9_DBW1564");
         list.add("DB9_DBW1566");
-        list.add("DB9_DBX1006_0");//下料保存：泵轮变位条码
+//        list.add("DB9_DBX1006_0");//下料保存：泵轮变位条码
         return list;
     }
 
