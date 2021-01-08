@@ -79,12 +79,13 @@ public class ClStationController extends BaseController{
                 String serialNumber = jsonObject.get
                         (SERIAL_ARG) == null ? null :
                         jsonObject.get(SERIAL_ARG).toString();
-                assert serialNumber != null;
-                logger.info(serialNumber);
-                serialNumber=serialNumber.replaceAll("\r","");
-                serialNumber=serialNumber.replaceAll("\n","");
-                serialNumber=serialNumber.replaceAll("\b","");
-                logger.info(serialNumber);
+                 if (serialNumber!=null)
+                {
+                    serialNumber = serialNumber.replaceAll("\r", "");
+                    serialNumber = serialNumber.replaceAll("\n", "");
+                    serialNumber = serialNumber.replaceAll("\b", "");
+                    logger.info(serialNumber);
+                }
                 jsonObject.put(SERIAL_ARG,serialNumber);
                 clStationDeviceDTO.setObject(jsonObject);
 
@@ -94,7 +95,7 @@ public class ClStationController extends BaseController{
                 //                //clStationDeviceDTO.setObject(reWrite(serialNumber,
                 //                //       jsonObject,linkTableName,
                 //                //        workOrderId));
-                logger.info(clStationDeviceDTO);
+                logger.info(clStationDeviceDTO+"dsd");
                 clStationService.addCLStationDevice(className,
                         parseToEntity(linkTableName, clStationDeviceDTO));
                 json = this.setJson(SUCEESS_CODE, "添加成功！", 1);
