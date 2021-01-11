@@ -1,5 +1,6 @@
 package com.smartflow.util;
 
+import com.smartflow.dto.StationTestResultHeaderDTO;
 import org.apache.commons.collections4.ListUtils;
 
 import java.util.*;
@@ -259,11 +260,30 @@ public class StationUtil {
 //        map.put("DB10_DBX1104_0", null);//下料保存:轮毂条码
     }
 
+    /**
+     * 获取所有表头数据
+     * @return
+     */
+    public List<StationTestResultHeaderDTO> getStationTestResultHeaderList() {
+        List<StationTestResultHeaderDTO> headerList = new ArrayList<>();
+        headerList.add(new StationTestResultHeaderDTO("涡轮岛区", getStationTestResultHeaderChildrenList("TU")));
+        headerList.add(new StationTestResultHeaderDTO("泵轮岛区", getStationTestResultHeaderChildrenList("IM")));
+        headerList.add(new StationTestResultHeaderDTO("导轮岛区", getStationTestResultHeaderChildrenList("RE")));
+        headerList.add(new StationTestResultHeaderDTO("闭锁岛区", getStationTestResultHeaderChildrenList("PD")));
+        headerList.add(new StationTestResultHeaderDTO("罩轮岛区", getStationTestResultHeaderChildrenList("FC")));
+        headerList.add(new StationTestResultHeaderDTO("总成岛区", getStationTestResultHeaderChildrenList("TC")));
+        return headerList;
+    }
+    /**
+     * 根据岛区获取子表头的数据
+     * @param cellNumber
+     * @return
+     */
     public List<Map<String,Object>> getStationTestResultHeaderChildrenList(String cellNumber){
         List<Map<String,Object>> childrenList = new ArrayList<>();
         Map<String,Object> childrenMap1 = new HashMap<>();
         childrenMap1.put("title", "工站");
-        childrenMap1.put("dataIndex", cellNumber+"StationNumber");
+        childrenMap1.put("dataIndex", cellNumber+"Station");
         childrenList.add(childrenMap1);
         Map<String,Object> childrenMap2 = new HashMap<>();
         childrenMap2.put("title", "测试结果");
@@ -300,7 +320,7 @@ public class StationUtil {
      * @param FCDataList
      * @return
      */
-    public List<Map<String,Object>> getDataListByAllCellDataList(List<Map<String,Object>> TUDataList,List<Map<String,Object>> IMDataList,List<Map<String,Object>> REDataList,List<Map<String,Object>> PDDataList,List<Map<String,Object>> FCDataList){
+    public List<Map<String,Object>> getDataListByAllCellDataList(List<Map<String,Object>> TUDataList,List<Map<String,Object>> IMDataList,List<Map<String,Object>> REDataList,List<Map<String,Object>> PDDataList,List<Map<String,Object>> FCDataList, List<Map<String,Object>> TCDataList){
         List<Map<String,Object>> dataList = new ArrayList<>();
         int i = 0;
         while(i < TUDataList.size()){
@@ -310,6 +330,7 @@ public class StationUtil {
             map.putAll(REDataList.get(i));
             map.putAll(PDDataList.get(i));
             map.putAll(FCDataList.get(i));
+            map.putAll(TCDataList.get(i));
             i++;
             dataList.add(map);
         }

@@ -137,7 +137,7 @@ public interface CL_StationService {
      * @param linkTableNameList
      * @return
      */
-    public List<Map<String,Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList);
+    public List<Map<String,Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList, boolean isTCFlag);
 
     /**
      * 根据条码查询TCOP10是否有生产记录，有则搜索出其他几个条码

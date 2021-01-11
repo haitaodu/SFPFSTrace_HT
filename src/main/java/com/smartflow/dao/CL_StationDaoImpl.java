@@ -355,16 +355,34 @@ catch (Exception e)
     }
 
     @Override
-    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
+    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList, boolean isTCFlag) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         List<Map<String,Object>> mapList = new ArrayList<>();
         try {
             for (StationLinkTableNameDTO stationLinkTableNameDTO:linkTableNameList) {
                 Map<String,Object> map = new HashMap<>();
                 String sql = "select top 1 IS_OK from core."+stationLinkTableNameDTO.getLinkTableName()+ " where 1=1 and SerialNumber = '"+serialNumber+"' order by CREATE_DATE desc";//CREATE_DATE between :StartDateTime and :EndDateTime
+                if(stationLinkTableNameDTO.getLinkTableName().equals("CL_TCOP10")) {
+                    sql = "select top 1 IS_OK from core." + stationLinkTableNameDTO.getLinkTableName() + " where 1=1 ";//CREATE_DATE between :StartDateTime and :EndDateTime
+                    if (cellNumber.equals("IM")) {//泵轮条码
+                        sql += " and DB9_DBX1006_0 like '" + serialNumber + "%'";
+                    } else if (cellNumber.equals("PD")) {
+                        sql += " and DB9_DBX922_0 like '" + serialNumber + "%'";
+                    } else if (cellNumber.equals("RE")) {
+                        sql += " and DB9_DBX964_0 like '" + serialNumber + "%'";
+                    } else if (cellNumber.equals("FC")) {
+                        sql += " and DB9_DBX1048_0 like '" + serialNumber + "%'";
+                    }
+                    sql += " order by CREATE_DATE desc";
+                }
                 Query query = session.createSQLQuery(sql);
-                map.put(cellNumber + "Station", stationLinkTableNameDTO.getStationNumber());
-                map.put(cellNumber + "TestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
+                if(isTCFlag){
+                    map.put("TCStation", stationLinkTableNameDTO.getStationNumber());
+                    map.put("TCTestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
+                }else{
+                    map.put(cellNumber + "Station", stationLinkTableNameDTO.getStationNumber());
+                    map.put(cellNumber + "TestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
+                }
                 mapList.add(map);
             }
         }catch(Exception e){

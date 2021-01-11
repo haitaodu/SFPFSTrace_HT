@@ -91,13 +91,14 @@ public class TraceStationTestResultBySerialNumberController extends BaseControll
                 json = this.setJson(0, "查询失败：请输入条码！", -1);
                 return json;
             }
-            List<StationTestResultHeaderDTO> headerList = new ArrayList<>();
             StationUtil stationUtil = new StationUtil();
+            List<StationTestResultHeaderDTO> headerList = new ArrayList<>();
             List<Map<String,Object>> TUDataList = new ArrayList<>();
             List<Map<String,Object>> IMDataList = new ArrayList<>();
             List<Map<String,Object>> REDataList = new ArrayList<>();
             List<Map<String,Object>> PDDataList = new ArrayList<>();
             List<Map<String,Object>> FCDataList = new ArrayList<>();
+            List<Map<String,Object>> TCDataList = new ArrayList<>();
             Map<String,Object> response = new HashMap<>();
             if(!cellNumber.equals("TU")){
                 CellSerialNumberDTO cellSerialNumberDTO = cl_stationService.getCellSerialNumberDTOFromTCOP10(cellNumber, serialNumber);
@@ -105,49 +106,48 @@ public class TraceStationTestResultBySerialNumberController extends BaseControll
                     CellSerialNumberDTO TUCellSerialNumberDTO = cl_stationService.getTUOrPDSerialNumberFromCOMOP10(cellSerialNumberDTO, cellNumber);
                     if(TUCellSerialNumberDTO != null){
                         cellSerialNumberDTO.setTUSerialNumber(TUCellSerialNumberDTO.getTUSerialNumber());
-                        TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("TU", cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("TU"));
+                        TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("TU", cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("TU"), false);
                     }
-                    headerList.add(new StationTestResultHeaderDTO("涡轮岛区", stationUtil.getStationTestResultHeaderChildrenList("TU")));
-                    headerList.add(new StationTestResultHeaderDTO("泵轮岛区", stationUtil.getStationTestResultHeaderChildrenList("IM")));
-                    headerList.add(new StationTestResultHeaderDTO("导轮岛区", stationUtil.getStationTestResultHeaderChildrenList("RE")));
-                    headerList.add(new StationTestResultHeaderDTO("闭锁岛区", stationUtil.getStationTestResultHeaderChildrenList("PD")));
-                    headerList.add(new StationTestResultHeaderDTO("罩轮岛区", stationUtil.getStationTestResultHeaderChildrenList("FC")));
-                    IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",cellSerialNumberDTO.getIMSerialNumber(), stationService.getStationLinkTableNameByCell("IM"));
-                    REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",cellSerialNumberDTO.getRESerialNumber(), stationService.getStationLinkTableNameByCell("RE"));
-                    PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",cellSerialNumberDTO.getPDSerialNumber(), stationService.getStationLinkTableNameByCell("PD"));
-                    FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("FC"));
+                    headerList = stationUtil.getStationTestResultHeaderList();
+                    IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",cellSerialNumberDTO.getIMSerialNumber(), stationService.getStationLinkTableNameByCell("IM"), false);
+                    REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",cellSerialNumberDTO.getRESerialNumber(), stationService.getStationLinkTableNameByCell("RE"), false);
+                    PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",cellSerialNumberDTO.getPDSerialNumber(), stationService.getStationLinkTableNameByCell("PD"), false);
+                    FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("FC"), false);
+                    TCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName(cellNumber,serialNumber, stationService.getStationLinkTableNameByCell("TC"), true);
 
                     int maxSize = TUDataList.size() > IMDataList.size() ? TUDataList.size() : IMDataList.size();
                     maxSize = maxSize > REDataList.size() ? maxSize : REDataList.size();
                     maxSize = maxSize > PDDataList.size() ? maxSize : PDDataList.size();
                     maxSize = maxSize > FCDataList.size() ? maxSize : FCDataList.size();
+                    maxSize = maxSize > TCDataList.size() ? maxSize : TCDataList.size();
                     TUDataList = stationUtil.getCellDataListByMaxSize(TUDataList, maxSize, "TU");
                     IMDataList = stationUtil.getCellDataListByMaxSize(IMDataList, maxSize, "IM");
                     REDataList = stationUtil.getCellDataListByMaxSize(REDataList, maxSize, "RE");
                     PDDataList = stationUtil.getCellDataListByMaxSize(PDDataList, maxSize, "PD");
                     FCDataList = stationUtil.getCellDataListByMaxSize(FCDataList, maxSize, "FC");
-                    List<Map<String,Object>> dataList = stationUtil.getDataListByAllCellDataList(TUDataList, IMDataList, REDataList, PDDataList, FCDataList);
+                    TCDataList = stationUtil.getCellDataListByMaxSize(TCDataList, maxSize, "TC");
+                    List<Map<String,Object>> dataList = stationUtil.getDataListByAllCellDataList(TUDataList, IMDataList, REDataList, PDDataList, FCDataList, TCDataList);
                     response.put("DataList", dataList);
                 }else{
                     switch (cellNumber){
                         case "IM":
                             headerList.add(new StationTestResultHeaderDTO("泵轮岛区", stationUtil.getStationTestResultHeaderChildrenList("IM")));
-                            IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",serialNumber, stationService.getStationLinkTableNameByCell("IM"));
+                            IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",serialNumber, stationService.getStationLinkTableNameByCell("IM"), false);
                             response.put("DataList", IMDataList);
                             break;
                         case "RE":
                             headerList.add(new StationTestResultHeaderDTO("导轮岛区", stationUtil.getStationTestResultHeaderChildrenList("RE")));
-                            REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",serialNumber, stationService.getStationLinkTableNameByCell("RE"));
+                            REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",serialNumber, stationService.getStationLinkTableNameByCell("RE"), false);
                             response.put("DataList", REDataList);
                             break;
                         case "PD":
                             headerList.add(new StationTestResultHeaderDTO("闭锁岛区", stationUtil.getStationTestResultHeaderChildrenList("PD")));
-                            PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",serialNumber, stationService.getStationLinkTableNameByCell("PD"));
+                            PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",serialNumber, stationService.getStationLinkTableNameByCell("PD"), false);
                             response.put("DataList", PDDataList);
                             break;
                         case "FC":
                             headerList.add(new StationTestResultHeaderDTO("罩轮岛区", stationUtil.getStationTestResultHeaderChildrenList("FC")));
-                            FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",serialNumber, stationService.getStationLinkTableNameByCell("FC"));
+                            FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",serialNumber, stationService.getStationLinkTableNameByCell("FC"), false);
                             response.put("DataList", FCDataList);
                             break;
                     }
@@ -155,39 +155,39 @@ public class TraceStationTestResultBySerialNumberController extends BaseControll
             }else{
                 //根据TU条码查询闭锁条码
                 CellSerialNumberDTO cellSerialNumberDTO = new CellSerialNumberDTO();
+                cellSerialNumberDTO.setTUSerialNumber(serialNumber);
                 CellSerialNumberDTO PDCellSerialNumberDTO = cl_stationService.getTUOrPDSerialNumberFromCOMOP10(cellSerialNumberDTO, cellNumber);
                 if(PDCellSerialNumberDTO != null){
                     cellSerialNumberDTO.setPDSerialNumber(PDCellSerialNumberDTO.getPDSerialNumber());
-                    PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",cellSerialNumberDTO.getPDSerialNumber(), stationService.getStationLinkTableNameByCell("PD"));
+                    PDDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("PD",cellSerialNumberDTO.getPDSerialNumber(), stationService.getStationLinkTableNameByCell("PD"), false);
                     cellSerialNumberDTO = cl_stationService.getCellSerialNumberDTOFromTCOP10(cellNumber, cellSerialNumberDTO.getPDSerialNumber());
                     if(cellSerialNumberDTO != null){
-                        cellSerialNumberDTO.setTUSerialNumber(getStationTestResultBySerialNumberDTO.getSerialNumber());
-                        headerList.add(new StationTestResultHeaderDTO("涡轮岛区", stationUtil.getStationTestResultHeaderChildrenList("TU")));
-                        headerList.add(new StationTestResultHeaderDTO("泵轮岛区", stationUtil.getStationTestResultHeaderChildrenList("IM")));
-                        headerList.add(new StationTestResultHeaderDTO("导轮岛区", stationUtil.getStationTestResultHeaderChildrenList("RE")));
-                        headerList.add(new StationTestResultHeaderDTO("闭锁岛区", stationUtil.getStationTestResultHeaderChildrenList("PD")));
-                        headerList.add(new StationTestResultHeaderDTO("罩轮岛区", stationUtil.getStationTestResultHeaderChildrenList("FC")));
-                        TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("TU", cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("TU"));
-                        IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",cellSerialNumberDTO.getIMSerialNumber(), stationService.getStationLinkTableNameByCell("IM"));
-                        REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",cellSerialNumberDTO.getRESerialNumber(), stationService.getStationLinkTableNameByCell("RE"));
-                        FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",cellSerialNumberDTO.getFCSerialNumber(), stationService.getStationLinkTableNameByCell("FC"));
+                        headerList = stationUtil.getStationTestResultHeaderList();
+                        TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("TU", cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell("TU"), false);
+                        IMDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("IM",cellSerialNumberDTO.getIMSerialNumber(), stationService.getStationLinkTableNameByCell("IM"), false);
+                        REDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("RE",cellSerialNumberDTO.getRESerialNumber(), stationService.getStationLinkTableNameByCell("RE"), false);
+                        FCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName("FC",cellSerialNumberDTO.getFCSerialNumber(), stationService.getStationLinkTableNameByCell("FC"), false);
+                        TCDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName(cellNumber,serialNumber, stationService.getStationLinkTableNameByCell("TC"), true);
+
                         //获取集合中size最大值
                         int maxSize = TUDataList.size() > IMDataList.size() ? TUDataList.size() : IMDataList.size();
                         maxSize = maxSize > REDataList.size() ? maxSize : REDataList.size();
                         maxSize = maxSize > PDDataList.size() ? maxSize : PDDataList.size();
                         maxSize = maxSize > FCDataList.size() ? maxSize : FCDataList.size();
+                        maxSize = maxSize > TCDataList.size() ? maxSize : TCDataList.size();
                         //根据集合中size最大的补齐小于size最大值的集合
                         TUDataList = stationUtil.getCellDataListByMaxSize(TUDataList, maxSize, "TU");
                         IMDataList = stationUtil.getCellDataListByMaxSize(IMDataList, maxSize, "IM");
                         REDataList = stationUtil.getCellDataListByMaxSize(REDataList, maxSize, "RE");
                         PDDataList = stationUtil.getCellDataListByMaxSize(PDDataList, maxSize, "PD");
                         FCDataList = stationUtil.getCellDataListByMaxSize(FCDataList, maxSize, "FC");
-                        List<Map<String,Object>> dataList = stationUtil.getDataListByAllCellDataList(TUDataList, IMDataList, REDataList, PDDataList, FCDataList);
+                        TCDataList = stationUtil.getCellDataListByMaxSize(TCDataList, maxSize, "TC");
+                        List<Map<String,Object>> dataList = stationUtil.getDataListByAllCellDataList(TUDataList, IMDataList, REDataList, PDDataList, FCDataList, TCDataList);
                         response.put("DataList", dataList);
                     }
                 }else{
                     headerList.add(new StationTestResultHeaderDTO("涡轮岛区", stationUtil.getStationTestResultHeaderChildrenList(cellNumber)));
-                    TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName(cellNumber, cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell(cellNumber));
+                    TUDataList = cl_stationService.getStationTestResultBySerialNumberAndLinkTableName(cellNumber, cellSerialNumberDTO.getTUSerialNumber(), stationService.getStationLinkTableNameByCell(cellNumber), false);
                     response.put("DataList", TUDataList);
                 }
             }
