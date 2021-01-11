@@ -304,7 +304,17 @@ public class CL_StationServiceImpl implements CL_StationService {
     }
 
     @Override
-    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
-        return cl_stationDao.getStationTestResultBySerialNumberAndLinkTableName(serialNumber, linkTableNameList);
+    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
+        return cl_stationDao.getStationTestResultBySerialNumberAndLinkTableName(cellNumber, serialNumber, linkTableNameList);
+    }
+
+    @Override
+    public CellSerialNumberDTO getCellSerialNumberDTOFromTCOP10(String cellNumber, String serialNumber) {
+        return cl_stationDao.getCellSerialNumberDTOFromTCOP10(cellNumber, serialNumber);
+    }
+
+    @Override
+    public CellSerialNumberDTO getTUOrPDSerialNumberFromCOMOP10(CellSerialNumberDTO cellSerialNumberDTO, String cellNumber) {
+        return cl_stationDao.getTUOrPDSerialNumberFromCOMOP10(cellSerialNumberDTO, cellNumber);
     }
 }

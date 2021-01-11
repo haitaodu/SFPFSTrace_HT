@@ -263,7 +263,7 @@ public class TracePartBySerialNumberOrWorkOrderController extends BaseController
 
                     String webappPath = request.getSession().getServletContext().getRealPath("/upload");
                     String filePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/upload/";
-                    String fileName = "工站相关信息.xls";
+                    String fileName = "工站相关信息.xlsx";
                     ExportExcelUtil exportExcelUtil = new ExportExcelUtil();
 
 //                    File file = new File(webappPath+"\\"+fileName); //写文件

@@ -1,10 +1,10 @@
 package com.smartflow.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.collections4.ListUtils;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StationUtil {
 
@@ -259,6 +259,63 @@ public class StationUtil {
 //        map.put("DB10_DBX1104_0", null);//下料保存:轮毂条码
     }
 
+    public List<Map<String,Object>> getStationTestResultHeaderChildrenList(String cellNumber){
+        List<Map<String,Object>> childrenList = new ArrayList<>();
+        Map<String,Object> childrenMap1 = new HashMap<>();
+        childrenMap1.put("title", "工站");
+        childrenMap1.put("dataIndex", cellNumber+"StationNumber");
+        childrenList.add(childrenMap1);
+        Map<String,Object> childrenMap2 = new HashMap<>();
+        childrenMap2.put("title", "测试结果");
+        childrenMap2.put("dataIndex", cellNumber+"TestResult");
+        childrenList.add(childrenMap2);
+        return childrenList;
+    }
+
+    /**
+     * 根据最大集合补充集合大小，小于最大集合的 用null值补齐
+     * @param cellDataList
+     * @param maxSize
+     * @param cellNumber
+     * @return
+     */
+    public List<Map<String,Object>> getCellDataListByMaxSize(List<Map<String,Object>> cellDataList, int maxSize, String cellNumber){
+        Map<String,Object> map = new HashMap<>();
+        map.put(cellNumber+"Station", null);
+        map.put(cellNumber+"TestResult", null);
+        int i = cellDataList.size();
+        while(i < maxSize){
+            cellDataList.add(map);
+            i++;
+        }
+        return cellDataList;
+    }
+
+    /**
+     * 集合中下标一样的组成一个新的集合
+     * @param TUDataList
+     * @param IMDataList
+     * @param REDataList
+     * @param PDDataList
+     * @param FCDataList
+     * @return
+     */
+    public List<Map<String,Object>> getDataListByAllCellDataList(List<Map<String,Object>> TUDataList,List<Map<String,Object>> IMDataList,List<Map<String,Object>> REDataList,List<Map<String,Object>> PDDataList,List<Map<String,Object>> FCDataList){
+        List<Map<String,Object>> dataList = new ArrayList<>();
+        int i = 0;
+        while(i < TUDataList.size()){
+            Map<String,Object> map = new HashMap<>();
+            map.putAll(TUDataList.get(i));
+            map.putAll(IMDataList.get(i));
+            map.putAll(REDataList.get(i));
+            map.putAll(PDDataList.get(i));
+            map.putAll(FCDataList.get(i));
+            i++;
+            dataList.add(map);
+        }
+        return dataList;
+    }
+
     public static void main(String[] args) {
 
         // TODO Auto-generated method stub
@@ -282,9 +339,48 @@ public class StationUtil {
 //            line += new String(chFileNames[i]);
 //            System.out.println(line);
 //        }
-        String[] filedNames = new String[]{"DB48_DBD4","DB48_DBD16","DB48_DBD20","DB48_DBD24","DB48_DBD28","DB48_DBD12","DB48_DBD32","DB48_DBD344","DB48_DBD348","DB48_DBD352","DB48_DBD356","DB48_DBD36","DB48_DBD360","DB48_DBD40","DB48_DBD44","DB48_DBD8","DB48_DBD86","DB48_DBW342","DB48_DBW364","DB49_DBX126_0","DB49_DBX168_0","DB49_DBX210_0","DB49_DBX252_0","DB49_DBX42_0","DB49_DBX84_0"};
-        getTargetSortString(filedNames);
+//        String[] filedNames = new String[]{"DB48_DBD4","DB48_DBD16","DB48_DBD20","DB48_DBD24","DB48_DBD28","DB48_DBD12","DB48_DBD32","DB48_DBD344","DB48_DBD348","DB48_DBD352","DB48_DBD356","DB48_DBD36","DB48_DBD360","DB48_DBD40","DB48_DBD44","DB48_DBD8","DB48_DBD86","DB48_DBW342","DB48_DBW364","DB49_DBX126_0","DB49_DBX168_0","DB49_DBX210_0","DB49_DBX252_0","DB49_DBX42_0","DB49_DBX84_0"};
+//        getTargetSortString(filedNames);
+        StationUtil stationUtil = new StationUtil();
+        List<Map<String,Object>> mapList1 = new ArrayList<>();
+        Map<String,Object> map = new HashMap<>();
+        map.put("A1",0);
+        map.put("A2",0);
+        mapList1.add(map);
+        List<Map<String,Object>> mapList2 = new ArrayList<>();
+        map = new HashMap<>();
+        map.put("B1",0);
+        map.put("B2",0);
+        mapList2.add(map);
+        map = new HashMap<>();
+        map.put("B1",1);
+        map.put("B2",1);
+        mapList2.add(map);
+        List<Map<String,Object>> mapList3 = new ArrayList<>();
+        map = new HashMap<>();
+        map.put("C1",0);
+        map.put("C2",0);
+        mapList3.add(map);
+        map = new HashMap<>();
+        map.put("C1",1);
+        map.put("C2",1);
+        mapList3.add(map);
+        map = new HashMap<>();
+        map.put("C1",2);
+        map.put("C2",2);
+        mapList3.add(map);
+        stationUtil.union(mapList1,mapList2,mapList3);
+    }
 
+    public List<Map<String,Object>> union(List<Map<String,Object>> mapList1,List<Map<String,Object>> mapList2,List<Map<String,Object>> mapList3){
+        List<Map<String,Object>> mapList = Stream.concat(mapList1.stream(), mapList2.stream())
+                .collect(Collectors.toList());
+        System.out.println(mapList);
+        mapList = Stream.concat(mapList.stream(), mapList3.stream())
+                .collect(Collectors.toList());
+        System.out.println(mapList);
+       mapList = ListUtils.union(mapList1, mapList2);
+        return mapList;
     }
 
     public static char[][] getTargetSortString(String[] filedNames){

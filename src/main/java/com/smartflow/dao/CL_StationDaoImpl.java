@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
@@ -354,7 +355,7 @@ catch (Exception e)
     }
 
     @Override
-    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
+    public List<Map<String, Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList) {
         Session session = hibernateTemplate.getSessionFactory().openSession();
         List<Map<String,Object>> mapList = new ArrayList<>();
         try {
@@ -362,8 +363,8 @@ catch (Exception e)
                 Map<String,Object> map = new HashMap<>();
                 String sql = "select top 1 IS_OK from core."+stationLinkTableNameDTO.getLinkTableName()+ " where 1=1 and SerialNumber = '"+serialNumber+"' order by CREATE_DATE desc";//CREATE_DATE between :StartDateTime and :EndDateTime
                 Query query = session.createSQLQuery(sql);
-                map.put("Station", stationLinkTableNameDTO.getStationNumber());
-                map.put("TestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
+                map.put(cellNumber + "Station", stationLinkTableNameDTO.getStationNumber());
+                map.put(cellNumber + "TestResult", query.uniqueResult() == null ? "NO" : (query.uniqueResult().toString().trim().equals("0") ? "NG" : "OK"));
                 mapList.add(map);
             }
         }catch(Exception e){
@@ -373,5 +374,71 @@ catch (Exception e)
             session.close();
         }
         return mapList;
+    }
+
+    @Override
+    public CellSerialNumberDTO getCellSerialNumberDTOFromTCOP10(String cellNumber, String serialNumber) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        try {
+            //TUSerialNumber
+//           IM  IMSerialNumber 泵轮条码 DB9_DBX1006_0
+//           PD PDSerialNumber 闭锁条码  DB9_DBX922_0
+//           RE RESerialNumber 导轮条码  DB9_DBX964_0
+//           FC FCSerialNumber 罩轮条码  DB9_DBX1048_0
+            String sql = "select DB9_DBX1006_0 IMSerialNumber,DB9_DBX922_0 PDSerialNumber,DB9_DBX964_0 RESerialNumber,DB9_DBX1048_0 FCSerialNumber from core.CL_TCOP10 where ";
+            if(cellNumber.equals("IM")){//泵轮条码
+                sql += " DB9_DBX1006_0 like '"+ serialNumber +"%'";
+            }else if(cellNumber.equals("PD")){
+                sql += " DB9_DBX922_0 like '"+ serialNumber +"%'";
+            }else if(cellNumber.equals("RE")){
+                sql += " DB9_DBX964_0 like '"+ serialNumber +"%'";
+            }else if(cellNumber.equals("FC")){
+                sql += " DB9_DBX1048_0 like '"+ serialNumber +"%'";
+            }
+            Query query = session.createSQLQuery(sql);
+            List<CellSerialNumberDTO> cellSerialNumberDTOList = query.setResultTransformer(Transformers.aliasToBean(CellSerialNumberDTO.class)).list();
+            if(!CollectionUtils.isEmpty(cellSerialNumberDTOList)){
+                return cellSerialNumberDTOList.get(0);
+            }else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public CellSerialNumberDTO getTUOrPDSerialNumberFromCOMOP10(CellSerialNumberDTO cellSerialNumberDTO, String cellNumber) {
+        Session session = hibernateTemplate.getSessionFactory().openSession();
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        try {
+            //TUSerialNumber
+//           IM  IMSerialNumber 泵轮条码 DB9_DBX1006_0
+//           PD PDSerialNumber 闭锁条码  DB9_DBX922_0
+//           RE RESerialNumber 导轮条码  DB9_DBX964_0
+//           FC FCSerialNumber 罩轮条码  DB9_DBX1048_0
+            String sql = "select DB13_DBX718_0 PDSerialNumber,SerialNumber TUSerialNumber from core.CL_COMOP10 where ";
+            if(cellNumber.equals("TU")){//涡轮条码
+                sql += " SerialNumber = '"+ cellSerialNumberDTO.getTUSerialNumber() +"'";
+            }else {
+                sql += " DB13_DBX718_0 like '"+ cellSerialNumberDTO.getPDSerialNumber() +"%'";
+            }
+            Query query = session.createSQLQuery(sql);
+            List<CellSerialNumberDTO> cellSerialNumberDTOList = query.setResultTransformer(Transformers.aliasToBean(CellSerialNumberDTO.class)).list();
+            if(!CollectionUtils.isEmpty(cellSerialNumberDTOList)){
+                return cellSerialNumberDTOList.get(0);
+            }else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
     }
 }

@@ -102,6 +102,21 @@ public interface CL_StationDao {
      * @param linkTableNameList
      * @return
      */
-    public List<Map<String,Object>> getStationTestResultBySerialNumberAndLinkTableName(String serialNumber, List<StationLinkTableNameDTO> linkTableNameList);
+    public List<Map<String,Object>> getStationTestResultBySerialNumberAndLinkTableName(String cellNumber, String serialNumber, List<StationLinkTableNameDTO> linkTableNameList);
 
+    /**
+     * 根据条码查询TCOP10是否有生产记录，有则搜索出其他几个条码
+     * @param cellNumber
+     * @param serialNumber
+     * @return
+     */
+    public CellSerialNumberDTO getCellSerialNumberDTOFromTCOP10(String cellNumber, String serialNumber);
+
+    /**
+     * 根据TU条码查询PD条码/根据PD条码查询TU条码
+     * @param cellNumber
+     * @param cellSerialNumberDTO
+     * @return
+     */
+    public CellSerialNumberDTO getTUOrPDSerialNumberFromCOMOP10(CellSerialNumberDTO cellSerialNumberDTO, String cellNumber);
 }
