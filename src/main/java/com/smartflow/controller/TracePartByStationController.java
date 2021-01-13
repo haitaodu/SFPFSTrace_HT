@@ -183,7 +183,14 @@ public class TracePartByStationController extends BaseController{
 									//StationUtil.hideBlankingPreservation(map);
 									map.put("RivetingPressure", map.get("DB1_DBD8"));//墩铆检测:铆压位移
 									map.put("RivetingDisplacement", map.get("DB1_DBD12"));//墩铆检测:铆压压力
-								}else if ((rivetingCameraDetection != null && rivetingCameraDetection.equals("1")) || (rivetingCameraDetection != null && rivetingCameraDetection.equals("0"))) {
+								}else if (rivetingCameraDetection != null && rivetingCameraDetection.equals("1")) {
+									//隐藏整平工位和墩铆检测
+//									StationUtil.hideLevelingStationNGData(map);
+									StationUtil.hidePierRivetingInspection(map);
+									map.put("RivetingPressure", map.get("DB10_DBD1838"));//下料保存:铆压位移
+									map.put("RivetingDisplacement", map.get("DB10_DBD1842"));//下料保存:铆压压力
+								}else if(pierRivetingInspection != null && pierRivetingInspection.equals("0") && rivetingCameraDetection != null && rivetingCameraDetection.equals("0")){
+									//都OK时显示下料两列
 									//隐藏整平工位和墩铆检测
 //									StationUtil.hideLevelingStationNGData(map);
 									StationUtil.hidePierRivetingInspection(map);
